@@ -1,0 +1,136 @@
+/* Resets básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container principal da Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b8b39a; /* Cor bege/oliva claro da imagem */
+    padding: 15px 40px;
+    width: 100%;
+}
+
+/* Área da Logo + Título */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand .logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+.brand .h11 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #4a523a; /* Tom verde oliva escuro */
+    font-family: Georgia, 'Times New Roman', serif; /* Fonte elegante similar à foto */
+    letter-spacing: 0.5px;
+}
+
+/* Links de Navegação (Centro) */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #2b2e22; /* Texto escuro da imagem */
+    font-size: 17px;
+    font-weight: 400;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+    padding-bottom: 2px;
+}
+
+.nav-links li a:hover {
+    color: #4a523a;
+    border-bottom: 2px solid #4a523a; /* Efeito sublinhado (como o 'Agendar' da foto) */
+}
+
+/* Ações (Direita - Carrinho, Perfil ou Login/Cadastro) */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Ícones de Navegação */
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+/* Estilo específico do ícone de Carrinho (Borda fina igual a foto) */
+.cart-icon {
+    border: 2px solid #4a523a;
+    color: #4a523a;
+    background-color: transparent;
+}
+
+/* Estilo específico do ícone de Perfil (Fundo preenchido igual a foto) */
+.user-icon {
+    background-color: #4a523a;
+    color: #b8b39a; /* Ícone na cor do fundo da navbar */
+}
+
+.nav-icon:hover {
+    transform: scale(1.05);
+}
+
+.nav-icon i {
+    font-size: 18px;
+}
+
+/* Botões para quando NÃO estiver logado */
+.btn-login, 
+.btn-cadastro,
+.btn-logout {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.btn-login {
+    color: #4a523a;
+    border: 1px solid #4a523a;
+}
+
+.btn-login:hover {
+    background-color: #4a523a;
+    color: #ffffff;
+}
+
+.btn-cadastro {
+    background-color: #4a523a;
+    color: #ffffff;
+}
+
+.btn-cadastro:hover {
+    background-color: #363c2a;
+}
+
+.btn-logout {
+    color: #8b0000;
+    font-size: 13px;
+    margin-left: 5px;
+}   
