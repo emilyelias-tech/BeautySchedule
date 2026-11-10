@@ -32,9 +32,9 @@ if ($databaseStatus === 'Conectado') {
     <h1 class="titulo-secao">Nossos produtos<br>pensando em você.</h1>
     
     <div class="card_produtos">
-        <?php if ($databaseStatus === 'Indisponível'): ?> <!-- essa funcao mostra indisponivel caso o status nao exista!-->
+        <?php if ($databaseStatus === 'Indisponível'): ?> <!-- essa funcao mostra indisponivel caso o status nao exista!(o === verifica se o que está escrito é igual e tem a msm identidade, str, int etc)-->
             <p>O banco de dados está indisponível no momento.</p>
-        <?php elseif (empty($produtos)): ?>  <!-- essa funcao mostra a msg caso nao exista produtos!-->
+        <?php elseif (empty($produtos)): ?>  <!-- essa funcao mostra a msg a seguir caso nao exista produtos!-->
             <p>Nenhum produto cadastrado.</p>
         <?php else: ?>
             <?php foreach ($produtos as $produto): ?>  <!-- a partir daqui os cards sao criados de acordo com o que há no Banco!-->
