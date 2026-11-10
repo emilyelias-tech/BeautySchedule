@@ -19,7 +19,7 @@
         </div>
 
         <ul class="nav-links">
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php">Início</a></li>
             <li><a href="produtos.php">Produtos</a></li>
             <li><a href="agendar.php">Agendar</a></li>
             <li><a href="consulta.php">Consulta</a></li>
