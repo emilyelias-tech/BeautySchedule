@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+require_once __DIR__ . 'css/nav.php';
+$databaseStatus = 'Conectado';
+
+try {
+    require_once __DIR__ . '/init.php';
+    $pdo->query('SELECT 1');
+} catch (Throwable $exception) {
+    $databaseStatus = 'Indisponível';
+}
+?>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projeto Integrador</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1>Projeto Integrador: BeautySchedule</h1>
+    <p>O ambiente PHP está funcionando.</p>
+    <div class="status">
+        Banco de dados: <strong><?= htmlspecialchars($databaseStatus, ENT_QUOTES, 'UTF-8') ?></strong>
+    </div>
+    <p>Comece a aplicação editando <code>app/index.php</code>.</p>
+</body>
+</html>
