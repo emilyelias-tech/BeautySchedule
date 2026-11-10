@@ -1,0 +1,102 @@
+/*Style do produtos.php (apenas por enquanto)*/
+
+body {
+    background-color: #d6d3be;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    color: #434e38;
+}
+
+.titulo-secao {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    font-weight: normal;
+    line-height: 1.2;
+    color: #5b6348;
+    margin-bottom: 30px;
+}
+
+/* Grid configurada na sua classe antiga */
+.card_produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+    max-width: 1200px;
+}
+
+/* Visual dos Cards */
+.card-produto {
+    background-color: #b1ad95;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-produto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-imagem {
+    height: 220px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+}
+
+.card-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-corpo {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.nome-produto {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #2b3323;
+    text-align: center;
+    margin: 4px 0 16px 0;
+}
+
+.card-rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preco {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2b3323;
+}
+
+.btn-detalhes {
+    width: 32px;
+    height: 32px;
+    background-color: #3e4c34;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-detalhes:hover {
+    background-color: #273120;
+}
