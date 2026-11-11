@@ -1,4 +1,4 @@
-/*Style do produtos.php e agendar.php (apenas por enquanto)*/
+/*Style do index.php, produtos.php e procedimentos.php(apenas por enquanto)*/
 
 body {
     background-color: #d6d3be;
@@ -99,4 +99,25 @@ body {
 
 .btn-detalhes:hover {
     background-color: #273120;
+}
+/* Container de fundo da barra de progresso (a parte cinzenta/escura vazia) */
+.barra-progresso {
+    width: 250px;                           /* Largura total fixa da barra */
+    height: 8px;                            /* Altura da barra */
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo semi-transparente */
+    border-radius: 4px;                     /* Cantos arredondados */
+    overflow: hidden;                       /* Garante que o preenchimento não saia das bordas arredondadas */
+}
+
+/* O preenchimento colorido que vai crescer dinamicamente */
+.progresso-preenchido {
+    height: 100%;                           /* Ocupa toda a altura (8px) do container pai */
+    background-color: #a7b695;             /* Cor verde clara do preenchimento */
+    
+    /* 
+       ANIMACÃO SUAVE:
+       Sempre que a propriedade 'width' mudar (ex: de 0% para 68%), 
+       o navegador fará uma transição animada a deslizar durante 0.6 segundos.
+    */
+    transition: width 0.6s ease-in-out;
 }
