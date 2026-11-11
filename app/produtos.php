@@ -29,6 +29,7 @@ if ($databaseStatus === 'Conectado') {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+      <?php include __DIR__ . '/nav.php'; ?>
     <h1 class="titulo-secao">Nossos produtos<br>pensando em você.</h1>
     
     <div class="card_produtos">

@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/css/nav.php';
 
 $databaseStatus = 'Conectado';
 
@@ -29,6 +28,7 @@ if ($databaseStatus === 'Conectado') {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+      <?php include __DIR__ . '/nav.php'; ?>
     <h1>
         Nossos procedimentos <br> para a sua beleza
     </h1>

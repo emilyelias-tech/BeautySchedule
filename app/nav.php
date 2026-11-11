@@ -3,7 +3,6 @@
 
     // o php para de traduzir os itens e leva ao pe da letra, mostrando os erros que podem ser invisiveis no php normal
 
-    require_once __DIR__ . '/init.php';
 
     // caso o usuario esteja logado, botoes login e cadastro desaparecerao e aparecera o meu perfil e carrinho
     $usuarioLogado = isset($_SESSION['usuario_id']);
@@ -15,7 +14,7 @@
 
     <nav class="navbar">
         <div class="brand">
-         <img src="logo.png" alt="Beauty Schedule">
+         <img src="/imagens/logo.png" alt="Beauty Schedule">
          <h1 >Beauty Schedule</h1>
         </div>
 
@@ -47,3 +46,4 @@
             <?php endif; ?>
         </div>
     </nav>
+    <!-- Falta os ícones que serão realmente utilizados ao final, falta o Titulo que está mal feito e a correção na logo !-->

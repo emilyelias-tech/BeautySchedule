@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/nav.php';
 
 // 1. SIMULAÇÃO DOS DADOS (Estes valores na prática viriam da tua tabela de utilizadores no Banco de Dados)
 $pontosAtuais = 680;  // Quantidade de pontos que o utilizador possui atualmente
@@ -25,7 +24,6 @@ $databaseStatus = 'Conectado';
 
 try {
     require_once __DIR__ . '/init.php';
-    require_once __DIR__ . '/nav.php';
     $pdo->query('SELECT 1');
 } catch (Throwable $exception) {
     $databaseStatus = 'Indisponível';
@@ -40,7 +38,7 @@ try {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <?php include __DIR__ . '/nav.php'; ?>
     <main class="container-principal">
 
         <!-- BANNER DE BENEFÍCIOS DO BEAUTY CLUB -->
