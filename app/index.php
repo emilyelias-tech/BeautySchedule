@@ -19,15 +19,7 @@ if ($porcentagem > 100) {
     $porcentagem = 100;
 }
 
-// 4. VERIFICAÇÃO DE CONEXÃO AO BANCO DE DADOS
-$databaseStatus = 'Conectado';
-
-try {
-    require_once __DIR__ . '/init.php';
-    $pdo->query('SELECT 1');
-} catch (Throwable $exception) {
-    $databaseStatus = 'Indisponível';
-}
+// 4. VERIFICAÇÃO DE CONEXÃO AO BANCO DE DADO
 ?>
 <!doctype html>
 <html lang="pt-BR">

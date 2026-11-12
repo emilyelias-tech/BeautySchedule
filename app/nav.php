@@ -14,8 +14,7 @@
 
     <nav class="navbar">
         <div class="brand">
-         <img src="/imagens/logo.png" alt="Beauty Schedule">
-         <h1 >Beauty Schedule</h1>
+         <img class ="img"src="imagens/logo.png" alt="Beauty Schedule">
         </div>
 
         <ul class="nav-links">
