@@ -115,22 +115,21 @@ if (isset($_POST['continuar'])) {
                 </div>
 
        
-                <div class="campo-grupo">
-                    <span class="label-etapa">Data</span>
-                    <div class="grid-opcoes">
-                        <?php foreach ($datasDisponiveis as $valorData =>$textoData): ?>
-                            <label class="opcao-pill">
-                                <input 
-                                    type="radio" 
-                                    name="data" 
-                                    value="<?= htmlspecialchars($valorData) ?>"
-                                    <?= $valorData === '2026-06-20' ? 'checked' : '' ?>
-                                    required
-                                >
-                                <span class="pill-texto"><?= htmlspecialchars($textoData) ?></span>
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
+              <div class="campo-grupo">
+    <label for="data" class="label-etapa">Data</label>
+
+    <div class="select-wrapper">
+        <input
+            type="date"
+            name="data"
+            id="data"
+            class="select-custom"
+            min="<?= date('Y-m-d') ?>"
+            value="<?= htmlspecialchars($_POST['data'] ?? '') ?>"
+            required
+        >
+    </div>
+</div>
                 </div>
 
           
