@@ -12,11 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/nav.css">
 
-    <div class="navbar">
-        <div class="brand">
-         <img class ="img"src="img/logo.png" alt="Beauty Schedule">
-        </div>
-
         <nav class="nav-links">
             <a href="index.php">Início</a>
             <a href="produtos.php">Produtos</a>
