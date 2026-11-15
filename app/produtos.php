@@ -1,31 +1,82 @@
 <?php
 
-declare(strict_types=1);
-require_once __DIR__ . 'css/nav.php';
-$databaseStatus = 'Conectado';
+require_once __DIR__ . '/banco/database.php';
 
-try {
-    require_once __DIR__ . '/init.php';
-    $pdo->query('SELECT 1');
-} catch (Throwable $exception) {
-    $databaseStatus = 'Indisponível';
-}
+$pdo = database();
+
+$sql = "SELECT * FROM produtos ORDER BY id DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+
+$produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projeto Integrador</title>
-    <style>
 
-    </style>
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos | BeautySchedule</title>
+    <link rel="stylesheet" href="/app/css/produtos.css">
 </head>
+
 <body>
-    <h1>Projeto Integrador: BeautySchedule</h1>
-    <p>O ambiente PHP está funcionando.</p>
-    <div class="status">
-        Banco de dados: <strong><?= htmlspecialchars($databaseStatus, ENT_QUOTES, 'UTF-8') ?></strong>
+
+<section class="produtos">
+
+    <div class="lista-produtos">
+
+        <?php foreach ($produtos as $produto): ?>
+
+            <div class="card-produto">
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="<?php echo htmlspecialchars($produto['imagem']); ?>"
+                        alt="<?php echo htmlspecialchars($produto['nome']); ?>"
+                    >
+
+                </div>
+
+                <div class="linha-verde"></div>
+
+                <div class="informacoes-produto">
+
+                    <p class="nome-produto">
+                        <?php echo htmlspecialchars($produto['nome']); ?>
+                    </p>
+
+                    <div class="rodape-produto">
+
+                        <p class="preco-produto">
+                            R$ <?php echo number_format(
+                                (float) $produto['preco'],
+                                2,
+                                ',',
+                                '.'
+                            ); ?>
+                        </p>
+
+                        <a href="produto.php?id=<?php echo (int) $produto['id']; ?>"
+                           class="botao-produto">
+                            →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        <?php endforeach; ?>
+
     </div>
-    <p>Comece a aplicação editando <code>app/index.php</code>.</p>
+
+</section>
+
 </body>
+</html>

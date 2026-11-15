@@ -26,4 +26,3 @@ function database(): PDO
 
     return $connection;
 }
-
