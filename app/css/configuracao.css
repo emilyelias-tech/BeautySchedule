@@ -1,0 +1,177 @@
+/* Configuração do body*/
+
+body{
+    background-color: #d8d0b4;
+    margin: -0;
+    background-image: url(
+        /app/img/fundo.png
+    );
+}
+
+/* Configuração do nav*/
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b8b39a;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand .logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+.brand .h11 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #4a523a;
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #2b2e22;
+    font-size: 20px;
+    font-weight: 400;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+    padding-bottom: 2px;
+}
+
+.nav-links a:hover {
+    color: #4a523a;
+    border-bottom: 2px solid #4a523a; /* Efeito sublinhado (como o 'Agendar' da foto) */
+}
+
+/* Ações (Direita - Carrinho, Perfil ou Login/Cadastro) */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Ícones de Navegação */
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+/* Estilo específico do ícone de Carrinho (Borda fina igual a foto) */
+.cart-icon {
+    border: 2px solid #4a523a;
+    color: #4a523a;
+    background-color: transparent;
+}
+
+/* Estilo específico do ícone de Perfil (Fundo preenchido igual a foto) */
+.user-icon {
+    background-color: #4a523a;
+    color: #b8b39a; /* Ícone na cor do fundo da navbar */
+}
+
+.nav-icon:hover {
+    transform: scale(1.05);
+}
+
+.nav-icon i {
+    font-size: 18px;
+}
+
+/* Botões para quando NÃO estiver logado */
+.btn-login, 
+.btn-cadastro,
+.btn-logout {
+    text-decoration: none;
+    padding: 9px 18px;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.btn-login {
+    color: #4a523a;
+    border: 1px solid #4a523a;
+}
+
+.btn-login:hover {
+    background-color: #4a523a;
+    color: #ffffff;
+}
+
+.btn-cadastro {
+    background-color: #4a523a;
+    color: #ffffff;
+}
+
+.btn-cadastro:hover {
+    background-color: #363c2a;
+}
+
+.btn-logout {
+    color: #8b0000;
+    font-size: 13px;
+    margin-left: 5px;
+} 
+
+.img {
+    width: auto;
+    height: 120px;
+}
+
+/**/
+.identificacao
+h1{
+    color: #4f5838;
+}
+
+.identificacao
+h4{
+    color: #858354;
+}
+
+.opcao{
+    text-align: right;
+    margin-right: 40px;
+
+}
+
+.opcao
+label{
+    color: #4f5838;
+    display: flex;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.opcao
+input{
+    background-color: #bbb59e;
+    border: none;
+    font-size: 25px;
+    margin-top: 4px;
+    
+}
+
