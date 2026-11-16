@@ -31,23 +31,33 @@ if (isset($_POST['confirmar'])) {
     // Pega o ID do cliente logado na sessão (ou 1 como fallback caso ainda não tenha login integrado)
     $id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
 
+   if (isset($_POST['confirmar'])) {
+    $id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
+    $id_funcionario = $agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 1;
+
     try {
         create($pdo, 'agendamentos', [
             'id_cliente'      => $id_cliente,
+            'id_funcionario'  => $id_funcionario,
             'id_procedimento' => $agendamento['id_procedimento'],
             'duracao_minutos' => $agendamento['duracao_minutos'],
             'data'            => $agendamento['data'],
             'horario'         => $agendamento['horario']
         ]);
 
-        // Limpa os dados temporários da sessão após salvar
+        $_SESSION['agendamento_concluido'] = [
+            'data'    => $agendamento['data'],
+            'horario' => $agendamento['horario']
+        ];
+
         unset($_SESSION['agendamento_atual']);
 
-        header('Location: index.php?agendado=1');
+        header('Location: agendar4.php');
         exit;
     } catch (Exception $e) {
         $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
     }
+}
 }
 ?>
 <!DOCTYPE html>

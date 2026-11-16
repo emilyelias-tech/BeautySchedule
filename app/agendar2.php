@@ -7,55 +7,60 @@ if (!isset($_SESSION['agendamento_atual'])) {
     exit;
 }
 
+// Busca funcionários cadastrados no banco
 $profissionais = [];
 try {
-    $profissionais = readAll($pdo, 'profissionais');
+    $profissionais = readAll($pdo, 'funcionarios');
 } catch (Exception $e) {
 }
-if (empty($profissionais)) {$profissionais = [
-        ['id_profissional' => 1, 'nome' => 'Mariana Lopes'],
-        ['id_profissional' => 2, 'nome' => 'Camila Ferreira'],
-        ['id_profissional' => 3, 'nome' => 'Juliana Santos']
+
+if (empty($profissionais)) {
+    $profissionais = [
+        ['id_funcionario' => 1, 'nome' => 'Mariana Lopes'],
+        ['id_funcionario' => 2, 'nome' => 'Camila Ferreira'],
+        ['id_funcionario' => 3, 'nome' => 'Juliana Santos']
     ];
 }
 
-$datasDisponiveis = [
-    '2026-06-18' => '18 Jun',
-    '2026-06-19' => '19 Jun',
-    '2026-06-20' => '20 Jun',
-    '2026-06-21' => '21 Jun'
-];
-
 $horariosDisponiveis = [
     '09:00',
+    '10:00',
     '10:30',
+    '11:30',
     '13:00',
-    '15:30'
+    '14:00',
+    '15:00',
+    '15:30',
+    '16:30',
+    '17:30',
+    '18:30',
+    '19:30'
 ];
 
 $erro = '';
 
 if (isset($_POST['continuar'])) {
-    $profissional_id =$_POST['profissional'] ?? '';
-    $data =$_POST['data'] ?? '';
-    $horario =$_POST['horario'] ?? '';
+    $profissional_id = $_POST['profissional'] ?? '';
+    $data = $_POST['data'] ?? '';
+    $horario = $_POST['horario'] ?? '';
 
     if (empty($profissional_id) || empty($data) || empty($horario)) {
-    $erro = "Por favor, selecione o profissional, a data e o horário.";
-} else {
-
+        $erro = "Por favor, selecione o profissional, a data e o horário.";
+    } else {
         $nome_profissional = '';
-        foreach ($profissionais as $prof) {$id = $prof['id_profissional'] ?? $prof['id'] ?? '';
+        foreach ($profissionais as $prof) {
+            $id = $prof['id_funcionario'] ?? $prof['id_profissional'] ?? $prof['id'] ?? '';
             if ((string)$id === (string)$profissional_id) {
-                $nome_profissional =$prof['nome'];
+                $nome_profissional = $prof['nome'];
                 break;
             }
         }
 
-        $_SESSION['agendamento_atual']['id_profissional'] =$profissional_id;
-        $_SESSION['agendamento_atual']['nome_profissional'] =$nome_profissional;
-        $_SESSION['agendamento_atual']['data'] =$data;
-        $_SESSION['agendamento_atual']['horario'] =$horario;
+        $_SESSION['agendamento_atual']['id_funcionario'] = $profissional_id;
+        $_SESSION['agendamento_atual']['id_profissional'] = $profissional_id;
+        $_SESSION['agendamento_atual']['nome_profissional'] = $nome_profissional;
+        $_SESSION['agendamento_atual']['data'] = $data;
+        $_SESSION['agendamento_atual']['horario'] = $horario;
 
         header('Location: agendar3.php');
         exit;
@@ -77,7 +82,7 @@ if (isset($_POST['continuar'])) {
     <main>
         <div class="container">
             
-          
+            <!-- Topo com barras de progresso e botão fechar -->
             <div class="card-header">
                 <div class="progresso-wrapper">
                     <div class="progresso-barras">
@@ -99,63 +104,70 @@ if (isset($_POST['continuar'])) {
 
             <form method="POST" class="form-etapa2">
                 
+                <!-- Bloco único com Profissional, Data e Horários -->
+                <div class="bloco-agendamento2">
+                    
+                    <!-- Profissional -->
+                    <div class="campo-grupo">
+                        <label for="profissional" class="label-etapa">Profissional</label>
+                        <div class="select-wrapper">
+                            <select name="profissional" id="profissional" class="select-custom" required>
+                                <?php foreach ($profissionais as $prof): 
+                                    $idProf = $prof['id_funcionario'] ?? $prof['id_profissional'] ?? $prof['id'];
+                                ?>
+                                    <option value="<?= htmlspecialchars($idProf) ?>" <?= (isset($_POST['profissional']) && (string)$_POST['profissional'] === (string)$idProf) ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($prof['nome']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
 
-                <div class="campo-grupo">
-                    <label for="profissional" class="label-etapa">Profissional</label>
-                    <div class="select-wrapper">
-                        <select name="profissional" id="profissional" class="select-custom" required>
-                            <?php foreach ($profissionais as $prof):$idProf = $prof['id_profissional'] ?? $prof['id'];
+                    <!-- Data -->
+                    <div class="campo-grupo">
+                        <label for="data" class="label-etapa">Data</label>
+                        <div class="select-wrapper">
+                            <input
+                                type="date"
+                                name="data"
+                                id="data"
+                                class="select-custom"
+                                min="<?= date('Y-m-d') ?>"
+                                value="<?= htmlspecialchars($_POST['data'] ?? '') ?>"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Horários -->
+                    <div class="campo-grupo campo-horarios">
+                        <span class="label-etapa">Horário</span>
+                        <div class="grid-opcoes">
+                            <?php 
+                            $horarioSelecionado = $_POST['horario'] ?? '09:00';
+                            foreach ($horariosDisponiveis as $hora): 
                             ?>
-                                <option value="<?= htmlspecialchars($idProf) ?>">
-                                    <?= htmlspecialchars($prof['nome']) ?>
-                                </option>
+                                <label class="opcao-pill">
+                                    <input 
+                                        type="radio" 
+                                        name="horario" 
+                                        value="<?= htmlspecialchars($hora) ?>"
+                                        <?= $hora === $horarioSelecionado ? 'checked' : '' ?>
+                                        required
+                                    >
+                                    <span class="pill-texto"><?= htmlspecialchars($hora) ?></span>
+                                </label>
                             <?php endforeach; ?>
-                        </select>
+                        </div>
                     </div>
+
                 </div>
 
-       
-              <div class="campo-grupo">
-    <label for="data" class="label-etapa">Data</label>
-
-    <div class="select-wrapper">
-        <input
-            type="date"
-            name="data"
-            id="data"
-            class="select-custom"
-            min="<?= date('Y-m-d') ?>"
-            value="<?= htmlspecialchars($_POST['data'] ?? '') ?>"
-            required
-        >
-    </div>
-</div>
-                </div>
-
-          
-                <div class="campo-grupo">
-                    <span class="label-etapa">Horario</span>
-                    <div class="grid-opcoes">
-                        <?php foreach ($horariosDisponiveis as$hora): ?>
-                            <label class="opcao-pill">
-                                <input 
-                                    type="radio" 
-                                    name="horario" 
-                                    value="<?= htmlspecialchars($hora) ?>"
-                                    <?= $hora == '09:00' ? 'checked' : '' ?>
-                                    required
-                                >
-                                <span class="pill-texto"><?= htmlspecialchars($hora) ?></span>
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-
-            
+                <!-- Botões Voltar e Continuar embaixo, à direita -->
                 <div class="acoes-rodape">
                     <a href="agendar1.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">
-                        Continuar <span>&rarr;</span>
+                        Continuar
                     </button>
                 </div>
 
