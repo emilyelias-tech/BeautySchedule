@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . '/css/nav.php';
 
 $databaseStatus = 'Conectado';
 
@@ -20,13 +19,13 @@ if ($databaseStatus === 'Conectado') {
     }
 }
 ?>
-<!doctype html>
+<!do    ctype html>
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nossos Produtos</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
       <?php include __DIR__ . '/nav.php'; ?>
@@ -53,6 +52,9 @@ if ($databaseStatus === 'Conectado') {
                         
                         <div class="card-rodape">
                             <span class="preco">R$ <?= number_format((float)$produto['preco'], 2, ',', '.') ?></span>
+                            <a href="carrinhoadd.php?id=<?= $produto['id'] ?>" class="btn-add">
+    +
+</a>
                             <a href="produto.php?id=<?= $produto['id'] ?>" 
                                class="btn-detalhes" 
                                aria-label="Ver detalhes de <?= htmlspecialchars($produto['nome']) ?>">

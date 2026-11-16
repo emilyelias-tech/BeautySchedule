@@ -6,6 +6,7 @@
 
     // caso o usuario esteja logado, botoes login e cadastro desaparecerao e aparecera o meu perfil e carrinho
     $usuarioLogado = isset($_SESSION['usuario_id']);
+    $temItens = !empty($_SESSION['carrinho']);
     ?>
 
     <!-- fonte provisoria para os icones do carrinho e perfil -->
@@ -32,10 +33,13 @@
                 <!-- Usuário LOGADO: Exibe Ícones de Carrinho, Perfil e botão Sair -->
                 <a href="carrinho.php" class="nav-icon" title="Meu Carrinho">
                     <i class="fa-solid fa-cart-shopping"></i>
-                </a>
+                <?php if ($temItens): ?>
+    <span class="badge-carrinho"></span><!-- bolinha do carrino -->
+    <?php endif; ?></a>
 
                 <a href="perfil.php" class="nav-icon" title="Meu Perfil">
                     <i class="fa-solid fa-user"></i>
+                    
                 </a>
 
                 <a href="logout.php" class="btn-logout">Sair</a>
