@@ -213,3 +213,14 @@ INSERT INTO itens_venda (id_venda, id_produto, quantidade, preco_unitario) VALUE
 (3, 4, 1, 45.00),
 (4, 5, 1, 29.90),
 (4, 1, 1, 35.90);
+
+ALTER TABLE procedimentos ADD COLUMN imagem VARCHAR(255) NULL;
+
+UPDATE procedimentos SET imagem = 'img/corte-de-cabelo.jpg' WHERE id_procedimento = 1;
+UPDATE procedimentos SET imagem = 'img/escova.jpg' WHERE id_procedimento = 2;
+UPDATE procedimentos SET imagem = 'img/manicure.jpg' WHERE id_procedimento = 3;
+UPDATE procedimentos SET imagem = 'img/pedicure.jpg' WHERE id_procedimento = 4;
+UPDATE procedimentos SET imagem = 'img/limpeza-de-pele.jpg' WHERE id_procedimento = 5;
+UPDATE procedimentos SET imagem = 'img/hidratacao-capilar.jpg' WHERE id_procedimento = 6;
+
+ALTER TABLE agendamentos ADD COLUMN observacao TEXT NULL AFTER status;

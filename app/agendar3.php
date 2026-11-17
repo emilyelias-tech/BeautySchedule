@@ -2,13 +2,13 @@
 session_start();
 require_once __DIR__ . "/init.php";
 
-// Se não houver dados das etapas anteriores na sessão, volta para o início
+
 if (!isset($_SESSION['agendamento_atual']) or empty($_SESSION['agendamento_atual']['data'])) {
     header('Location: agendar1.php');
     exit;
 }
 
-$agendamento = $_SESSION['agendamento_atual'];
+$agendamento =$_SESSION['agendamento_atual'];
 
 // Formata a data de '2026-06-20' para '20 de junho'
 $meses = [
@@ -18,8 +18,7 @@ $meses = [
     '10' => 'outubro', '11' => 'novembro',  '12' => 'dezembro'
 ];
 
-$partesData = explode('-', $agendamento['data']);
-$dia = isset($partesData[2]) ? (int)$partesData[2] : '';
+$partesData = explode('-', $agendamento['data']);$dia = isset($partesData[2]) ? (int)$partesData[2] : '';
 $mesNome = isset($partesData[1], $meses[$partesData[1]]) ? $meses[$partesData[1]] : '';
 $dataFormatada = "{$dia} de {$mesNome}, as {$agendamento['horario']}";
 
@@ -28,25 +27,37 @@ $valorFormatado = number_format((float)$agendamento['valor'], 0, ',', '.');
 $erro = '';
 
 if (isset($_POST['confirmar'])) {
-    // Pega o ID do cliente logado na sessão (ou 1 como fallback caso ainda não tenha login integrado)
-    $id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
+    $id_cliente =$_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
+    $id_funcionario = $agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 1;
 
     try {
         create($pdo, 'agendamentos', [
             'id_cliente'      => $id_cliente,
+            'id_funcionario'  => $id_funcionario,
             'id_procedimento' => $agendamento['id_procedimento'],
             'duracao_minutos' => $agendamento['duracao_minutos'],
             'data'            => $agendamento['data'],
-            'horario'         => $agendamento['horario']
+            'horario'         => $agendamento['horario'],
+            'status'          => 'Confirmado'
         ]);
 
-        // Limpa os dados temporários da sessão após salvar
+        // Captura o ID exato gerado no banco para exibir no consulta.php
+        $novoId = (int)$pdo->lastInsertId();
+        if ($novoId > 0) {
+            $_SESSION['ultimo_agendamento_id'] =$novoId;
+        }
+
+        $_SESSION['agendamento_concluido'] = [
+            'id_agendamento' => $novoId,
+            'data'           => $agendamento['data'],
+            'horario'        => $agendamento['horario']
+        ];
+
         unset($_SESSION['agendamento_atual']);
 
-        header('Location: index.php?agendado=1');
+        header('Location: agendar4.php');
         exit;
-    } catch (Exception $e) {
-        $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
+    } catch (Exception $e) {$erro = "Erro ao confirmar agendamento: " . $e->getMessage();
     }
 }
 ?>
@@ -56,7 +67,7 @@ if (isset($_POST['confirmar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisar Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="css/agendamentos.css">
+    <link rel="stylesheet" href="css/agendar.css">
 </head>
 <body>
 
@@ -65,7 +76,6 @@ if (isset($_POST['confirmar'])) {
     <main>
         <div class="container">
             
-            <!-- Topo com as 3 barras ativas e botão fechar -->
             <div class="card-header">
                 <div class="progresso-wrapper">
                     <div class="progresso-barras">
@@ -90,7 +100,6 @@ if (isset($_POST['confirmar'])) {
                 <!-- Caixa de Resumo -->
                 <div class="resumo-box">
                     
-                  
                     <div class="resumo-item">
                         <div class="resumo-icone">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -106,7 +115,6 @@ if (isset($_POST['confirmar'])) {
 
                     <hr class="resumo-divisor">
 
-            
                     <div class="resumo-item">
                         <div class="resumo-icone">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -139,10 +147,9 @@ if (isset($_POST['confirmar'])) {
 
                     <hr class="resumo-divisor">
 
-                  
                     <div class="resumo-total">
                         <span class="total-label">Total:</span>
-                        <span class="total-valor">R$ <?= htmlspecialchars($valorFormatado) ?></span>
+                        <span class="total-valor">R$<?= htmlspecialchars($valorFormatado) ?></span>
                     </div>
 
                 </div>
@@ -150,7 +157,7 @@ if (isset($_POST['confirmar'])) {
                 <div class="acoes-rodape">
                     <a href="agendar2.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="confirmar" class="btn-continuar">
-                        Continuar <span>&rarr;</span>
+                        Continuar 
                     </button>
                 </div>
 

@@ -27,7 +27,7 @@ $horario = $concluido['horario'] ?? '09:00';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento Concluído - BeautySchedule</title>
-    <link rel="stylesheet" href="css/agendamentos.css">
+    <link rel="stylesheet" href="css/agendar.css">
 </head>
 <body>
 
