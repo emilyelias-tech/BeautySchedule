@@ -5,38 +5,23 @@ session_start();
 require_once __DIR__ . "/init.php";
 
 $procedimentos = readAll($pdo, 'procedimentos');
-
-
-
 $erro = '';
-
-
 
 if (isset($_POST['cadastrar'])) {
 
     $procedimento_id = $_POST['procedimento'] ?? '';
-
-
 
     if (empty($procedimento_id)) {
 
         $erro = "Por favor, selecione um cuidado antes de continuar.";
 
     } else {
-
         $dados = read(
-
             $pdo,
-
             'procedimentos',
-
             'id_procedimento = ?',
-
             [$procedimento_id]
-
         );
-
-
 
         if (!$dados) {
 
@@ -44,7 +29,6 @@ if (isset($_POST['cadastrar'])) {
 
         } else {
 
-       
 
             $_SESSION['agendamento_atual'] = [
 
@@ -58,16 +42,11 @@ if (isset($_POST['cadastrar'])) {
 
             ];
 
-
-
             header('Location: agendar2.php');
 
             exit;
-
         }
-
     }
-
 }
 
 ?>
@@ -82,20 +61,13 @@ if (isset($_POST['cadastrar'])) {
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Agendamentos - BeautySchedule</title>
+    <title>Agendamentos | BeautySchedule</title>
 
-    <link rel="stylesheet" href="css/agendamentos.css">
+    <link rel="stylesheet" href="/app/css/agendamentos.css">
 
 </head>
 
 <body>
-
-
-
-    <?php require_once __DIR__ . '/nav.php'; ?>
-
-
-
     <main>
 
         <div class="container">
@@ -119,26 +91,15 @@ if (isset($_POST['cadastrar'])) {
                     <span class="subtitulo">Agendamento</span>
 
                 </div>
-
-
-
-                <a href="index.php" class="btn-fechar" title="Fechar">x</a>
-
             </div>
 
-
-
             <h2>Escolha seu cuidado</h2>
-
-
 
             <?php if (!empty($erro)): ?>
 
                 <p class="mensagem-erro"><?= htmlspecialchars($erro) ?></p>
 
             <?php endif; ?>
-
-
 
             <form method="POST">
 
@@ -170,25 +131,19 @@ if (isset($_POST['cadastrar'])) {
 
                                 required
 
-                            >
-
-                           
+                            >         
 
                             <div class="cuidado-conteudo">
 
                                 <img src="<?= htmlspecialchars($imagem) ?>" alt="<?= htmlspecialchars($proc['nome']) ?>" class="cuidado-img">
 
-                               
-
                                 <div class="cuidado-info">
 
                                     <span class="cuidado-titulo"><?= htmlspecialchars($proc['nome']) ?></span>
 
-                                    <span class="cuidado-detalhes"><?= htmlspecialchars($duracao) ?> min &nbsp;·&nbsp; R$ <?= htmlspecialchars($preco) ?></span>
+                                    <span class="cuidado-detalhes"><?= htmlspecialchars($duracao) ?> min R$ <?= htmlspecialchars($preco) ?></span>
 
                                 </div>
-
-
 
                                 <div class="cuidado-check">
 
@@ -210,5 +165,3 @@ if (isset($_POST['cadastrar'])) {
 </body>
 
 </html>
-
-

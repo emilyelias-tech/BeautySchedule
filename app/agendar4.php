@@ -31,13 +31,10 @@ $horario = $concluido['horario'] ?? '09:00';
 </head>
 <body>
 
-    <?php require_once __DIR__ . '/nav.php'; ?>
-
     <main>
         <div class="container container-confirmacao">
            
             <div class="card-header-fechar">
-                <a href="index.php" class="btn-fechar" title="Fechar">x</a>
             </div>
 
          
