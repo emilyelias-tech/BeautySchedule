@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D8D0B4;
+    font-family: sans-serif;
+}
+
+/* ÁREA PRINCIPAL */
+main {
+    padding: 40px 60px; /* Afasta o conteúdo das bordas */
+}
+
+main .subtitulo {
+    color: #757852;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+main h2 {
+    color: #4a5131;
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 25px; /* Espaço entre "Seu perfil" e o primeiro campo */
+}
+
+/* Organiza o texto em cima e a caixa embaixo */
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    
+}
+
+/* Estilo dos textos (Nome completo, Email, etc.) */
+label {
+    color: #3f3d36;
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-top: 18px; /* Separa um campo do outro */
+}
+
+/* Tira o espaço de cima só do primeiro label ("Nome completo:") */
+label:first-child {
+    margin-top: 0;
+}
+
+/* Estilo das caixas de digitação */
+input {
+    width: 100%;
+    background-color: #b4b1a3;
+    border: none;
+    border-radius: 12px;
+    height: 45px;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+
+}
