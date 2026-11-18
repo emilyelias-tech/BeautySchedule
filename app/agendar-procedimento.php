@@ -42,7 +42,7 @@ if (isset($_POST['cadastrar'])) {
 
             ];
 
-            header('Location: agendar2.php');
+            header('Location: agendar-profissional.php');
 
             exit;
         }

@@ -17,7 +17,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio | BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/index.css">
+    <link rel="stylesheet" href="/app/css/login.css">
 </head>
 
 <body>
@@ -35,13 +35,13 @@ try {
                 <label>Senha</label>
                 <input type="password" name="senha" id="senha" placeholder="• • • • • • ">
             </label>
+        </div>
 
             <a href="esqueci-senha.php">Esqueci minha senha</a>
 
             <button type="submit">Entrar</button>
 
-            <h5>Ainda não tem conta? <a href="criar-conta.php">Cadastre-se</Cadastre-se></a></h5>
-        </div>
+            <h5>Ainda não tem conta? <a href="criar-conta.php">Cadastre-se</Cadastre-se></a></h5>        
 
     </div>
 </body>

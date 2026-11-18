@@ -4,7 +4,7 @@ require_once __DIR__ . "/init.php";
 
 // Se não houver dados das etapas anteriores na sessão, volta para o início
 if (!isset($_SESSION['agendamento_atual']) or empty($_SESSION['agendamento_atual']['data'])) {
-    header('Location: agendar1.php');
+    header('Location: agendar-procedimento.php');
     exit;
 }
 

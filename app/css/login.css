@@ -1,0 +1,134 @@
+html, body {
+    background-image: url(/app/imagens/fundo.png);
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Angleton;
+}
+
+@font-face {
+    font-family: Angleton;
+    src: url("../fontes/TAN-Angleton-Regular.ttf");
+}
+
+/* estilização do nav */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #bbb59e;
+    padding: 5px 35px;
+    width: 100%;
+    min-height: 130px;
+    box-sizing: border-box;
+}
+
+.img {
+    width: auto;
+    height: 120px;
+    position: static;
+    margin: 0;
+    border-radius: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    font-size: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4f5838;
+    font-size: 20px;
+}
+
+.nav-links a:hover {
+    color: #858354;
+    border-bottom: 2px solid #4f5838;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 60px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.nav-mage {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+}
+
+.cart-icon {
+    border: 2px solid #4f5838;
+    color: #4f5838;
+}
+
+.user-icon {
+    background-color: #4f5838;
+    color: #bbb59e;
+}
+
+/*fundo*/
+
+.fundo{
+    background-image: url(
+        /app/imagens/painel\ do\ login.png
+    );
+    margin-top: 60px;
+    margin-left: 60px;
+    margin-right: 60px;
+    height: 650px;
+    border-radius: 50px;
+    padding-top: 10px;
+}
+
+.campo input{
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 500px;
+    margin-left: auto;
+    display: block;
+    margin-right: 60px;
+    padding-left: 10px;
+    font-size: 13px;
+    background-color: #e0ddd1;
+}
+
+.texto h1{
+    text-align: right;
+    margin-right: 195px;
+    color: #4f5838;
+    font-size: 35px;
+}
+
+.texto h3{
+    text-align: right;
+    margin-right: 360px;
+    color: #4f5838;
+    font-size: 15px;
+    margin-top: 100px;
+    margin-bottom: -20px;
+}
