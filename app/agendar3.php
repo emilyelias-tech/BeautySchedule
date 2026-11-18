@@ -41,17 +41,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         $id_funcionario = 1;
     }
 
+   if (isset($_POST['confirmar'])) {
+    $id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
+    $id_funcionario = $agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 1;
+
     try {
         $resultado = create($pdo, 'agendamentos', [
             'id_cliente'      => $id_cliente,
             'id_funcionario'  => $id_funcionario,
+<<<<<<< HEAD
             'id_procedimento' => (int)$agendamento['id_procedimento'],
             'duracao_minutos' => (int)$agendamento['duracao_minutos'],
+=======
+            'id_procedimento' => $agendamento['id_procedimento'],
+            'duracao_minutos' => $agendamento['duracao_minutos'],
+>>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
             'data'            => $agendamento['data'],
             'horario'         => $agendamento['horario'],
             'status'          => 'Confirmado'
         ]);
 
+<<<<<<< HEAD
         // Captura o ID exato gerado no banco para exibir no consulta.php
         $novoId = (is_numeric($resultado) && (int)$resultado > 0)
             ? (int)$resultado
@@ -65,10 +75,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
             'id_agendamento' => $novoId,
             'data'           => $agendamento['data'],
             'horario'        => $agendamento['horario']
+=======
+        $_SESSION['agendamento_concluido'] = [
+            'data'    => $agendamento['data'],
+            'horario' => $agendamento['horario']
+>>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
         ];
 
         unset($_SESSION['agendamento_atual']);
 
+<<<<<<< HEAD
         if (!headers_sent()) {
             header('Location: agendar4.php');
             exit;
@@ -82,9 +98,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         } else {
             $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
         }
+=======
+        header('Location: agendar4.php');
+        exit;
+>>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
     } catch (Exception $e) {
         $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
     }
+}
 }
 ?>
 <!DOCTYPE html>
