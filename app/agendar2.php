@@ -161,8 +161,7 @@ if (isset($_POST['continuar'])) {
 
                 </div>
 
-              
-                <div class="acoes-rodape">
+                 <div class="acoes-rodape">
                     <a href="agendar1.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">
                         Continuar

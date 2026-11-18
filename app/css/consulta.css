@@ -772,10 +772,8 @@ main {
     }
 }
 
-/* EDITAR E DELETAR /*
-/* =========================================
-   BOTÕES DE EDITAR / DELETAR E FORMULÁRIO DE EDIÇÃO
-   ========================================= */
+/* EDITAR E DELETAR */
+
 .acoes-esquerda,
 .acoes-direita {
     display: flex;

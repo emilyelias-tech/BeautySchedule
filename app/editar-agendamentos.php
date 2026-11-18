@@ -1,11 +1,12 @@
 <?php
+ob_start();
 session_start();
 require_once __DIR__ . "/init.php";
 
 $id_agendamento = (int)($_GET['id'] ?? 0);
 
 if ($id_agendamento <= 0) {
-    header('Location: meus_agendamentos.php');
+    header('Location: meus-agendamentos.php');
     exit;
 }
 
@@ -17,7 +18,7 @@ $stmt->execute([':id' => $id_agendamento]);
 $agendamento = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$agendamento) {
-    header('Location: meus_agendamentos.php');
+    header('Location: meus-agendamentos.php');
     exit;
 }
 
@@ -32,7 +33,7 @@ $horariosDisponiveis = [
 ];
 
 // Salvar edição
-if (isset($_POST['salvar_edicao'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar_edicao'])) {
     $id_procedimento = (int)($_POST['id_procedimento'] ?? 0);
     $id_funcionario  = (int)($_POST['id_funcionario'] ?? 0);
     $data            = $_POST['data'] ?? '';
@@ -49,31 +50,62 @@ if (isset($_POST['salvar_edicao'])) {
         $duracao = (int)($stmtDur->fetchColumn() ?: 60);
 
         try {
-            $stmtUp = $pdo->prepare("
-                UPDATE agendamentos 
-                SET id_procedimento = :id_procedimento,
-                    id_funcionario  = :id_funcionario,
-                    data            = :data,
-                    horario         = :horario,
-                    duracao_minutos = :duracao,
-                    status          = :status,
-                    observacao      = :observacao
-                WHERE id_agendamento = :id
-            ");
+            // Verifica se a coluna observacao existe na tabela antes de incluir no UPDATE
+            $temColunaObs = array_key_exists('observacao', $agendamento);
 
-            $stmtUp->execute([
-                ':id_procedimento' => $id_procedimento,
-                ':id_funcionario'  => $id_funcionario,
-                ':data'            => $data,
-                ':horario'         => $horario,
-                ':duracao'         => $duracao,
-                ':status'          => $status,
-                ':observacao'      => $observacao,
-                ':id'              => $id_agendamento
-            ]);
+            if ($temColunaObs) {
+                $stmtUp = $pdo->prepare("
+                    UPDATE agendamentos 
+                    SET id_procedimento = :id_procedimento,
+                        id_funcionario  = :id_funcionario,
+                        data            = :data,
+                        horario         = :horario,
+                        duracao_minutos = :duracao,
+                        status          = :status,
+                        observacao      = :observacao
+                    WHERE id_agendamento = :id
+                ");
 
-            header('Location: meus_agendamentos.php?editado=1');
-            exit;
+                $stmtUp->execute([
+                    ':id_procedimento' => $id_procedimento,
+                    ':id_funcionario'  => $id_funcionario,
+                    ':data'            => $data,
+                    ':horario'         => $horario,
+                    ':duracao'         => $duracao,
+                    ':status'          => $status,
+                    ':observacao'      => $observacao,
+                    ':id'              => $id_agendamento
+                ]);
+            } else {
+                $stmtUp = $pdo->prepare("
+                    UPDATE agendamentos 
+                    SET id_procedimento = :id_procedimento,
+                        id_funcionario  = :id_funcionario,
+                        data            = :data,
+                        horario         = :horario,
+                        duracao_minutos = :duracao,
+                        status          = :status
+                    WHERE id_agendamento = :id
+                ");
+
+                $stmtUp->execute([
+                    ':id_procedimento' => $id_procedimento,
+                    ':id_funcionario'  => $id_funcionario,
+                    ':data'            => $data,
+                    ':horario'         => $horario,
+                    ':duracao'         => $duracao,
+                    ':status'          => $status,
+                    ':id'              => $id_agendamento
+                ]);
+            }
+
+            if (!headers_sent()) {
+                header('Location: meus-agendamentos.php?editado=1');
+                exit;
+            } else {
+                echo "<script>window.location.href = 'meus-agendamentos.php?editado=1';</script>";
+                exit;
+            }
         } catch (PDOException $e) {
             if ($e->getCode() == 23000) {
                 $erro = "Conflito de agenda: esta profissional já possui um agendamento nesta data e horário.";
@@ -115,14 +147,14 @@ $horarioAtual = substr($agendamento['horario'], 0, 5);
                     <h2>Editar agendamento</h2>
                 </div>
 
-                <a href="meus_agendamentos.php" class="btn-fechar" title="Voltar">x</a>
+                <a href="meus-agendamentos.php" class="btn-fechar" title="Voltar">x</a>
             </div>
 
             <?php if (!empty($erro)): ?>
                 <p class="mensagem-erro"><?= htmlspecialchars($erro) ?></p>
             <?php endif; ?>
 
-            <form method="POST" class="form-editar">
+            <form method="POST" action="editar-agendamentos.php?id=<?= $id_agendamento ?>" class="form-editar">
 
                 <div class="campo-form">
                     <label for="id_procedimento">Procedimento</label>
@@ -199,7 +231,7 @@ $horarioAtual = substr($agendamento['horario'], 0, 5);
                 </div>
 
                 <div class="acoes-rodape">
-                    <a href="meus_agendamentos.php" class="btn-cancelar">Voltar sem salvar</a>
+                    <a href="meus-agendamentos.php" class="btn-cancelar">Voltar sem salvar</a>
                     <button type="submit" name="salvar_edicao" class="btn-salvar">Salvar alterações</button>
                 </div>
 

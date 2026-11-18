@@ -48,11 +48,11 @@ if (isset($_POST['salvar_observacao']) && $agendamento) {
         ':id'  => $agendamento['id_agendamento']
     ]);
 
-    header('Location: consulta2.php?id=' . (int)$agendamento['id_agendamento']);
+    header('Location: meus-agendamentos.php?id=' . (int)$agendamento['id_agendamento']);
     exit;
 }
 
-// Cancelar agendamento (atualiza o status para 'Cancelado')
+
 if (isset($_POST['cancelar_agendamento']) && $agendamento) {
     $stmt = $pdo->prepare("UPDATE agendamentos SET status = 'Cancelado' WHERE id_agendamento = :id");
     $stmt->execute([':id' => $agendamento['id_agendamento']]);
@@ -63,7 +63,6 @@ if (isset($_POST['cancelar_agendamento']) && $agendamento) {
     exit;
 }
 
-// Formatação da data e horário
 $meses = [
     '01' => 'Janeiro', '02' => 'Fevereiro', '03' => 'Março',
     '04' => 'Abril',   '05' => 'Maio',      '06' => 'Junho',
@@ -119,7 +118,7 @@ if ($agendamento) {
                 <div class="status-wrapper" style="display: flex; justify-content: space-between; align-items: center;">
                     <span class="badge-status"><?= htmlspecialchars($agendamento['status']) ?></span>
                     <a href="consulta2.php?id=<?= (int)$agendamento['id_agendamento'] ?>" style="font-size: 14px; color: #485136; font-weight: bold; text-decoration: underline;">
-                        Avaliar atendimento &rarr;
+                        Avaliar atendimento 
                     </a>
                 </div>
 
