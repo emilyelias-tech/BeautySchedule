@@ -38,6 +38,7 @@ try {
                 <label><h4>Senha</h4></label>
                 <input type="password" name="senha" id="senha" placeholder="• • • • • • ">
             </label>
+        </div>
 
             <div class="esqueci">
 

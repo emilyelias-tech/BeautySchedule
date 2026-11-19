@@ -3,7 +3,7 @@ session_start();
 require_once __DIR__ . "/init.php";
 
 if (!isset($_SESSION['agendamento_atual'])) {
-    header('Location: agendar1.php');
+    header('Location: agendar-procedimento.phpQ');
     exit;
 }
 
@@ -160,7 +160,7 @@ if (isset($_POST['continuar'])) {
 
               
                 <div class="acoes-rodape">
-                    <a href="agendar1.php" class="btn-voltar">Voltar</a>
+                    <a href="agendar-procedimento.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">
                         Continuar
                     </button>
