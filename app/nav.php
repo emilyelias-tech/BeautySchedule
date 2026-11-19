@@ -22,7 +22,7 @@
             <li><a href="index.php">Início</a></li>
             <li><a href="produtos.php">Produtos</a></li>
             <li><a href="agendar1.php">Agendar</a></li>
-            <li><a href="consulta1.php">Consulta</a></li>
+            <li><a href="consulta.php">Consulta</a></li>
             <li><a href="procedimentos.php">Procedimentos</a></li>
              <li><a href="meus-agendamentos.php">agendamentos</a></li>
 

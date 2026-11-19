@@ -7,11 +7,9 @@ if (!isset($_SESSION['agendamento_atual'])) {
     exit;
 }
 
-<<<<<<< HEAD
 
-=======
-// Busca funcionários cadastrados no banco
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
+
+
 $profissionais = [];
 try {
     $profissionais = readAll($pdo, 'funcionarios');
@@ -27,31 +25,17 @@ if (empty($profissionais)) {
 }
 
 $horariosDisponiveis = [
-    '09:00',
-<<<<<<< HEAD
-    '09:30',
-=======
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
-    '10:00',
     '10:30',
     '11:30',
     '13:00',
     '14:00',
-<<<<<<< HEAD
     '14:30',
     '15:00',
     '15:30',
     '16:30',
     '17:00',
+    
 
-=======
-    '15:00',
-    '15:30',
-    '16:30',
-    '17:30',
-    '18:30',
-    '19:30'
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
 ];
 
 $erro = '';
@@ -99,11 +83,11 @@ if (isset($_POST['continuar'])) {
     <main>
         <div class="container">
             
-<<<<<<< HEAD
+
     
-=======
+
             <!-- Topo com barras de progresso e botão fechar -->
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
+
             <div class="card-header">
                 <div class="progresso-wrapper">
                     <div class="progresso-barras">
@@ -124,17 +108,15 @@ if (isset($_POST['continuar'])) {
             <?php endif; ?>
 
             <form method="POST" class="form-etapa2">
-<<<<<<< HEAD
+
               
                 <div class="bloco-agendamento2">
                    
-=======
                 
                 <!-- Bloco único com Profissional, Data e Horários -->
                 <div class="bloco-agendamento2">
                     
                     <!-- Profissional -->
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
                     <div class="campo-grupo">
                         <label for="profissional" class="label-etapa">Profissional</label>
                         <div class="select-wrapper">
@@ -150,11 +132,9 @@ if (isset($_POST['continuar'])) {
                         </div>
                     </div>
 
-<<<<<<< HEAD
-           
-=======
-                    <!-- Data -->
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
+    
+                   <!-- Data -->
+
                     <div class="campo-grupo">
                         <label for="data" class="label-etapa">Data</label>
                         <div class="select-wrapper">
@@ -170,10 +150,8 @@ if (isset($_POST['continuar'])) {
                         </div>
                     </div>
 
-<<<<<<< HEAD
-=======
+
                     <!-- Horários -->
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
                     <div class="campo-grupo campo-horarios">
                         <span class="label-etapa">Horário</span>
                         <div class="grid-opcoes">
@@ -197,12 +175,11 @@ if (isset($_POST['continuar'])) {
 
                 </div>
 
-<<<<<<< HEAD
+
                  <div class="acoes-rodape">
-=======
+
                 <!-- Botões Voltar e Continuar embaixo, à direita -->
                 <div class="acoes-rodape">
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
                     <a href="agendar1.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">
                         Continuar

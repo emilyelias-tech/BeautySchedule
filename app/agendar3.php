@@ -49,20 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         $resultado = create($pdo, 'agendamentos', [
             'id_cliente'      => $id_cliente,
             'id_funcionario'  => $id_funcionario,
-<<<<<<< HEAD
+
             'id_procedimento' => (int)$agendamento['id_procedimento'],
             'duracao_minutos' => (int)$agendamento['duracao_minutos'],
-=======
             'id_procedimento' => $agendamento['id_procedimento'],
             'duracao_minutos' => $agendamento['duracao_minutos'],
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
+
             'data'            => $agendamento['data'],
             'horario'         => $agendamento['horario'],
             'status'          => 'Confirmado'
         ]);
 
-<<<<<<< HEAD
-        // Captura o ID exato gerado no banco para exibir no consulta.php
+
         $novoId = (is_numeric($resultado) && (int)$resultado > 0)
             ? (int)$resultado
             : (int)$pdo->lastInsertId();
@@ -75,16 +73,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
             'id_agendamento' => $novoId,
             'data'           => $agendamento['data'],
             'horario'        => $agendamento['horario']
-=======
+];
+
         $_SESSION['agendamento_concluido'] = [
             'data'    => $agendamento['data'],
             'horario' => $agendamento['horario']
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
+
         ];
 
         unset($_SESSION['agendamento_atual']);
 
-<<<<<<< HEAD
         if (!headers_sent()) {
             header('Location: agendar4.php');
             exit;
@@ -98,10 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         } else {
             $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
         }
-=======
         header('Location: agendar4.php');
         exit;
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
     } catch (Exception $e) {
         $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
     }
@@ -146,7 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
 
             <form method="POST" action="agendar3.php">
                 
-                <!-- Caixa de Resumo -->
                 <div class="resumo-box">
                     
                     <div class="resumo-item">

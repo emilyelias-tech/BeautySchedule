@@ -44,17 +44,14 @@ if (!$agendamento) {
     ];
 }
 
-// Verifica se já existe feedback salvo para este agendamento
 $feedbackExistente = null;
 try {
     $stmtFb = $pdo->prepare("SELECT * FROM feedback WHERE id_agendamento = :id");
     $stmtFb->execute([':id' => $agendamento['id_agendamento']]);
     $feedbackExistente = $stmtFb->fetch(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
-    // Segue sem feedback prévio
 }
 
-// Salvar ou atualizar avaliação na tabela `feedback`
 if (isset($_POST['enviar_avaliacao'])) {
     $notaServico = (int)($_POST['nota_servico'] ?? 0);
     $notaProfissional = (int)($_POST['nota_profissional'] ?? 0);
@@ -63,7 +60,6 @@ if (isset($_POST['enviar_avaliacao'])) {
     if ($notaServico < 1 || $notaProfissional < 1) {
         $erro = "Por favor, selecione as estrelas para qualidade do serviço e atendimento.";
     } else {
-        // Calcula a média inteira (1 a 5) para gravar na coluna `nota` da tabela `feedback`
         $notaMedia = (int)round(($notaServico + $notaProfissional) / 2);
 
         try {
@@ -120,7 +116,6 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
     <main>
         <div class="container container-avaliacao">
 
-            <!-- Cabeçalho -->
             <div class="card-header">
                 <div class="titulo-grupo">
                     <span class="subtitulo">Sua experiencia</span>
@@ -130,7 +125,7 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
                     </p>
                 </div>
 
-                <a href="index.php" class="btn-fechar" title="Fechar">x</a>
+                <a href="meus-agendamentos.php" class="btn-fechar" title="Fechar">x</a>
             </div>
 
             <?php if (!empty($mensagem)): ?>
@@ -143,7 +138,6 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
 
             <form method="POST" class="form-avaliacao">
 
-                <!-- Linha 1: Qualidade do serviço -->
                 <div class="bloco-estrelas">
                     <div class="estrelas-texto">
                         <h3>Qualidade do serviço</h3>
@@ -168,7 +162,6 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
                     </div>
                 </div>
 
-                <!-- Linha 2: Atendimento profissional -->
                 <div class="bloco-estrelas bloco-estrelas-ultimo">
                     <div class="estrelas-texto">
                         <h3>Atendimento profissional</h3>
@@ -193,7 +186,6 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
                     </div>
                 </div>
 
-                <!-- Campo de Comentário -->
                 <div class="campo-observacao">
                     <label for="descricao" class="label-observacao">Conte um pouco mais</label>
                     <textarea 
@@ -204,7 +196,6 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
                     ><?= htmlspecialchars($descricaoAtual) ?></textarea>
                 </div>
 
-                <!-- Botão Centralizado -->
                 <div class="acoes-avaliacao">
                     <button type="submit" name="enviar_avaliacao" class="btn-enviar-avaliacao">
                         Enviar avaliação

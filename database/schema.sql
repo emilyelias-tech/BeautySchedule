@@ -221,10 +221,8 @@ UPDATE procedimentos SET imagem = 'img/escova.jpg' WHERE id_procedimento = 2;
 UPDATE procedimentos SET imagem = 'img/manicure.jpg' WHERE id_procedimento = 3;
 UPDATE procedimentos SET imagem = 'img/pedicure.jpg' WHERE id_procedimento = 4;
 UPDATE procedimentos SET imagem = 'img/limpeza-de-pele.jpg' WHERE id_procedimento = 5;
-<<<<<<< HEAD
 UPDATE procedimentos SET imagem = 'img/hidratacao-capilar.jpg' WHERE id_procedimento = 6;
 
 ALTER TABLE agendamentos ADD COLUMN observacao TEXT NULL AFTER status;
-=======
-UPDATE procedimentos SET imagem = 'img/hidratacao-capilar.jpg' WHERE id_procedimento = 6;
->>>>>>> 203ea97366ef23a1a649917334ee69adc7194b1a
+
+

@@ -1,17 +1,16 @@
 <?php
+ob_start();
 session_start();
 require_once __DIR__ . "/init.php";
 
 $id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
 
-// Prioriza o ID da URL, depois o ID recém-salvo no agendar3.php
 $id_agendamento = $_GET['id'] ?? $_SESSION['ultimo_agendamento_id'] ?? $_SESSION['agendamento_concluido']['id_agendamento'] ?? null;
 
 $mensagem = '';
 $erro = '';
 $agendamento = null;
 
-// 1. Busca pelo ID específico vindo do agendar3.php (ou da URL)
 if ($id_agendamento) {
     $stmt = $pdo->prepare("
         SELECT a.*, p.nome AS nome_procedimento, p.valor, f.nome AS nome_profissional
@@ -24,7 +23,6 @@ if ($id_agendamento) {
     $agendamento = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// 2. Caso não tenha ID específico na sessão/URL, busca o agendamento mais recente do cliente no banco
 if (!$agendamento) {
     $stmt = $pdo->prepare("
         SELECT a.*, p.nome AS nome_procedimento, p.valor, f.nome AS nome_profissional
@@ -39,7 +37,6 @@ if (!$agendamento) {
     $agendamento = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Salvar observação no banco e redirecionar para consulta2.php
 if (isset($_POST['salvar_observacao']) && $agendamento) {
     $observacao = trim($_POST['observacao'] ?? '');
     $stmt = $pdo->prepare("UPDATE agendamentos SET observacao = :obs WHERE id_agendamento = :id");
@@ -51,7 +48,6 @@ if (isset($_POST['salvar_observacao']) && $agendamento) {
     header('Location: meus-agendamentos.php?id=' . (int)$agendamento['id_agendamento']);
     exit;
 }
-
 
 if (isset($_POST['cancelar_agendamento']) && $agendamento) {
     $stmt = $pdo->prepare("UPDATE agendamentos SET status = 'Cancelado' WHERE id_agendamento = :id");
@@ -102,8 +98,8 @@ if ($agendamento) {
                     </div>
                     <a href="index.php" class="btn-fechar" title="Fechar">x</a>
                 </div>
-                <p style="margin-bottom: 24px; color: #3E452E;">Você ainda não possui agendamentos registrados.</p>
-                <a href="agendar1.php" class="btn-salvar" style="text-decoration: none; display: inline-block;">Fazer agendamento</a>
+                <p class="texto-vazio-consulta">Você ainda não possui agendamentos registrados.</p>
+                <a href="agendar1.php" class="btn-salvar btn-link-agendar">Fazer agendamento</a>
             <?php else: ?>
 
                 <div class="card-header">
@@ -115,10 +111,10 @@ if ($agendamento) {
                     <a href="index.php" class="btn-fechar" title="Fechar">x</a>
                 </div>
 
-                <div class="status-wrapper" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="status-wrapper status-wrapper-acoes">
                     <span class="badge-status"><?= htmlspecialchars($agendamento['status']) ?></span>
-                    <a href="consulta2.php?id=<?= (int)$agendamento['id_agendamento'] ?>" style="font-size: 14px; color: #485136; font-weight: bold; text-decoration: underline;">
-                        Avaliar atendimento 
+                    <a href="feedback.php?id=<?= (int)$agendamento['id_agendamento'] ?>" class="link-avaliar-topo">
+                        Avaliar atendimento
                     </a>
                 </div>
 
@@ -197,10 +193,9 @@ if ($agendamento) {
 
                     <div class="acoes-rodape">
                         <button 
-                            type="submit" 
-                            name="cancelar_agendamento" 
+                            type="button" 
                             class="btn-cancelar"
-                            onclick="return confirm('Tem certeza que deseja cancelar este agendamento?');"
+                            onclick="abrirModalCancelar()"
                         >
                             Cancelar agendamento
                         </button>
@@ -211,10 +206,60 @@ if ($agendamento) {
                     </div>
                 </form>
 
+                <div id="modal-cancelar" class="modal-overlay" onclick="fecharModalFora(event)">
+                    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-cancelar-titulo">
+                        <div class="modal-topo">
+                            <span class="subtitulo">Confirmação</span>
+                            <button type="button" class="btn-fechar" onclick="fecharModalCancelar()" title="Fechar">x</button>
+                        </div>
+
+                        <h3 id="modal-cancelar-titulo" class="modal-titulo">Cancelar agendamento?</h3>
+                        <p class="modal-descricao">
+                            Tem certeza que deseja cancelar a reserva de 
+                            <strong><?= htmlspecialchars($agendamento['nome_procedimento']) ?></strong> 
+                            no dia <strong><?= htmlspecialchars($dataFormatada) ?></strong> às <strong><?= htmlspecialchars($horarioFormatado) ?></strong>?
+                        </p>
+
+                        <form method="POST" class="modal-acoes">
+                            <button type="button" class="btn-modal-manter" onclick="fecharModalCancelar()">
+                                Manter reserva
+                            </button>
+
+                            <button type="submit" name="cancelar_agendamento" class="btn-modal-confirmar-delete">
+                                Sim, cancelar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
             <?php endif; ?>
 
         </div>
     </main>
+
+    <script>
+        function abrirModalCancelar() {
+            const modal = document.getElementById('modal-cancelar');
+            if (modal) modal.classList.add('ativo');
+        }
+
+        function fecharModalCancelar() {
+            const modal = document.getElementById('modal-cancelar');
+            if (modal) modal.classList.remove('ativo');
+        }
+
+        function fecharModalFora(event) {
+            if (event.target.id === 'modal-cancelar') {
+                fecharModalCancelar();
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharModalCancelar();
+            }
+        });
+    </script>
 
 </body>
 </html>

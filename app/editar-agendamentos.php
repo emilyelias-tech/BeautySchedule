@@ -12,7 +12,6 @@ if ($id_agendamento <= 0) {
 
 $erro = '';
 
-// Busca o agendamento atual
 $stmt = $pdo->prepare("SELECT * FROM agendamentos WHERE id_agendamento = :id");
 $stmt->execute([':id' => $id_agendamento]);
 $agendamento = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,7 +21,6 @@ if (!$agendamento) {
     exit;
 }
 
-// Busca procedimentos e funcionários reais do banco para os selects
 $procedimentos = $pdo->query("SELECT id_procedimento, nome, valor, duracao_minutos FROM procedimentos ORDER BY nome ASC")->fetchAll(PDO::FETCH_ASSOC);
 $funcionarios = $pdo->query("SELECT id, nome, cargo FROM funcionarios ORDER BY nome ASC")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -32,7 +30,6 @@ $horariosDisponiveis = [
     '15:00', '16:30', '18:00', '19:30'
 ];
 
-// Salvar edição
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar_edicao'])) {
     $id_procedimento = (int)($_POST['id_procedimento'] ?? 0);
     $id_funcionario  = (int)($_POST['id_funcionario'] ?? 0);
@@ -44,13 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar_edicao'])) {
     if ($id_procedimento <= 0 || $id_funcionario <= 0 || empty($data) || empty($horario)) {
         $erro = "Preencha todos os campos obrigatórios.";
     } else {
-        // Busca a duração do procedimento selecionado
         $stmtDur = $pdo->prepare("SELECT duracao_minutos FROM procedimentos WHERE id_procedimento = :id");
         $stmtDur->execute([':id' => $id_procedimento]);
         $duracao = (int)($stmtDur->fetchColumn() ?: 60);
 
         try {
-            // Verifica se a coluna observacao existe na tabela antes de incluir no UPDATE
             $temColunaObs = array_key_exists('observacao', $agendamento);
 
             if ($temColunaObs) {
@@ -115,7 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar_edicao'])) {
         }
     }
 
-    // Mantém os valores enviados no formulário em caso de erro
     $agendamento['id_procedimento'] = $id_procedimento;
     $agendamento['id_funcionario']  = $id_funcionario;
     $agendamento['data']            = $data;
@@ -204,19 +198,7 @@ $horarioAtual = substr($agendamento['horario'], 0, 5);
                             <?php endforeach; ?>
                         </select>
                     </div>
-                </div>
 
-                <div class="campo-form">
-                    <label for="status">Status do agendamento</label>
-                    <select name="status" id="status" class="input-editorial">
-                        <?php 
-                        $listaStatus = ['Confirmado', 'Pendente', 'Concluído', 'Cancelado'];
-                        foreach ($listaStatus as $st): 
-                        ?>
-                            <option value="<?= $st ?>" <?= ($agendamento['status'] === $st) ? 'selected' : '' ?>>
-                                <?= $st ?>
-                            </option>
-                        <?php endforeach; ?>
                     </select>
                 </div>
 
