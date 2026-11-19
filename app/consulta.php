@@ -10,6 +10,8 @@ $id_agendamento = $_GET['id'] ?? $_SESSION['ultimo_agendamento_id'] ?? $_SESSION
 $mensagem = '';
 $erro = '';
 $agendamento = null;
+$dataFormatada = '';
+$horarioFormatado = '';
 
 if ($id_agendamento) {
     $stmt = $pdo->prepare("
