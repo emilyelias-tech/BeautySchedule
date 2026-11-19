@@ -9,7 +9,7 @@ $usuarioLogado = isset($_SESSION['usuario_id']);
 $databaseStatus = 'Conectado';
 
 try {
-    require_once __DIR__ . '/init.php';
+    require_once __DIR__ . '/../init.php';
     $pdo->query('SELECT 1');
 } catch (Throwable $exception) {
     $databaseStatus = 'Indisponível';
@@ -32,7 +32,6 @@ try {
 
 <body>
 
-    <?php require_once __DIR__ . '/nav.php'; ?>
 
     <div class="nomes">
 

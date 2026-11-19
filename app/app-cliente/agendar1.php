@@ -2,9 +2,10 @@
 
 session_start();
 
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../init.php";
 
 $procedimentos = readAll($pdo, 'procedimentos');
+
 $erro = '';
 
 if (isset($_POST['cadastrar'])) {
@@ -42,7 +43,7 @@ if (isset($_POST['cadastrar'])) {
 
             ];
 
-            header('Location: agendar-profissional.php');
+            header('Location: agendar2.php');
 
             exit;
         }
@@ -61,13 +62,18 @@ if (isset($_POST['cadastrar'])) {
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Agendamentos | BeautySchedule</title>
+    <title>Agendamentos - BeautySchedule</title>
 
-    <link rel="stylesheet" href="/app/css/agendamentos.css">
+    <link rel="stylesheet" href="css/agendar.css">
 
 </head>
 
 <body>
+
+    <?php require_once __DIR__ . '/nav.php'; ?>
+
+
+
     <main>
 
         <div class="container">
@@ -91,6 +97,9 @@ if (isset($_POST['cadastrar'])) {
                     <span class="subtitulo">Agendamento</span>
 
                 </div>
+
+                <a href="index.php" class="btn-fechar" title="Fechar">x</a>
+
             </div>
 
             <h2>Escolha seu cuidado</h2>
@@ -165,3 +174,4 @@ if (isset($_POST['cadastrar'])) {
 </body>
 
 </html>
+

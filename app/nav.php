@@ -9,7 +9,7 @@ declare(strict_types=1);
 <div class="navbar">
 
     <div class="brand">
-        <img class="img" src="imagens/logo.png" alt="Beauty Schedule">
+        <img class="img" src="/app/imagens/logo.png" alt="Beauty Schedule">
     </div>
 
     <nav class="nav-links">

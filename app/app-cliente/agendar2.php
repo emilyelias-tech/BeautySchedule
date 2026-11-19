@@ -1,11 +1,13 @@
 <?php
 session_start();
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../init.php";
 
 if (!isset($_SESSION['agendamento_atual'])) {
-    header('Location: agendar-procedimento.phpQ');
+    header('Location: agendar.php');
     exit;
 }
+
+
 
 
 $profissionais = [];
@@ -23,9 +25,6 @@ if (empty($profissionais)) {
 }
 
 $horariosDisponiveis = [
-    '09:00',
-    '09:30',
-    '10:00',
     '10:30',
     '11:30',
     '13:00',
@@ -35,6 +34,7 @@ $horariosDisponiveis = [
     '15:30',
     '16:30',
     '17:00',
+    
 
 ];
 
@@ -74,15 +74,20 @@ if (isset($_POST['continuar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamentos - BeautySchedule</title>
-    <link rel="stylesheet" href="css/agendamentos.css">
+    <link rel="stylesheet" href="css/agendar.css">
 </head>
 <body>
 
+    <?php require_once __DIR__ . '/nav.php'; ?>
 
     <main>
         <div class="container">
             
+
     
+
+            <!-- Topo com barras de progresso e botão fechar -->
+
             <div class="card-header">
                 <div class="progresso-wrapper">
                     <div class="progresso-barras">
@@ -92,6 +97,8 @@ if (isset($_POST['continuar'])) {
                     </div>
                     <span class="subtitulo">Agendamento</span>
                 </div>
+
+                <a href="index.php" class="btn-fechar" title="Fechar">x</a>
             </div>
 
             <h2>Com quem e quando?</h2>
@@ -101,9 +108,15 @@ if (isset($_POST['continuar'])) {
             <?php endif; ?>
 
             <form method="POST" class="form-etapa2">
+
               
                 <div class="bloco-agendamento2">
                    
+                
+                <!-- Bloco único com Profissional, Data e Horários -->
+                <div class="bloco-agendamento2">
+                    
+                    <!-- Profissional -->
                     <div class="campo-grupo">
                         <label for="profissional" class="label-etapa">Profissional</label>
                         <div class="select-wrapper">
@@ -119,7 +132,9 @@ if (isset($_POST['continuar'])) {
                         </div>
                     </div>
 
-           
+    
+                   <!-- Data -->
+
                     <div class="campo-grupo">
                         <label for="data" class="label-etapa">Data</label>
                         <div class="select-wrapper">
@@ -135,6 +150,8 @@ if (isset($_POST['continuar'])) {
                         </div>
                     </div>
 
+
+                    <!-- Horários -->
                     <div class="campo-grupo campo-horarios">
                         <span class="label-etapa">Horário</span>
                         <div class="grid-opcoes">
@@ -158,9 +175,12 @@ if (isset($_POST['continuar'])) {
 
                 </div>
 
-              
+
+                 <div class="acoes-rodape">
+
+                <!-- Botões Voltar e Continuar embaixo, à direita -->
                 <div class="acoes-rodape">
-                    <a href="agendar-procedimento.php" class="btn-voltar">Voltar</a>
+                    <a href="agendar1.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">
                         Continuar
                     </button>

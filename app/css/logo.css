@@ -1,0 +1,12 @@
+body{
+    background-image: url(
+        /app/imagens/Moldura\ Botânica\ Oliva\ Elegante.png
+    );
+}
+
+img{
+    width: 800px;
+    margin-top: 300px;
+    margin-left: 500px;
+    cursor: default;
+}

@@ -1,10 +1,10 @@
 <?php
+ob_start();
 session_start();
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../init.php";
 
-// Se não houver dados das etapas anteriores na sessão, volta para o início
-if (!isset($_SESSION['agendamento_atual']) or empty($_SESSION['agendamento_atual']['data'])) {
-    header('Location: agendar-procedimento.php');
+if (!isset($_SESSION['agendamento_atual']) || empty($_SESSION['agendamento_atual']['data'])) {
+    header('Location: agendar1.php');
     exit;
 }
 
@@ -27,31 +27,75 @@ $valorFormatado = number_format((float)$agendamento['valor'], 0, ',', '.');
 
 $erro = '';
 
-if (isset($_POST['confirmar'])) {
-    // Pega o ID do cliente logado na sessão (ou 1 como fallback caso ainda não tenha login integrado)
-    $id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
+    $id_cliente = (int)($_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1);
+    
+    // Pega o ID do funcionário salvo no agendar2.php (ou busca pelo nome se não veio o ID)
+    $id_funcionario = (int)($agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 0);
+    if ($id_funcionario <= 0 && !empty($agendamento['nome_profissional'])) {
+        $stmtFunc = $pdo->prepare("SELECT id FROM funcionarios WHERE nome = :nome LIMIT 1");
+        $stmtFunc->execute([':nome' => $agendamento['nome_profissional']]);
+        $id_funcionario = (int)($stmtFunc->fetchColumn() ?: 1);
+    }
+    if ($id_funcionario <= 0) {
+        $id_funcionario = 1;
+    }
 
    if (isset($_POST['confirmar'])) {
     $id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
     $id_funcionario = $agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 1;
 
     try {
-        create($pdo, 'agendamentos', [
+        $resultado = create($pdo, 'agendamentos', [
             'id_cliente'      => $id_cliente,
             'id_funcionario'  => $id_funcionario,
+
+            'id_procedimento' => (int)$agendamento['id_procedimento'],
+            'duracao_minutos' => (int)$agendamento['duracao_minutos'],
             'id_procedimento' => $agendamento['id_procedimento'],
             'duracao_minutos' => $agendamento['duracao_minutos'],
+
             'data'            => $agendamento['data'],
-            'horario'         => $agendamento['horario']
+            'horario'         => $agendamento['horario'],
+            'status'          => 'Confirmado'
         ]);
+
+
+        $novoId = (is_numeric($resultado) && (int)$resultado > 0)
+            ? (int)$resultado
+            : (int)$pdo->lastInsertId();
+
+        if ($novoId > 0) {
+            $_SESSION['ultimo_agendamento_id'] = $novoId;
+        }
+
+        $_SESSION['agendamento_concluido'] = [
+            'id_agendamento' => $novoId,
+            'data'           => $agendamento['data'],
+            'horario'        => $agendamento['horario']
+];
 
         $_SESSION['agendamento_concluido'] = [
             'data'    => $agendamento['data'],
             'horario' => $agendamento['horario']
+
         ];
 
         unset($_SESSION['agendamento_atual']);
 
+        if (!headers_sent()) {
+            header('Location: agendar4.php');
+            exit;
+        } else {
+            echo "<script>window.location.href = 'agendar4.php';</script>";
+            exit;
+        }
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) {
+            $erro = "Este horário já está reservado para esta profissional. Volte e escolha outro horário ou data.";
+        } else {
+            $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
+        }
         header('Location: agendar4.php');
         exit;
     } catch (Exception $e) {
@@ -66,9 +110,11 @@ if (isset($_POST['confirmar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisar Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="css/agendamentos.css">
+    <link rel="stylesheet" href="css/agendar.css">
 </head>
 <body>
+
+    <?php require_once __DIR__ . '/nav.php'; ?>
 
     <main>
         <div class="container">
@@ -82,20 +128,22 @@ if (isset($_POST['confirmar'])) {
                     </div>
                     <span class="subtitulo">Agendamento</span>
                 </div>
+
+                <a href="index.php" class="btn-fechar" title="Fechar">x</a>
             </div>
 
             <h2>Revise seu agendamento</h2>
 
             <?php if (!empty($erro)): ?>
-                <p class="mensagem-erro"><?= htmlspecialchars($erro) ?></p>
+                <div style="background-color: #f8d7da; color: #721c24; border-left: 4px solid #721c24; padding: 12px 14px; border-radius: 4px; margin-bottom: 18px; font-size: 14px;">
+                    <?= htmlspecialchars($erro) ?>
+                </div>
             <?php endif; ?>
 
-            <form method="POST">
+            <form method="POST" action="agendar3.php">
                 
-                <!-- Caixa de Resumo -->
                 <div class="resumo-box">
                     
-                  
                     <div class="resumo-item">
                         <div class="resumo-icone">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -111,7 +159,6 @@ if (isset($_POST['confirmar'])) {
 
                     <hr class="resumo-divisor">
 
-            
                     <div class="resumo-item">
                         <div class="resumo-icone">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -144,10 +191,9 @@ if (isset($_POST['confirmar'])) {
 
                     <hr class="resumo-divisor">
 
-                  
                     <div class="resumo-total">
                         <span class="total-label">Total:</span>
-                        <span class="total-valor">R$ <?= htmlspecialchars($valorFormatado) ?></span>
+                        <span class="total-valor">R$<?= htmlspecialchars($valorFormatado) ?></span>
                     </div>
 
                 </div>
