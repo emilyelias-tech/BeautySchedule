@@ -8,7 +8,6 @@ $id_agendamento = $_GET['id'] ?? null;
 $mensagem = '';
 $erro = '';
 
-// Busca o agendamento a ser avaliado (pelo ID da URL ou o último concluído/agendado do cliente)
 $agendamento = null;
 
 if ($id_agendamento) {
@@ -35,7 +34,6 @@ if ($id_agendamento) {
     $agendamento = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Fallback visual caso ainda não exista agendamento retornado
 if (!$agendamento) {
     $agendamento = [
         'id_agendamento'    => 1,
@@ -110,8 +108,6 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
     <link rel="stylesheet" href="css/consulta.css">
 </head>
 <body>
-
-    <?php require_once __DIR__ . '/nav.php'; ?>
 
     <main>
         <div class="container container-avaliacao">

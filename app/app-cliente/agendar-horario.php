@@ -4,7 +4,7 @@ session_start();
 require_once __DIR__ . "/../init.php";
 
 if (!isset($_SESSION['agendamento_atual']) || empty($_SESSION['agendamento_atual']['data'])) {
-    header('Location: agendar1.php');
+    header('Location: agendar-procedimento.php');
     exit;
 }
 
@@ -30,7 +30,6 @@ $erro = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
     $id_cliente = (int)($_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1);
     
-    // Pega o ID do funcionário salvo no agendar2.php (ou busca pelo nome se não veio o ID)
     $id_funcionario = (int)($agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 0);
     if ($id_funcionario <= 0 && !empty($agendamento['nome_profissional'])) {
         $stmtFunc = $pdo->prepare("SELECT id FROM funcionarios WHERE nome = :nome LIMIT 1");
@@ -84,10 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         unset($_SESSION['agendamento_atual']);
 
         if (!headers_sent()) {
-            header('Location: agendar4.php');
+            header('Location: agendar-reservado.php');
             exit;
         } else {
-            echo "<script>window.location.href = 'agendar4.php';</script>";
+            echo "<script>window.location.href = 'agendar-reservado.php';</script>";
             exit;
         }
     } catch (PDOException $e) {
@@ -96,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         } else {
             $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
         }
-        header('Location: agendar4.php');
+        header('Location: agendar-reservado.php');
         exit;
     } catch (Exception $e) {
         $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
@@ -110,11 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisar Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="css/agendar.css">
+    <link rel="stylesheet" href="/app/css/agendar.css">
 </head>
 <body>
-
-    <?php require_once __DIR__ . '/nav.php'; ?>
 
     <main>
         <div class="container">
@@ -140,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
                 </div>
             <?php endif; ?>
 
-            <form method="POST" action="agendar3.php">
+            <form method="POST" action="agendar-horario.php">
                 
                 <div class="resumo-box">
                     
@@ -199,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
                 </div>
 
                 <div class="acoes-rodape">
-                    <a href="agendar2.php" class="btn-voltar">Voltar</a>
+                    <a href="agendar-profissional.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="confirmar" class="btn-continuar">
                         Continuar 
                     </button>

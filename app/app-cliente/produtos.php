@@ -3,9 +3,7 @@
 require_once __DIR__ . '/banco/database.php';
 
 $pdo = database();
-
 $sql = "SELECT * FROM produtos ORDER BY id DESC";
-
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
@@ -15,7 +13,6 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,13 +34,11 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <img
                         src="<?php echo htmlspecialchars($produto['imagem']); ?>"
-                        alt="<?php echo htmlspecialchars($produto['nome']); ?>"
-                    >
+                        alt="<?php echo htmlspecialchars($produto['nome']); ?>">
 
                 </div>
 
                 <div class="linha-verde"></div>
-
                 <div class="informacoes-produto">
 
                     <p class="nome-produto">
@@ -65,17 +60,13 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                            class="botao-produto">
                             →
                         </a>
-
                     </div>
-
                 </div>
-
             </div>
 
         <?php endforeach; ?>
 
     </div>
-
 </section>
 
 </body>

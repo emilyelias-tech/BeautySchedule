@@ -1,14 +1,15 @@
+
 services:
   app:
     build:
       context: .
     environment:
-      APP_ENV: ${APP_ENV:-production}
-      DB_HOST: ${DB_HOST:-db}
-      DB_PORT: ${DB_PORT:-3306}
-      DB_DATABASE: ${DB_DATABASE:-integrador}
-      DB_USERNAME: ${DB_USERNAME:-integrador}
-      DB_PASSWORD: ${DB_PASSWORD:?Informe DB_PASSWORD}
+      APP_ENV: ${APP_ENV:-development}
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_DATABASE:-BeautySchedule}
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_ROOT_PASSWORD:?Informe DB_ROOT_PASSWORD}
       SERVICE_URL_APP: /
     depends_on:
       db:
@@ -21,10 +22,10 @@ services:
     build:
       context: .
       dockerfile: docker/mysql/Dockerfile
+    ports:
+      - "3310:3306"
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE:-integrador}
-      MYSQL_USER: ${DB_USERNAME:-integrador}
-      MYSQL_PASSWORD: ${DB_PASSWORD:?Informe DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE:-BeautySchedule}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?Informe DB_ROOT_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql

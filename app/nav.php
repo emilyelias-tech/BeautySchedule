@@ -15,7 +15,7 @@ declare(strict_types=1);
     <nav class="nav-links">
         <a href="index.php">Início</a>
         <a href="produtos.php">Produtos</a>
-        <a href="/app/index.php#agendamento">Agendar</a>
+        <a href="agendar-procedimento.php">Agendar</a>
         <a href="consulta.php">Consulta</a>
         <a href="procedimentos.php">Procedimentos</a>
     </nav>
