@@ -105,6 +105,7 @@ main {
     align-items: center;
     padding: 30px 20px;
     background-color: #D8D1BA;
+    background-image: url("/app/imagens/fundo.png");
 }
 
 .container {
@@ -738,4 +739,3 @@ input[type="date"].select-custom:focus {
         font-size: 18px;
     }
 }
-    
