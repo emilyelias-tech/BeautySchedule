@@ -54,6 +54,8 @@ if (isset($_POST['cadastrar'])) {
 
 <body>
 
+    <?php require_once __DIR__ . "/../nav.php" ?>
+
     <main>
 
         <div class="container">

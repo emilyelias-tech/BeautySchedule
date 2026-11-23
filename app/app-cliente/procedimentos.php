@@ -1,69 +1,135 @@
+
 <?php
 
-declare(strict_types=1);
-
 $databaseStatus = 'Conectado';
+$produtos = [];
 
 try {
     require_once __DIR__ . '/../init.php';
+
     $pdo->query('SELECT 1');
+
 } catch (Throwable $exception) {
     $databaseStatus = 'Indisponível';
 }
-$produtos = [];
+
 if ($databaseStatus === 'Conectado') {
     try {
-        $stmt = $pdo->query('SELECT id, nome, preco, materiais, quantidade, imagem FROM produtos');
+        $sql = "SELECT id, nome, preco, materiais, quantidade, imagem
+                FROM produtos
+                WHERE ativo = 1
+                ORDER BY id ASC";
+
+        $stmt = $pdo->query($sql);
         $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Throwable $e) {
+
+    } catch (Throwable $exception) {
+        $databaseStatus = 'Indisponível';
     }
 }
+
 ?>
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nossos Procedimentos</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nossos Produtos | BeautySchedule</title>
+
+    <link rel="stylesheet" href="/app/css/produtos.css">
 </head>
+
 <body>
-      <?php include __DIR__ . '/nav.php'; ?>
-    <h1>
-        Nossos procedimentos <br> para a sua beleza
-    </h1>
-    <?php if ($databaseStatus === 'Indisponível'): ?> <!-- essa funcao mostra indisponivel caso o status nao exista!(o === verifica se o que está escrito é igual e tem a msm identidade, str, int etc)-->
-            <p>O banco de dados está indisponível no momento.</p>
-        <?php elseif (empty($procedimentos)): ?>  <!-- essa funcao mostra a msg a seguir caso nao exista procedimentos!-->
-            <p>Nenhum procedimento cadastrado.</p>
-        <?php else: ?>
-            <?php foreach ($procedimentos as $procedimento): ?>  <!-- a partir daqui os cards sao criados de acordo com o que há no Banco!-->
-                <div class="card-procedimento">
-                    
-                    <!-- Imagem do Procedimento -->
-                    <div class="card-imagem">
-                        <img src="<?= htmlspecialchars($procedimento['imagem'] ?? 'assets/sem-foto.jpg') ?>" 
-                             alt="<?= htmlspecialchars($procedimento['nome']) ?>">
-                    </div>
-                    
-                    <!-- Conteúdo do Card -->
-                    <div class="card-corpo">
-                        <h3 class="nome-procedimento"><?= htmlspecialchars($procedimento['nome']) ?></h3>
-                        
-                        <div class="card-rodape">
-                            <span class="preco">R$ <?= number_format((float)$procedimento['preco'], 2, ',', '.') ?></span>
-                            <a href="procedimento.php?id=<?= $procedimento['id'] ?>" 
-                               class="btn-detalhes" 
-                               aria-label="Ver detalhes de <?= htmlspecialchars($procedimento['nome']) ?>">
-                                &#x27F6;
-                            </a>
+
+    <?php require_once __DIR__ . '/../nav.php'; ?>
+
+    <main class="produtos">
+
+        <section class="titulo">
+            <h1>Nossos produtos</h1>
+            <p>Cuide de você com nossos produtos especiais.</p>
+        </section>
+
+        <section class="lista-produtos">
+
+            <?php if ($databaseStatus === 'Indisponível'): ?>
+
+                <p class="mensagem">
+                    O banco de dados está indisponível no momento.
+                </p>
+
+            <?php elseif (empty($produtos)): ?>
+
+                <p class="mensagem">
+                    Nenhum produto cadastrado.
+                </p>
+
+            <?php else: ?>
+
+                <?php foreach ($produtos as $produto): ?>
+
+                    <div class="card-produto">
+
+                        <div class="imagem-produto">
+
+                            <img
+                                src="<?= htmlspecialchars($produto['imagem'] ?? 'assets/sem-foto.jpg') ?>"
+                                alt="<?= htmlspecialchars($produto['nome']) ?>"
+                            >
+
                         </div>
+
+                        <div class="linha-verde"></div>
+
+                        <div class="informacoes-produto">
+
+                            <span class="id-produto">
+                                Produto #<?= (int) $produto['id'] ?>
+                            </span>
+
+                            <h2 class="nome-produto">
+                                <?= htmlspecialchars($produto['nome']) ?>
+                            </h2>
+
+                            <p class="materiais">
+                                <?= htmlspecialchars($produto['materiais'] ?? '') ?>
+                            </p>
+
+                            <div class="rodape-produto">
+
+                                <span class="preco-produto">
+                                    R$ <?= number_format(
+                                        (float) $produto['preco'],
+                                        2,
+                                        ',',
+                                        '.'
+                                    ) ?>
+                                </span>
+
+                                <a
+                                    href="produto.php?id=<?= (int) $produto['id'] ?>"
+                                    class="botao-produto"
+                                    aria-label="Ver detalhes de <?= htmlspecialchars($produto['nome']) ?>"
+                                >
+                                    &#x27F6;
+                                </a>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
-                </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </div>
+                <?php endforeach; ?>
+
+            <?php endif; ?>
+
+        </section>
+
+    </main>
 
 </body>
 </html>

@@ -32,8 +32,7 @@ try {
 
 <body>
 
-
-
+    <?php require_once __DIR__ . "/../nav.php" ?>
 
     <div class="nomes">
 
@@ -118,7 +117,7 @@ try {
 
                     </a>
 
-                    <a href="BeautySchedule@gmail.com" class="item">
+                    <a href="https://mail.google.com/" class="item">
 
                         <span class="icone">
                             <i class="fa-solid fa-envelope"></i>

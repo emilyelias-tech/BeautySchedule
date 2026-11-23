@@ -1,5 +1,6 @@
+
 html, body {
-    background-image: url(/app/imagens/fundo.png);
+    background-image: url("/app/imagens/fundo.png");
     width: 100%;
     overflow-x: hidden;
     margin: 0;
@@ -9,10 +10,10 @@ html, body {
 
 @font-face {
     font-family: Angleton;
-    src: url("../fontes/TAN-Angleton-Regular.ttf");
+    src: url("/app/fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* estilização do nav */
+/* Navbar */
 
 .navbar {
     display: flex;
@@ -36,7 +37,6 @@ html, body {
 .nav-links {
     display: flex;
     align-items: center;
-    list-style: none;
     gap: 50px;
     font-size: 30px;
 }
@@ -55,14 +55,7 @@ html, body {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-right: 60px;
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .nav-icon {
@@ -73,20 +66,10 @@ html, body {
 }
 
 .nav-mage {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     display: block;
-}
-
-.cart-icon {
-    border: 2px solid #4f5838;
-    color: #4f5838;
-}
-
-.user-icon {
-    background-color: #4f5838;
-    color: #bbb59e;
 }
 
 

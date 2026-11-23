@@ -37,6 +37,8 @@ function mostrar($valor) {
     <title>Beauty Schedule</title>
 </head>
 
+    <?php require_once __DIR__ . "/../nav.php" ?>
+
 <body>
 
 <header>

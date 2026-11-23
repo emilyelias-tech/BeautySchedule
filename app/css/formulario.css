@@ -1,0 +1,183 @@
+html, body {
+    background-image: url(/app/imagens/fundo.png);
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Angleton;
+}
+
+@font-face {
+    font-family: Angleton;
+    src: url("../fontes/TAN-Angleton-Regular.ttf");
+}
+
+/* estilização do nav */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #bbb59e;
+    padding: 5px 35px;
+    width: 100%;
+    min-height: 130px;
+    box-sizing: border-box;
+}
+
+.img {
+    width: auto;
+    height: 120px;
+    position: static;
+    margin: 0;
+    border-radius: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    font-size: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4f5838;
+    font-size: 20px;
+}
+
+.nav-links a:hover {
+    color: #858354;
+    border-bottom: 2px solid #4f5838;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 60px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.nav-mage {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+}
+
+.cart-icon {
+    border: 2px solid #4f5838;
+    color: #4f5838;
+}
+
+.user-icon {
+    background-color: #4f5838;
+    color: #bbb59e;
+}
+
+.fundo{
+    background-image: url(
+        /app/imagens/Logotipo\ de\ beleza\ botânica\ em\ verde\ e\ creme.png
+    );
+    width: 1565px;
+    height: 980px;
+    margin-left: 100px;
+    margin-right: 100px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    }
+
+.formulario{
+    margin-top: 50px;
+}
+
+.formulario h2{
+    font-size: 25px;
+    color: #4f5838;
+    margin-left: 900px;
+}
+
+.formulario label{
+    margin-left: 960px;
+    color: #4f5838;
+    font-size: 15px;
+    margin-top: 12px;
+    display: flex;
+}
+
+.formulario input{
+    margin-left:960px;
+    width: 450px;
+    height: 45px;
+    background-color: #C7C1A8;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    font-size: 20px;
+}
+
+.formulario select{
+    margin-left:960px;
+    width: 450px;
+    height: 45px;
+    background-color: #C7C1A8;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+.formulario textarea{
+    margin-left:960px;
+    width: 450px;
+    height: 45px;
+    background-color: #C7C1A8;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    resize: none;
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+#mensagem{
+    margin-left:960px;
+    width: 450px;
+    height: 100px;
+    background-color: #C7C1A8;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    resize: none;
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+.formulario button{
+    background-color: #4f5838;
+    color: #C7C1A8;
+    font-size:20px;
+    width: 350px;
+    padding: 25px;
+    display: block;
+    margin-left: 990px;
+    margin-top: 40px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;   
+}

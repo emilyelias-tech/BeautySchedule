@@ -21,6 +21,9 @@ try {
 </head>
 
 <body>
+
+    <?php require_once __DIR__ . "/../nav.php" ?>
+    
     <div class="fundo">
 
         <div class="texto">

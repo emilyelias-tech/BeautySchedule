@@ -75,6 +75,8 @@ if (isset($_POST['continuar'])) {
 </head>
 <body>
 
+    <?php require_once __DIR__ . "/../nav.php" ?>
+
     <main>
         <div class="container">
 

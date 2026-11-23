@@ -210,7 +210,6 @@ INSERT INTO vendas (id_cliente, id_funcionario, total) VALUES
 (3, 3, 45.00),
 (4, 1, 65.80);
 
-INSERT INTO itens_venda (id_venda, id_produto, quantidade, preco_unitario) VALUES
 (1, 1, 1, 35.90),
 (1, 2, 1, 39.90),
 (2, 3, 2, 12.50),

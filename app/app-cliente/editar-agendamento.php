@@ -130,7 +130,7 @@ $horarioAtual = substr($agendamento['horario'], 0, 5);
 </head>
 <body>
 
-    <?php require_once __DIR__ . '/nav.php'; ?>
+    <?php require_once __DIR__ . '/../nav.php'; ?>
 
     <main>
         <div class="container">
