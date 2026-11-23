@@ -23,7 +23,7 @@ declare(strict_types=1);
 
     <div class="nav-actions">
 
-        <a href="/app/carrinho.php" class="nav-icon">
+        <a href="/app/app-cliente/carrinho.php" class="nav-icon">
             <img class="nav-mage" src="/app/imagens/carrinho.png" alt="Carrinho">
         </a>
 

@@ -34,7 +34,6 @@ try {
     <main class="secao-produtos">
         <h1 class="titulo">Nossos <span class="verde-claro">produtos</span><br>para a sua beleza.</h1>
 
-        <!-- Barra de Pesquisa -->
         <form method="GET" action="produtos.php" class="barra-pesquisa-container">
             <input type="text" name="busca" id="inputBusca" placeholder="Pesquisar produto..." value="<?php echo htmlspecialchars($busca ?? '', ENT_QUOTES, 'UTF-8'); ?>">
             <button type="submit" class="btn-buscar">Buscar</button>
@@ -43,7 +42,6 @@ try {
             <?php endif; ?>
         </form>
 
-        <!-- Lista de Cards -->
         <div class="lista-cards">
             <?php if (count($produtosFiltrados) > 0): ?>
                 <?php foreach ($produtosFiltrados as $item): ?>
@@ -56,8 +54,7 @@ try {
                             <div class="faixa-verde"></div>
                             <div class="card-info">
                                 <p class="nome-produto"><?php echo htmlspecialchars($item['nome'] ?? 'Sem nome', ENT_QUOTES, 'UTF-8'); ?></p>
-                                
-                                <p class="descricao-card"><?php echo htmlspecialchars(substr($item['descricao'] ?? '', 0, 65)) . '...'; ?></p>
+                            
 
                                 <div class="card-rodape">
                                     <span class="preco">R$ <?php echo number_format((float)($item['preco'] ?? 0), 2, ',', '.'); ?></span>
