@@ -109,9 +109,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisar Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/agendar.css">
+    <link rel="stylesheet" href="/app/css/agendar-horario.css">
+    <?php require_once __DIR__ . "/../nav.php" ?>
+
 </head>
 <body>
+
 
     <main>
         <div class="container">

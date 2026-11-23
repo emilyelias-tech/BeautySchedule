@@ -41,7 +41,7 @@ try {
 
         <h4>Tratamentos para realçar sua beleza natural.</h4>
 
-        <a href="#agendamento" class="btn-agendar-home">
+        <a href="/app/app-cliente/agendar-procedimento.php" class="btn-agendar-home">
             <button type="button">Agende seu horario →</button>
         </a>
 

@@ -1,135 +1,75 @@
-
 <?php
+require_once __DIR__ . "/../init.php";
 
-$databaseStatus = 'Conectado';
-$produtos = [];
+$pdo = database();
 
-try {
-    require_once __DIR__ . '/../init.php';
+$busca = isset($_GET['busca']) ? trim($_GET['busca']) : '';
 
-    $pdo->query('SELECT 1');
-
-} catch (Throwable $exception) {
-    $databaseStatus = 'Indisponível';
+if ($busca !== '') {
+    $sql = "SELECT * FROM produtos WHERE nome LIKE :busca ORDER BY id DESC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':busca', '%' . $busca . '%');
+    $stmt->execute();
+    $produtosFiltrados = $stmt->fetchAll();
+} else {
+    $sql = "SELECT * FROM produtos ORDER BY id DESC";
+    $stmt = $pdo->query($sql);
+    $produtosFiltrados = $stmt->fetchAll();
 }
-
-if ($databaseStatus === 'Conectado') {
-    try {
-        $sql = "SELECT id, nome, preco, materiais, quantidade, imagem
-                FROM produtos
-                WHERE ativo = 1
-                ORDER BY id ASC";
-
-        $stmt = $pdo->query($sql);
-        $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    } catch (Throwable $exception) {
-        $databaseStatus = 'Indisponível';
-    }
-}
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Nossos Produtos | BeautySchedule</title>
-
+    <title>Beauty Schedule - Produtos</title>
     <link rel="stylesheet" href="/app/css/produtos.css">
 </head>
-
 <body>
 
-    <?php require_once __DIR__ . '/../nav.php'; ?>
+    <?php require_once __DIR__ . "/../nav.php"; ?>
 
-    <main class="produtos">
+    <section class="secao-produtos">
+        
+        <h1 class="titulo">
+            <span class="verde-claro">Nossos</span> procedimento<br>
+            <span class="verde-claro">para a</span> sua beleza.
+        </h1>
 
-        <section class="titulo">
-            <h1>Nossos produtos</h1>
-            <p>Cuide de você com nossos produtos especiais.</p>
-        </section>
-
-        <section class="lista-produtos">
-
-            <?php if ($databaseStatus === 'Indisponível'): ?>
-
-                <p class="mensagem">
-                    O banco de dados está indisponível no momento.
-                </p>
-
-            <?php elseif (empty($produtos)): ?>
-
-                <p class="mensagem">
-                    Nenhum produto cadastrado.
-                </p>
-
-            <?php else: ?>
-
-                <?php foreach ($produtos as $produto): ?>
-
-                    <div class="card-produto">
-
-                        <div class="imagem-produto">
-
-                            <img
-                                src="<?= htmlspecialchars($produto['imagem'] ?? 'assets/sem-foto.jpg') ?>"
-                                alt="<?= htmlspecialchars($produto['nome']) ?>"
-                            >
-
-                        </div>
-
-                        <div class="linha-verde"></div>
-
-                        <div class="informacoes-produto">
-
-                            <span class="id-produto">
-                                Produto #<?= (int) $produto['id'] ?>
-                            </span>
-
-                            <h2 class="nome-produto">
-                                <?= htmlspecialchars($produto['nome']) ?>
-                            </h2>
-
-                            <p class="materiais">
-                                <?= htmlspecialchars($produto['materiais'] ?? '') ?>
-                            </p>
-
-                            <div class="rodape-produto">
-
-                                <span class="preco-produto">
-                                    R$ <?= number_format(
-                                        (float) $produto['preco'],
-                                        2,
-                                        ',',
-                                        '.'
-                                    ) ?>
-                                </span>
-
-                                <a
-                                    href="produto.php?id=<?= (int) $produto['id'] ?>"
-                                    class="botao-produto"
-                                    aria-label="Ver detalhes de <?= htmlspecialchars($produto['nome']) ?>"
-                                >
-                                    &#x27F6;
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                <?php endforeach; ?>
-
+        <form method="GET" action="" class="barra-pesquisa-container">
+            <input type="text" name="busca" id="inputBusca" placeholder="Pesquisar procedimento..." value="<?php echo htmlspecialchars($busca); ?>">
+            <button type="submit" class="btn-buscar">Buscar</button>
+            <?php if ($busca !== ''): ?>
+                <a href="produtos.php" class="btn-limpar">Limpar</a>
             <?php endif; ?>
+        </form>
 
-        </section>
+        <div class="lista-cards">
+    <?php if (count($produtosFiltrados) > 0): ?>
+        <?php foreach ($produtosFiltrados as $item): ?>
+            <?php 
+                $imagemProduto = !empty($item['imagem']) ? $item['imagem'] : 'https://placehold.co/300x300/e8dfd5/495437?text=Sem+Foto';
+            ?>
+            <a href="detalhes-produto.php?id=<?php echo $item['id']; ?>" class="card-link">
+                <div class="card">
+                    <img src="<?php echo htmlspecialchars($imagemProduto); ?>" alt="<?php echo htmlspecialchars($item['nome'] ?? 'Produto'); ?>" class="card-imagem">
+                    <div class="faixa-verde"></div>
+                    <div class="card-info">
+                        <p class="nome-produto"><?php echo htmlspecialchars($item['nome'] ?? 'Sem nome'); ?></p>
+                        <div class="card-rodape">
+                            <span class="preco">R$ <?php echo number_format((float)($item['preco'] ?? 0), 2, ',', '.'); ?></span>
+                            <span class="botao-seta"></span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="sem-resultados">Nenhum procedimento encontrado para "<?php echo htmlspecialchars($busca); ?>".</p>
+    <?php endif; ?>
+</div>
 
-    </main>
+    </section>
 
 </body>
 </html>

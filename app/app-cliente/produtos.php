@@ -23,7 +23,7 @@ if ($busca !== '') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beauty Schedule - Produtos</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/app/css/produtos.css">
 </head>
 <body>
 
@@ -36,7 +36,6 @@ if ($busca !== '') {
             <span class="verde-claro">pensando em</span> você.
         </h1>
 
-        <!-- Barra de Pesquisa -->
         <form method="GET" action="" class="barra-pesquisa-container">
             <input type="text" name="busca" id="inputBusca" placeholder="Pesquisar produto..." value="<?php echo htmlspecialchars($busca); ?>">
             <button type="submit" class="btn-buscar">Buscar</button>
@@ -45,30 +44,30 @@ if ($busca !== '') {
             <?php endif; ?>
         </form>
 
-        <!-- Lista de Produtos vinda do Banco de Dados -->
         <div class="lista-cards">
-            <?php if (count($produtosFiltrados) > 0): ?>
-                <?php foreach ($produtosFiltrados as $item): ?>
-                    <?php 
-                        // Define uma imagem padrão caso o banco esteja com o campo vazio ou null
-                        $imagemProduto = !empty($item['imagem']) ? $item['imagem'] : 'https://placehold.co/300x300/e8dfd5/495437?text=Sem+Foto';
-                    ?>
-                    <div class="card">
-                        <img src="<?php echo htmlspecialchars($imagemProduto); ?>" alt="<?php echo htmlspecialchars($item['nome'] ?? 'Produto'); ?>" class="card-imagem">
-                        <div class="faixa-verde"></div>
-                        <div class="card-info">
-                            <p class="nome-produto"><?php echo htmlspecialchars($item['nome'] ?? 'Sem nome'); ?></p>
-                            <div class="card-rodape">
-                                <span class="preco">R$ <?php echo number_format((float)($item['preco'] ?? 0), 2, ',', '.'); ?></span>
-                                <button class="botao-seta">➔</button>
-                            </div>
+    <?php if (count($produtosFiltrados) > 0): ?>
+        <?php foreach ($produtosFiltrados as $item): ?>
+            <?php 
+                $imagemProduto = !empty($item['imagem']) ? $item['imagem'] : 'https://placehold.co/300x300/e8dfd5/495437?text=Sem+Foto';
+            ?>
+            <a href="detalhes-produto.php?id=<?php echo $item['id']; ?>" class="card-link">
+                <div class="card">
+                    <img src="<?php echo htmlspecialchars($imagemProduto); ?>" alt="<?php echo htmlspecialchars($item['nome'] ?? 'Produto'); ?>" class="card-imagem">
+                    <div class="faixa-verde"></div>
+                    <div class="card-info">
+                        <p class="nome-produto"><?php echo htmlspecialchars($item['nome'] ?? 'Sem nome'); ?></p>
+                        <div class="card-rodape">
+                            <span class="preco">R$ <?php echo number_format((float)($item['preco'] ?? 0), 2, ',', '.'); ?></span>
+                            <span class="botao-seta">➔</span>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p class="sem-resultados">Nenhum produto encontrado para "<?php echo htmlspecialchars($busca); ?>".</p>
-            <?php endif; ?>
-        </div>
+                </div>
+            </a>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="sem-resultados">Nenhum produto encontrado para "<?php echo htmlspecialchars($busca); ?>".</p>
+    <?php endif; ?>
+</div>
 
     </section>
 

@@ -119,7 +119,7 @@ html, body {
 
 .titulo {
   font-family: 'Playfair Display', serif;
-  font-size: 46px;
+  font-size: 460px;
   font-weight: 600;
   color: #495437;
   line-height: 1.15;
@@ -205,4 +205,177 @@ html, body {
 .botao-seta:hover {
   background-color: #3a442b;
   color: #ffffff;
+}
+
+/* Barra de Pesquisa */
+.barra-pesquisa-container {
+    margin-bottom: 35px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#inputBusca {
+    width: 100%;
+    max-width: 350px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-family: Angleton, sans-serif;
+    background-color: #bfb8a3;
+    border: 2px solid #4d593a;
+    border-radius: 30px;
+    color: #2b2b2b;
+    outline: none;
+}
+
+#inputBusca::placeholder {
+    color: #5c6348;
+}
+
+.btn-buscar {
+    padding: 12px 24px;
+    background-color: #4d593a;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-left: 5px;
+}
+
+.btn-buscar:hover {
+    background-color: #3a442b;
+}
+
+.btn-limpar {
+    color: #4d593a;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+.sem-resultados {
+    color: #495437;
+    font-size: 18px;
+    font-family: Angleton, sans-serif;
+}
+
+.secao-produtos {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.barra-pesquisa-container {
+    margin-bottom: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1px;
+
+}
+
+.titulo {
+    font-family: Georgia, serif;
+    font-size: 55px;
+    font-weight: 600;
+    color: #495437;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    margin-left: -150px;
+}
+
+.verde-claro {
+    color: #7c8256;
+    font-weight: 500;
+}
+
+.lista-cards {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #bfb8a3;
+    width: 205px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+    margin-left: 8px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-imagem {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+}
+
+.faixa-verde {
+    height: 12px;
+    background-color: #4d593a;
+    width: 100%;
+}
+
+.card-info {
+    padding: 14px 16px 16px 16px;
+}
+
+.nome-produto {
+    text-align: center;
+    font-size: 13px;
+    color: #2b2b2b;
+    margin-bottom: 18px;
+}
+
+.card-rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preco {
+    font-size: 13px;
+    font-weight: 500;
+    color: #2b2b2b;
+}
+
+.botao-seta {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #4d593a;
+    color: #1a1f12;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.botao-seta:hover {
+    background-color: #3a442b;
+    color: #ffffff;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
 }

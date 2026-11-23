@@ -27,8 +27,7 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento Concluído - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/agendar.css">
-</head>
+    <link rel="stylesheet" href="/app/css/agendar-reservado.css"
 <body>
 
     <?php require_once __DIR__ . "/../nav.php" ?>

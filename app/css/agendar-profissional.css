@@ -1,0 +1,414 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("/app/imagens/fundo.png");
+    background-color: #D8D1BA;
+    font-family: Arial, sans-serif;
+    color: #2B2B2B;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    width: 100%;
+    height: 85px;
+    background-color: #C7C1A8;
+    border-bottom: 1px solid rgba(72, 81, 54, 0.2);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 35px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo h1 {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: normal;
+    color: #5C6347;
+}
+
+
+html, body {
+    
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Angleton;
+}
+
+@font-face {
+    font-family: Angleton;
+    src: url("/app/fontes/TAN-Angleton-Regular.ttf");
+}
+
+/* Navbar */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #bbb59e;
+    padding: 5px 35px;
+    width: 100%;
+    min-height: 130px;
+    box-sizing: border-box;
+}
+
+.img {
+    width: auto;
+    height: 120px;
+    position: static;
+    margin: 0;
+    border-radius: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    font-size: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4f5838;
+    font-size: 20px;
+}
+
+.nav-links a:hover {
+    color: #858354;
+    border-bottom: 2px solid #4f5838;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.nav-mage {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    display: block;
+}
+
+main {
+    width: 100%;
+    min-height: calc(100vh - 85px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background-color: #D8D1BA;
+}
+
+.container {
+    width: 100%;
+    max-width: 630px;
+    background-color: #B7B19D;
+    border: 1px solid rgba(72, 81, 54, 0.35);
+    border-radius: 6px;
+    padding: 40px 48px 44px 48px;
+    position: relative;
+    box-shadow: 0 12px 32px rgba(43, 43, 43, 0.08);
+}
+
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 22px;
+}
+
+.progresso-barras {
+    display: flex;
+    gap: 8px;
+}
+
+.progresso-barras .barra {
+    width: 36px;
+    height: 3px;
+    border-radius: 0;
+    background-color: #96A38F;
+}
+
+.progresso-barras .barra.ativa {
+    background-color: #485136;
+}
+
+
+.btn-fechar {
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+    background-color: #CFC8B2;
+    border: 1px solid rgba(72, 81, 54, 0.35);
+    color: #2B2B2B;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.btn-continuar {
+    align-self: flex-end;
+    margin-top: 28px;
+    background-color: #485136;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding: 14px 30px;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.25s ease;
+}
+
+.btn-continuar:hover {
+    background-color: #3A422B;
+}
+
+.btn-continuar span {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+/* Agendar Profissional*/
+.form-etapa2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.bloco-agendamento2 {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    background-color: rgba(213, 206, 184, 0.35);
+    border: 1px solid rgba(72, 81, 54, 0.25);
+    border-radius: 4px;
+    padding: 24px;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.label-etapa {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: #485136;
+    font-weight: bold;
+    padding-left: 2px;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-custom {
+    width: 100%;
+    height: 48px;
+    background-color: #DCD6C2;
+    border: 1px solid rgba(72, 81, 54, 0.35);
+    border-left: 3px solid #485136;
+    border-radius: 4px;
+    padding: 0 44px 0 18px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #1E1E1E;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(43, 43, 43, 0.04);
+    transition: all 0.2s ease;
+}
+
+.select-custom:hover {
+    background-color: #E5DFCC;
+    border-color: #485136;
+}
+
+.select-custom:focus {
+    background-color: #EAE4D3;
+    border-color: #485136;
+    box-shadow: 0 0 0 3px rgba(72, 81, 54, 0.14);
+}
+
+.select-wrapper::after {
+    content: "";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #485136;
+    border-bottom: 2px solid #485136;
+    transform: translateY(-65%) rotate(45deg);
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+input[type="date"].select-custom {
+    width: 100%;
+    height: 48px;
+    background-color: #DCD6C2;
+    border: 1px solid rgba(72, 81, 54, 0.35);
+    border-left: 3px solid #485136;
+    border-radius: 4px;
+    padding: 0 18px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #1E1E1E;
+    cursor: pointer;
+    outline: none;
+    appearance: auto;
+    -webkit-appearance: auto;
+    box-shadow: 0 2px 6px rgba(43, 43, 43, 0.04);
+    transition: all 0.2s ease;
+}
+
+input[type="date"].select-custom:hover {
+    background-color: #E5DFCC;
+    border-color: #485136;
+}
+
+input[type="date"].select-custom:focus {
+    background-color: #EAE4D3;
+    border-color: #485136;
+    box-shadow: 0 0 0 3px rgba(72, 81, 54, 0.14);
+}
+
+.select-wrapper:has(input[type="date"])::after {
+    display: none;
+}
+
+/* HORÁRIOS CENTRALIZADOS ABAIXO DE PROFISSIONAL E DATA */
+.campo-horarios {
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(72, 81, 54, 0.18);
+}
+
+.campo-horarios .label-etapa {
+    text-align: center;
+    padding-left: 0;
+}
+
+.grid-opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.opcao-pill {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    min-width: 100px;
+}
+
+.opcao-pill input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pill-texto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    padding: 0 18px;
+    background-color: #DCD6C2;
+    border: 1px solid rgba(72, 81, 54, 0.28);
+    border-radius: 4px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    color: #2B2B2B;
+    box-shadow: 0 2px 5px rgba(43, 43, 43, 0.04);
+    transition: all 0.2s ease;
+}
+
+.opcao-pill:hover .pill-texto {
+    background-color: #E5DFCC;
+    border-color: #485136;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(43, 43, 43, 0.08);
+}
+
+/* ESTADO SELECIONADO */
+.opcao-pill input[type="radio"]:checked + .pill-texto {
+    background-color: #485136;
+    border-color: #485136;
+    color: #FFFFFF;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(72, 81, 54, 0.28);
+    transform: translateY(-1px);
+}
+
+/* RODAPÉ DE AÇÕES À DIREITA */
+.acoes-rodape {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.acoes-rodape .btn-continuar {
+    margin-top: 0;
+}
+
+.btn-voltar {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: #3E452E;
+    text-decoration: none;
+    padding: 13px 22px;
+    border: 1px solid rgba(72, 81, 54, 0.4);
+    border-radius: 4px;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-voltar:hover {
+    background-color: rgba(72, 81, 54, 0.08);
+    border-color: #485136;
+    color: #1E1E1E;
+}
