@@ -1,0 +1,411 @@
+:root {
+  --bg-page: #DDD4B9;
+  --bg-navbar: #B7B09C;
+  --bg-card: #BDB6A2;
+  --olive-dark: #4A5638;
+  --olive-gold: #84875D;
+  --text-dark: #1E2118;
+  --text-muted: #1E2118; /* Mude aqui para deixar todas as letras pequenas bem escuras */
+  --pill-light: #D9D1BA;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    font-family: var(--font-sans);
+    font-variant-numeric: lining-nums;
+    min-height: 100vh;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(132, 135, 93, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 70%, rgba(74, 86, 56, 0.08) 0%, transparent 45%);
+  }
+
+  
+  /* --- Navbar --- */
+  .navbar {
+    background-color: var(--bg-navbar);
+    padding: 14px 40px;
+  }
+  
+  .nav-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--olive-dark);
+  }
+  
+  .logo-monogram {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  
+  .logo-text {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    line-height: 1.1;
+    color: var(--text-dark);
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 28px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #1E2118;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding-bottom: 4px;
+    transition: opacity 0.2s;
+  }
+  
+  .nav-links a:hover {
+    opacity: 0.7;
+  }
+  
+  .nav-links a.active {
+    border-bottom: 1.5px solid #1E2118;
+  }
+  
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+  
+  .icon-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .bag-btn {
+    background-color: var(--pill-light);
+    border: 1px solid var(--olive-dark);
+    color: var(--olive-dark);
+  }
+  
+  .profile-btn {
+    background-color: var(--olive-dark);
+    border: none;
+    color: var(--pill-light);
+  }
+  
+  /* --- Layout Principal --- */
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 50px 24px 80px;
+  }
+  
+  /* --- Cabeçalho --- */
+  .page-header {
+    margin-bottom: 28px;
+  }
+  
+  .page-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--olive-dark);
+    margin-bottom: 8px;
+  }
+  
+  .page-header p {
+    font-size: 0.95rem;
+    color: var(--olive-dark);
+  }
+  
+  /* --- Botão Padrão (Pílula) --- */
+  .btn-pill {
+    background-color: var(--pill-light);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s, transform 0.15s;
+  }
+  
+  .btn-pill:hover {
+    background-color: #e4decb;
+    transform: translateY(-1px);
+  }
+  
+  /* --- Banner de Lembrete --- */
+  .reminder-card {
+    background-color: var(--bg-card);
+    border-radius: 24px;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+  
+  .reminder-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .bell-circle {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 50%;
+    background-color: var(--olive-dark);
+    color: #E2DFD7; /* Cinza claro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .small-label {
+    display: block;
+    font-size: 0.92rem; /* Antes era 0.78rem */
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  
+  .reminder-info h2 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--olive-dark); /* Verde oliva escuro */
+    margin-bottom: 4px;
+  }
+  
+  .reminder-info p {
+    font-size: 0.9rem; /* Antes era 0.75rem */
+    color: var(--text-muted);
+  }
+  
+  /* --- Títulos das Seções --- */
+  .eyebrow {
+    display: block;
+    font-size: 0.95rem; /* Antes era 0.8rem */
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 2.3rem;
+    font-weight: 400;
+    color: var(--olive-gold);
+    margin-bottom: 24px;
+  }
+  
+  /* --- Lista de Agendamentos --- */
+  .schedule-section {
+    margin-bottom: 64px;
+  }
+  
+  .appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  
+  .appointment-card {
+    background-color: var(--bg-card);
+    border-radius: 24px;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .card-left {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  
+  .date-badge {
+    background-color: var(--olive-dark);
+    color: #E2DFD7; /* Cinza claro */
+    width: 72px;
+    height: 76px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+  }
+  
+  .date-badge .day {
+    font-size: 1.85rem;
+    line-height: 1;
+    font-weight: 500;
+    font-variant-numeric: lining-nums;
+  }
+  
+  .date-badge .month {
+    font-size: 1.1rem;
+    margin-top: 2px;
+  }
+  
+  .status-pill {
+    display: inline-block;
+    background-color: var(--olive-dark);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 3px 14px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+  }
+  
+  .appointment-details h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--olive-dark); /* Verde oliva escuro */
+    margin-bottom: 4px;
+  }
+  
+  .appointment-details p {
+  font-size: 0.92rem; /* Antes era 0.78rem */
+  color: var(--text-muted);
+}
+  
+  /* --- Seção Pós-procedimento --- */
+  .aftercare-card {
+    background-color: var(--bg-card);
+    border-radius: 26px;
+    padding: 32px 36px;
+    max-width: 880px;
+    justify-content: center;
+  }
+  
+  .aftercare-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  
+  .sparkle-circle {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    background-color: var(--pill-light);
+    color: var(--olive-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .aftercare-header h3 {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 500;
+    color: var(--olive-gold);
+  }
+  
+  /* Grid de Dicas com Linhas Divisórias */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 2px solid var(--olive-dark);
+    border-bottom: 2px solid var(--olive-dark);
+    padding: 18px 0;
+    margin-bottom: 24px;
+  }
+  
+  .tip-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 18px;
+  }
+  
+  .tip-item:first-child {
+    padding-left: 4px;
+  }
+  
+  .tip-item:not(:last-child) {
+    border-right: 2px solid var(--olive-dark);
+  }
+  
+  .tip-number {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--olive-dark);
+  }
+  
+  .tip-item p {
+    font-size: 0.8rem;
+    line-height: 1.35;
+    color: var(--text-dark);
+  }
+  
+  /* --- Responsividade (Celular/Tablet) --- */
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 14px 20px;
+    }
+    .nav-links {
+      display: none;
+    }
+    .reminder-card,
+    .appointment-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .btn-pill {
+      align-self: flex-end;
+    }
+    .tips-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .tip-item {
+      padding: 0;
+    }
+    .tip-item:not(:last-child) {
+      border-right: none;
+      border-bottom: 1px solid rgba(74, 86, 56, 0.3);
+      padding-bottom: 12px;
+    }
+  }
