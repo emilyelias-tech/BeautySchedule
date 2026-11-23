@@ -5,63 +5,322 @@
 }
 
 body {
-    background-color: #D8D0B4;
-    font-family: sans-serif;
+    background-color: #DCD5BE; /* Tom bege claro do fundo */
+    font-family: 'Georgia', serif;
+    color: #2c2e22;
 }
 
-/* ÁREA PRINCIPAL */
-main {
-    padding: 40px 60px; /* Afasta o conteúdo das bordas */
+/* LAYOUT PRINCIPAL EM DUAS COLUNAS */
+.container-principal {
+    display: flex;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    align-items: flex-start;
 }
 
-main .subtitulo {
-    color: #757852;
-    font-family: Georgia, serif;
-    font-size: 16px;
+/* ================= COLUNA ESQUERDA ================= */
+.coluna-esquerda {
+    width: 310px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Card Verde Escuro do Perfil */
+.perfil-card {
+    background-color: #4D5338;
+    color: #DCD5BE;
+    border-radius: 30px;
+    padding: 35px 25px;
+    text-align: center;
+}
+
+.perfil-card .avatar {
+    width: 75px;
+    height: 75px;
+    background-color: #DCD5BE;
+    color: #1c1e16;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 15px auto;
+}
+
+.perfil-card h4 {
+    color: #8E9272;
+    font-size: 22px;
     font-weight: normal;
+    margin-bottom: 4px;
+}
+
+.perfil-card .email {
+    color: #8E9272;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.perfil-card hr {
+    border: none;
+    border-top: 2px solid #DCD5BE;
+    margin: 12px 0;
+}
+
+.estatisticas {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-item strong {
+    font-size: 22px;
+    color: #FFFFFF;
+}
+
+.stat-item span {
+    font-size: 10px;
+    color: #DCD5BE;
+    margin-top: 4px;
+}
+
+.divisor-vertical {
+    width: 2px;
+    height: 40px;
+    background-color: #DCD5BE;
+}
+
+/* Menu de Navegação Lateral */
+.nav-perfil {
+    background-color: #BDB7A2;
+    border-radius: 25px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-perfil a {
+    text-decoration: none;
+    color: #1c1e16;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.nav-perfil a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-perfil a.ativo {
+    background-color: #DCD5BE;
+    font-weight: 500;
+}
+
+/* Card Beauty Club */
+.beauty-club-card {
+    background-color: #BDB7A2;
+    border-radius: 25px;
+    padding: 25px;
+}
+
+.club-titulo {
+    color: #6B7052;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.pontos-info {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.pontos-numero {
+    font-size: 32px;
+    color: #1c1e16;
+}
+
+.pontos-texto {
+    font-size: 14px;
+    color: #6B7052;
+    font-weight: bold;
+}
+
+.club-desc {
+    font-size: 12px;
+    color: #6B7052;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.resgatar-link {
+    text-decoration: none;
+    font-size: 11px;
+    color: #3f442d;
+    font-weight: bold;
+}
+
+/* ================= COLUNA DIREITA ================= */
+.coluna-direita {
+    flex: 1;
+}
+
+.cabecalho-endereco {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 25px;
+}
+
+.subtitulo {
+    color: #3f442d;
+    font-size: 13px;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
-main h2 {
-    color: #4a5131;
-    font-family: Georgia, serif;
-    font-size: 48px;
+.cabecalho-endereco h2 {
+    color: #1c1e16;
+    font-size: 38px;
     font-weight: normal;
-    margin-top: 0;
-    margin-bottom: 25px; /* Espaço entre "Seu perfil" e o primeiro campo */
 }
 
-/* Organiza o texto em cima e a caixa embaixo */
+.btn-adicionar {
+    background: none;
+    border: none;
+    font-family: 'Georgia', serif;
+    font-size: 12px;
+    color: #1c1e16;
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+
+/* Card Endereço Principal (Casa) */
+.card-endereco-principal {
+    background-color: #BDB7A2;
+    border-radius: 25px;
+    padding: 25px 30px;
+    max-width: 340px;
+    margin-bottom: 40px;
+}
+
+.badge-principal {
+    display: inline-block;
+    background-color: #DCD5BE;
+    color: #5C6145;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.card-endereco-principal h3 {
+    color: #5C6145;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.card-endereco-principal p {
+    color: #6B7052;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.editar-link {
+    display: inline-block;
+    margin-top: 18px;
+    text-decoration: none;
+    color: #4D5338;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Formulário */
 .campo-formulario {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
-    
+    gap: 18px;
+    max-width: 620px;
 }
 
-/* Estilo dos textos (Nome completo, Email, etc.) */
+.linha-dupla {
+    display: flex;
+    gap: 25px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 label {
-    color: #3f3d36;
-    font-size: 16px;
-    margin-bottom: 8px;
-    margin-top: 18px; /* Separa um campo do outro */
+    color: #1c1e16;
+    font-family: sans-serif;
+    font-size: 15px;
+    margin-bottom: 6px;
 }
 
-/* Tira o espaço de cima só do primeiro label ("Nome completo:") */
-label:first-child {
-    margin-top: 0;
-}
-
-/* Estilo das caixas de digitação */
-input {
+input, select {
     width: 100%;
-    background-color: #b4b1a3;
+    background-color: #BDB7A2;
     border: none;
     border-radius: 12px;
-    height: 45px;
+    height: 40px;
     padding: 0 15px;
-    font-size: 16px;
-    color: #333;
+    font-size: 15px;
+    color: #1c1e16;
     outline: none;
+}
 
+.btn-salvar {
+    background-color: #4D5338;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 28px;
+    font-family: sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.btn-salvar:hover {
+    background-color: #3a3f2a;
+}
+
+/* Responsividade para telas menores (celular/tablet) */
+@media (max-width: 850px) {
+    .container-principal {
+        flex-direction: column;
+    }
+    .coluna-esquerda {
+        width: 100%;
+    }
+    .linha-dupla {
+        flex-direction: column;
+        gap: 18px;
+    }
 }

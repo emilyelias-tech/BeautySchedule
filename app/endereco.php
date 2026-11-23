@@ -3,61 +3,132 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dados.css">
-    <title>Beauty Schedule </title>
+    <link rel="stylesheet" href="css/nav.css">
+    <title>Beauty Schedule - Meus Endereços</title>
 </head>
 <body>
-<?php include __DIR__ . '/nav.php'; ?>
-<main>
-<p class="subtitulo">Dados pessoais</p>
+    <?php include __DIR__ . '/nav.php'; ?>
 
-<section class ="perfil-section">
-<h4> Emily Elias </h4>
-<h6>emilyelias@gmail.com</h6>
-<hr>
-<h4>12 <br> Cuidados Realizados <br><br>4.9 <br>Sua Avaliação Média</h4>
-</section>
+    <main class="container-principal">
+        <!-- COLUNA DA ESQUERDA (BARRA LATERAL) -->
+        <aside class="coluna-esquerda">
+            
+            <!-- Card do Perfil -->
+            <section class="perfil-card">
+                <div class="avatar">EE</div>
+                <h4>Emily Elias</h4>
+                <p class="email">emilyelias@gmail.com</p>
+                <hr>
+                <div class="estatisticas">
+                    <div class="stat-item">
+                        <strong>12</strong>
+                        <span>Cuidados Realizados</span>
+                    </div>
+                    <div class="divisor-vertical"></div>
+                    <div class="stat-item">
+                        <strong>4.9</strong>
+                        <span>Sua Avaliação média</span>
+                    </div>
+                </div>
+                <hr>
+            </section>
 
-<section class ="nav-perfil">
-<a href="configuracao-dados-pessoais.php">Dados pessoais  ></a><br>
-<a>Meu endereço</a><br>
-<a href="cartoes.php">Meus cartões  ></a><br>
-<a href="configuracao.php">Configurações  ></a><br>
-<a href="historico.php">Histórico de pontos  ></a><br>
+            <!-- Menu de Navegação Lateral -->
+            <nav class="nav-perfil">
+                <a href="configuracao-dados-pessoais.php">Dados pessoais <span>&gt;</span></a>
+                <a href="#" class="ativo">Endereços <span>&gt;</span></a>
+                <a href="cartoes.php">Meus cartões <span>&gt;</span></a>
+                <a href="configuracao.php">Configurações <span>&gt;</span></a>
+                <a href="historico.php">Histórico de pontos <span>&gt;</span></a>
+            </nav>
 
+            <!-- Card Beauty Club -->
+            <section class="beauty-club-card">
+                <p class="club-titulo">Beauty club</p>
+                <div class="pontos-info">
+                    <span class="pontos-numero">680</span>
+                    <span class="pontos-texto">Ponto</span>
+                </div>
+                <p class="club-desc">Você pode trocar seus pontos por até R$40 de desconto</p>
+                <a href="#" class="resgatar-link">Resgatar beneficio &rarr;</a>
+            </section>
 
-</section>
-    <section class="dados-section">
-        <h2>Meu endereço</h2> 
-        
-        <form class="campo-formulario">
-            <label for="cep">CEP:</label>
-            <input type="number" id="cep" name="cep">
+        </aside>
 
-            <label for="estado">Estado:</label>
-              <input type="text" id="estado" name="estado">
+        <!-- COLUNA DA DIREITA (CONTEÚDO PRINCIPAL) -->
+        <section class="coluna-direita">
+            <div class="cabecalho-endereco">
+                <div>
+                    <p class="subtitulo">Dados de entrega</p>
+                    <h2>Meus endereços</h2>
+                </div>
+                <button type="button" class="btn-adicionar">+ Adicionar endereço</button>
+            </div>
 
-            <label for="endereco">Endereço:</label>
-              <input type="text" id="endereco" name="endereco">
+            <!-- Card Endereço Principal -->
+            <div class="card-endereco-principal">
+                <span class="badge-principal">Principal</span>
+                <h3>Casa</h3>
+                <p>Almeida santos, 1240, apto 82</p>
+                <p>Jardins - Sao paulo - SP</p>
+                <p>Cep 01418-100</p>
+                <a href="#" class="editar-link">Editar endereço</a>
+            </div>
 
-               <label for="numero">Número:</label>
-              <input type="number" id="numero" name="numero">
-               
-              <label for="bairro">Bairro:</label>
-              <input type="text" id="bairro" name="bairro">
+            <!-- Formulário de Endereço -->
+            <form class="campo-formulario">
+                <div class="linha-dupla">
+                    <div class="grupo-input">
+                        <label for="cep">Cep</label>
+                        <input type="text" id="cep" name="cep">
+                    </div>
+                    <div class="grupo-input">
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado">
+                            <option value=""></option>
+                            <option value="SP">São Paulo</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="MG">Minas Gerais</option>
+                            <!-- Adicione os outros estados aqui -->
+                        </select>
+                    </div>
+                </div>
 
-               <label for="CPF">Complemento:</label>
-              <input type="text" id="complemento" name="complemento">
+                <div class="grupo-input">
+                    <label for="rua">Rua</label>
+                    <input type="text" id="rua" name="rua">
+                </div>
 
-</form>
-</section>  
-</main>
-    
+                <div class="linha-dupla">
+                    <div class="grupo-input">
+                        <label for="numero">Numero</label>
+                        <input type="text" id="numero" name="numero">
+                    </div>
+                    <div class="grupo-input">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" id="complemento" name="complemento">
+                    </div>
+                </div>
+
+                <div class="linha-dupla">
+                    <div class="grupo-input">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro">
+                    </div>
+                    <div class="grupo-input">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-salvar">Salvar endereço</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>
-
-
