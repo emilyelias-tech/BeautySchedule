@@ -86,7 +86,6 @@ if (isset($_POST['continuar'])) {
 
     
 
-            <!-- Topo com barras de progresso e botão fechar -->
 
             <div class="card-header">
                 <div class="progresso-wrapper">
@@ -113,10 +112,9 @@ if (isset($_POST['continuar'])) {
                 <div class="bloco-agendamento2">
                    
                 
-                <!-- Bloco único com Profissional, Data e Horários -->
                 <div class="bloco-agendamento2">
                     
-                    <!-- Profissional -->
+                    
                     <div class="campo-grupo">
                         <label for="profissional" class="label-etapa">Profissional</label>
                         <div class="select-wrapper">
@@ -133,7 +131,6 @@ if (isset($_POST['continuar'])) {
                     </div>
 
     
-                   <!-- Data -->
 
                     <div class="campo-grupo">
                         <label for="data" class="label-etapa">Data</label>
@@ -151,7 +148,6 @@ if (isset($_POST['continuar'])) {
                     </div>
 
 
-                    <!-- Horários -->
                     <div class="campo-grupo campo-horarios">
                         <span class="label-etapa">Horário</span>
                         <div class="grid-opcoes">
@@ -178,7 +174,6 @@ if (isset($_POST['continuar'])) {
 
                  <div class="acoes-rodape">
 
-                <!-- Botões Voltar e Continuar embaixo, à direita -->
                 <div class="acoes-rodape">
                     <a href="agendar1.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">

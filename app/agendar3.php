@@ -10,7 +10,6 @@ if (!isset($_SESSION['agendamento_atual']) || empty($_SESSION['agendamento_atual
 
 $agendamento = $_SESSION['agendamento_atual'];
 
-// Formata a data de '2026-06-20' para '20 de junho'
 $meses = [
     '01' => 'janeiro', '02' => 'fevereiro', '03' => 'março',
     '04' => 'abril',   '05' => 'maio',      '06' => 'junho',
@@ -30,7 +29,7 @@ $erro = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
     $id_cliente = (int)($_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1);
     
-    // Pega o ID do funcionário salvo no agendar2.php (ou busca pelo nome se não veio o ID)
+  
     $id_funcionario = (int)($agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 0);
     if ($id_funcionario <= 0 && !empty($agendamento['nome_profissional'])) {
         $stmtFunc = $pdo->prepare("SELECT id FROM funcionarios WHERE nome = :nome LIMIT 1");
@@ -52,8 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
 
             'id_procedimento' => (int)$agendamento['id_procedimento'],
             'duracao_minutos' => (int)$agendamento['duracao_minutos'],
-            'id_procedimento' => $agendamento['id_procedimento'],
-            'duracao_minutos' => $agendamento['duracao_minutos'],
+        
 
             'data'            => $agendamento['data'],
             'horario'         => $agendamento['horario'],

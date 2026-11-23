@@ -74,7 +74,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $todosAgendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-function normalizarStatus($status) {
+function normalizarStatus(string $status) {
     $s = mb_strtolower(trim((string)$status), 'UTF-8');
     $s = str_replace(['í', 'ú', 'ç', 'ã', 'é', 'ó', 'á'], ['i', 'u', 'c', 'a', 'e', 'o', 'a'], $s);
     return $s;
@@ -132,7 +132,7 @@ $meses = [
     '10' => 'Outubro', '11' => 'Novembro',  '12' => 'Dezembro'
 ];
 
-function formatarDataCompleta($dataIso, $meses) {
+function formatarDataCompleta(string $dataIso, array $meses) {
     $partes = explode('-', $dataIso);
     if (count($partes) !== 3) return $dataIso;
     $dia = (int)$partes[2];
