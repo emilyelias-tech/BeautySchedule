@@ -259,13 +259,10 @@ img{
     align-items: center;
     gap: 22px;
     text-decoration: none;
-    cursor: pointer;
-    transition: 0.3s;
+    cursor: pointer; 
 }
 
-.item:hover {
-    transform: translateX(8px);
-}
+
 
 .item:hover h3 {
     color: #868439;
@@ -283,11 +280,6 @@ img{
     justify-content: center;
     font-size: 22px;
     transition: 0.3s;
-}
-
-.item:hover .icone {
-    background-color: #868439;
-    color: #F5F0E5;
 }
 
 .item h3 {
