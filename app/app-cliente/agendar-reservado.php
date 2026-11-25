@@ -61,7 +61,7 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
                         Ver detalhes do agendamento
                     </a>
 
-                    <a href="meus-agendamento.php" style="color: #485136; font-size: 14px; text-decoration: underline;">
+                    <a href="app/app-cliente/meus-agendamentos.php" style="color: #485136; font-size: 14px; text-decoration: underline;">
                         Ir para meus agendamentos
                     </a>
                 </div>

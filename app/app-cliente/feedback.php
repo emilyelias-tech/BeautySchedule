@@ -124,7 +124,7 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
                     </p>
                 </div>
 
-                <a href="meus-agendamento.php" class="btn-fechar" title="Fechar">x</a>
+                <a href="meus-agendamentos.php" class="btn-fechar" title="Fechar">x</a>
             </div>
 
             <?php if (!empty($mensagem)): ?>

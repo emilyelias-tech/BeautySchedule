@@ -46,7 +46,7 @@ if (isset($_POST['salvar_observacao']) && $agendamento) {
         ':id'  => $agendamento['id_agendamento']
     ]);
 
-    header('Location: meus-agendamento.php?id=' . (int)$agendamento['id_agendamento']);
+    header('Location: meus-agendamentos.php?id=' . (int)$agendamento['id_agendamento']);
     exit;
 }
 
@@ -74,7 +74,7 @@ if ($agendamento) {
     $ano = $partesData[0];
     $dataFormatada = "{$dia} de {$mesNome} de {$ano}";
     $horarioFormatado = substr($agendamento['horario'], 0, 5);
-}
+};
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
