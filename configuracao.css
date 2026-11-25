@@ -1,0 +1,573 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D8D0B4;
+    font-family: Arial, sans-serif;
+    color: #222;
+}
+
+/* Modos de Acessibilidade / Tema ativados pelo PHP */
+body.tema-escuro {
+    background-color: #262A1E;
+    color: #EAE4D0;
+}
+
+body.tema-escuro .dados-section h2,
+body.tema-escuro .subtitulo,
+body.tema-escuro .categoria-titulo {
+    color: #EAE4D0;
+}
+
+body.texto-maior {
+    font-size: 115%;
+}
+
+body.alto-contraste .grupo-cards,
+body.alto-contraste .card-idioma {
+    border: 2px solid #111;
+}
+
+/* ==========================================
+   Modal de Alerta (Confirmação de exclusão)
+   ========================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(43, 48, 31, 0.55);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-overlay.ativo {
+    display: flex;
+}
+
+.modal-box {
+    background-color: #EDE8D7;
+    border: 1px solid #B7B19D;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 460px;
+    padding: 32px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    text-align: left;
+}
+
+.modal-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-titulo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 24px;
+    font-weight: normal;
+    color: #2B301F;
+    margin-bottom: 12px;
+}
+
+.modal-descricao {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #3E452E;
+    margin-bottom: 24px;
+}
+
+.modal-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-modal-manter {
+    padding: 10px 18px;
+    border: 1px solid #485136;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #485136;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-modal-manter:hover {
+    background-color: #D8D1BA;
+}
+
+.btn-modal-confirmar-delete {
+    padding: 10px 20px;
+    border: 1px solid #8B322C;
+    border-radius: 4px;
+    background-color: #8B322C;
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-modal-confirmar-delete:hover {
+    background-color: #6E2520;
+}
+
+/* ==========================================
+   Cabeçalho
+   ========================================== */
+header {
+    background-color: #B3AA7A;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo h1 {
+    font-family: Georgia, serif;
+    font-size: 54px;
+    font-weight: normal;
+    line-height: 0.85;
+    color: #4D5637;
+}
+
+.logo p {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    line-height: 1.05;
+    color: #4D5637;
+}
+
+.menu-topo {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+.menu-topo a {
+    text-decoration: none;
+    color: #222;
+    font-size: 17px;
+}
+
+.icones-topo {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.icone-circulo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid #4D5637;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.icone-perfil-topo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #4D5637;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* ==========================================
+   Container Principal (2 Colunas)
+   ========================================== */
+main {
+    display: flex;
+    max-width: 1300px;
+    margin: 50px auto;
+    padding: 0 30px;
+    gap: 90px;
+}
+
+.coluna-esquerda {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    flex-shrink: 0;
+}
+
+/* Cartão 1: Perfil */
+.perfil-section {
+    background-color: #4D5637;
+    border-radius: 35px;
+    padding: 40px 25px;
+    text-align: center;
+}
+
+.avatar {
+    width: 85px;
+    height: 85px;
+    background-color: #D8D0B4;
+    color: #222;
+    font-family: Georgia, serif;
+    font-size: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px auto;
+}
+
+.perfil-section h4 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: normal;
+    color: #828966;
+    margin-bottom: 4px;
+}
+
+.perfil-section h6 {
+    font-size: 11px;
+    font-weight: normal;
+    color: #828966;
+    margin-bottom: 25px;
+}
+
+.stats-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    padding: 15px 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-num {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.stat-desc {
+    font-size: 10px;
+    color: #FFFFFF;
+    margin-top: 4px;
+}
+
+.stat-divider {
+    width: 2px;
+    height: 45px;
+    background-color: #FFFFFF;
+}
+
+/* Cartão 2: Menu de Navegação */
+.nav-perfil {
+    background-color: #BCB69E;
+    border-radius: 30px;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-perfil a {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #222;
+    font-size: 16px;
+    padding: 10px 18px;
+    border-radius: 8px;
+}
+
+.nav-perfil a.ativo {
+    background-color: #D8D0B4;
+}
+
+/* Cartão 3: Beauty Club */
+.club-card {
+    background-color: #BCB69E;
+    border-radius: 30px;
+    padding: 30px 28px;
+}
+
+.club-title {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: normal;
+    color: #4D5637;
+    margin-bottom: 14px;
+}
+
+.club-points-box {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.club-num {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    color: #000000;
+    line-height: 1;
+}
+
+.club-label {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    color: #4D5637;
+}
+
+.club-desc {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #858354;
+    line-height: 1.35;
+    margin-bottom: 22px;
+}
+
+.club-link {
+    display: inline-block;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #4D5637;
+}
+
+/* ==========================================
+   Coluna da Direita: Configurações
+   ========================================== */
+.dados-section {
+    flex: 1;
+    max-width: 780px;
+}
+
+.subtitulo {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.dados-section h2 {
+    font-family: Georgia, serif;
+    font-size: 52px;
+    font-weight: normal;
+    line-height: 1.05;
+    margin-bottom: 24px;
+}
+
+.msg-sucesso {
+    color: #4D5637;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.categoria-titulo {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 26px;
+    margin-bottom: 10px;
+}
+
+/* Blocos de Cards Agrupados com Linhas Divisórias */
+.grupo-cards {
+    background-color: #BCB69E;
+    border-radius: 26px;
+    overflow: hidden;
+}
+
+.item-config {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 28px;
+    border-bottom: 2px solid #D8D0B4;
+    gap: 20px;
+}
+
+.item-config:last-child {
+    border-bottom: none;
+}
+
+.item-texto h4 {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.item-texto p {
+    font-size: 12px;
+    color: #555;
+}
+
+/* Botões Claro / Escuro / Automático */
+.grupo-tema {
+    display: flex;
+    background-color: #D8D0B4;
+    padding: 4px;
+    border-radius: 12px;
+    gap: 4px;
+}
+
+.btn-tema {
+    text-decoration: none;
+    font-size: 13px;
+    color: #222;
+    padding: 6px 14px;
+    border-radius: 9px;
+    transition: background-color 0.2s;
+}
+
+.btn-tema.ativo {
+    background-color: #BCB69E;
+    font-weight: bold;
+}
+
+/* Botões Toggle Switch (CSS Puro sem JS) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #D8D0B4;
+    border-radius: 34px;
+    transition: 0.25s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    transition: 0.25s;
+}
+
+.switch input:checked + .slider {
+    background-color: #4D5637;
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* Card Idioma e Região */
+.card-idioma {
+    background-color: #BCB69E;
+    border-radius: 26px;
+    padding: 22px 28px;
+    display: flex;
+    gap: 28px;
+}
+
+.campo-idioma {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.campo-idioma label {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.campo-idioma select {
+    height: 44px;
+    background-color: #D8D0B4;
+    border: none;
+    border-radius: 12px;
+    padding: 0 14px;
+    font-size: 15px;
+    color: #222;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Itens Clicáveis (Baixar dados / Excluir conta) */
+.item-link {
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s;
+}
+
+.item-link:hover {
+    background-color: #b1ab92;
+}
+
+.item-perigo .item-texto h4 {
+    color: #827B58;
+}
+
+.seta-acao {
+    font-size: 20px;
+    color: #222;
+}
+
+/* Botão Salvar */
+.btn-salvar {
+    background-color: #4D5637;
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 34px;
+    margin-top: 26px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-salvar:hover {
+    background-color: #3b422a;
+}

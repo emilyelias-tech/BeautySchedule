@@ -1,0 +1,64 @@
+/* Sub-painéis expansíveis (Alterar senha e Dispositivos) */
+.subpainel-config {
+    background-color: #cfc9b2;
+    padding: 18px 28px;
+    border-bottom: 2px solid #D8D0B4;
+}
+
+.erro-subpainel {
+    color: #7a2e2e;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.linha-subpainel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.linha-subpainel input {
+    flex: 1 1 160px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+.btn-subpainel {
+    background-color: #4D5637;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    padding: 0 18px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.item-dispositivo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.btn-desconectar {
+    color: #7a2e2e;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.tag-atual {
+    color: #4D5637;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+body.reduzir-animacoes * {
+    transition: none !important;
+}
