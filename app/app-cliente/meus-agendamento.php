@@ -74,7 +74,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $todosAgendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-function normalizarStatus($status) {
+function normalizarStatus(string $status) {
     $s = mb_strtolower(trim((string)$status), 'UTF-8');
     $s = str_replace(['í', 'ú', 'ç', 'ã', 'é', 'ó', 'á'], ['i', 'u', 'c', 'a', 'e', 'o', 'a'], $s);
     return $s;
@@ -132,7 +132,7 @@ $meses = [
     '10' => 'Outubro', '11' => 'Novembro',  '12' => 'Dezembro'
 ];
 
-function formatarDataCompleta($dataIso, $meses) {
+function formatarDataCompleta(string $dataIso, array $meses) {
     $partes = explode('-', $dataIso);
     if (count($partes) !== 3) return $dataIso;
     $dia = (int)$partes[2];
@@ -146,13 +146,13 @@ function formatarDataCompleta($dataIso, $meses) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($titulosPorFiltro[$filtro]) ?> - BeautySchedule</title>
-    <link rel="stylesheet" href="css/consulta.css">
+    <link rel="stylesheet" href="/app/css/consulta.css">
        
     
 </head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php" ?>
+    <?php require_once __DIR__ . '/../nav.php'; ?>
 
     <main>
         <div class="container container-todos">
@@ -163,7 +163,7 @@ function formatarDataCompleta($dataIso, $meses) {
                     <h2><?= htmlspecialchars($titulosPorFiltro[$filtro]) ?></h2>
                 </div>
 
-                <a href="agendar1.php" class="btn-salvar btn-novo-agendamento">+ Novo agendamento</a>
+                <a href="/app/app-cliente/agendar-procedimento.php" class="btn-salvar btn-novo-agendamento">+ Novo agendamento</a>
             </div>
 
             <div class="filtros-lista">
@@ -203,7 +203,7 @@ function formatarDataCompleta($dataIso, $meses) {
                     <?php if ($filtro !== 'todos'): ?>
                         <a href="meus-agendamentos.php?filtro=todos" class="btn-cancelar" style="margin-right: 10px;">Ver todos os agendamentos</a>
                     <?php endif; ?>
-                    <a href="agendar1.php" class="btn-salvar">+ Novo agendamento</a>
+                    <a href="/app/app-cliente/agendar-procedimento.php" class="btn-salvar">+ Novo agendamento</a>
                 </div>
             <?php else: ?>
                 <div class="lista-agendamentos">

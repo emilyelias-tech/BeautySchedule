@@ -5,7 +5,6 @@
 }
 
 body {
-    background-image: url("/app/imagens/fundo.png");
     background-color: #D8D1BA;
     font-family: Arial, sans-serif;
     color: #2B2B2B;
@@ -36,78 +35,26 @@ header {
     color: #5C6347;
 }
 
-
-html, body {
-    
-    width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    font-family: Angleton;
-}
-
-@font-face {
-    font-family: Angleton;
-    src: url("/app/fontes/TAN-Angleton-Regular.ttf");
-}
-
-/* Navbar */
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #bbb59e;
-    padding: 5px 35px;
-    width: 100%;
-    min-height: 130px;
-    box-sizing: border-box;
-}
-
-.img {
-    width: auto;
-    height: 120px;
-    position: static;
-    margin: 0;
-    border-radius: 0;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    font-size: 30px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #4f5838;
-    font-size: 20px;
-}
-
-.nav-links a:hover {
-    color: #858354;
-    border-bottom: 2px solid #4f5838;
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.nav-icon {
+nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+    gap: 35px;
+    grid-column: 2;
 }
 
-.nav-mage {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-    display: block;
+nav a {
+    text-decoration: none;
+    color: #5C6347;
+    font-size: 16px;
+    white-space: nowrap;
+    padding-bottom: 4px;
+    transition: 0.25s;
+}
+
+nav a:hover {
+    color: #485136;
+    border-bottom: 2px solid #485136;
 }
 
 main {
@@ -118,7 +65,6 @@ main {
     align-items: center;
     padding: 30px 20px;
     background-color: #D8D1BA;
-    background-image: url("/app/imagens/fundo.png");
 }
 
 /* CONSULTA */
@@ -335,18 +281,15 @@ main {
     resize: vertical;
     outline: none;
     transition: border-color 0.2s ease, background-color 0.2s ease;
-    
 }
 
 .textarea-observacao::placeholder {
     color: #8A8574;
-    outline: none;
 }
 
 .textarea-observacao:focus {
     background-color: #DFD8C3;
     border-color: #485136;
-    outline: none;
 }
 
 .acoes-rodape {
@@ -386,6 +329,36 @@ main {
 
 .btn-salvar:hover {
     background-color: #3A422B;
+}
+
+@media (max-width: 650px) {
+    .container {
+        padding: 26px 20px;
+    }
+
+    .titulo-grupo h2 {
+        font-size: 30px;
+    }
+
+    .grid-detalhes {
+        grid-template-columns: 1fr;
+    }
+
+    .detalhe-celula:nth-child(1),
+    .detalhe-celula:nth-child(2),
+    .detalhe-celula:nth-child(3) {
+        border-right: none;
+        border-bottom: 1.5px solid #485136;
+    }
+
+    .acoes-rodape {
+        flex-direction: column-reverse;
+        gap: 16px;
+    }
+
+    .btn-salvar {
+        width: 100%;
+    }
 }
 
 .container-avaliacao {
@@ -471,7 +444,6 @@ main {
 
 .textarea-avaliacao {
     min-height: 82px;
-    outline: none;
 }
 
 .acoes-avaliacao {
@@ -495,6 +467,18 @@ main {
 
 .btn-enviar-avaliacao:hover {
     background-color: #3A422B;
+}
+
+@media (max-width: 650px) {
+    .bloco-estrelas {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .btn-enviar-avaliacao {
+        width: 100%;
+    }
 }
 
 .container-confirmacao-feedback {
@@ -560,6 +544,20 @@ main {
 
 .btn-concluir-feedback:hover {
     background-color: #3A422B;
+}
+
+@media (max-width: 650px) {
+    .container-confirmacao-feedback {
+        padding: 46px 24px;
+    }
+
+    .titulo-florecer {
+        font-size: 32px;
+    }
+
+    .btn-concluir-feedback {
+        width: 100%;
+    }
 }
 
 /* MEUS AGENDAMENTOS */
@@ -754,11 +752,24 @@ main {
     display: inline-block;
 }
 
+@media (max-width: 650px) {
+    .item-topo {
+        flex-direction: column;
+    }
+
+    .item-status-grupo {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
     .item-acoes {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
+}
 
 /* EDITAR E CANCELAR */
 .acoes-esquerda,

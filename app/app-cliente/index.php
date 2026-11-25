@@ -214,29 +214,6 @@ try {
 
     </footer>
 
-    <div id="agendamento" class="modal-agendamento">
-
-        <div class="modal-agendamento-conteudo">
-
-            <a
-                href="index.php"
-                class="modal-agendamento-fechar"
-                aria-label="Fechar agendamento">
-
-                &times;
-
-            </a>
-
-            <iframe
-                src="agendar1.php"
-                title="Formulário de agendamento"
-                class="iframe-agendamento">
-
-            </iframe>
-
-        </div>
-
-    </div>
 
 </body>
 

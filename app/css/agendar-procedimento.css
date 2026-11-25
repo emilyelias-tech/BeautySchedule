@@ -134,6 +134,10 @@ main {
     border-radius: 35px;
 }
 
+.container select{
+    display: flex;
+}
+
 
 .card-header {
     display: flex;
@@ -205,10 +209,10 @@ form {
     align-items: center;
     background-color: #D5CEB8;
     border: 1px solid rgba(72, 81, 54, 0.2);
-    border-radius: 4px;
+    border-radius: 4px; 
     padding: 12px 20px 12px 14px;
     transition: all 0.2s ease;
-    border-radius: 35px;
+    border-radius: 12px;
 }
 
 .card-cuidado:hover .cuidado-conteudo {
@@ -300,7 +304,7 @@ form {
     align-items: center;
     gap: 10px;
     transition: background-color 0.25s ease;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .btn-continuar:hover {
@@ -310,4 +314,31 @@ form {
 .btn-continuar span {
     font-family: Arial, sans-serif;
     font-size: 18px;
+}
+
+.categorias {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.categorias h2 {
+    font-size: 20px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.categorias select {
+    background-color:#D8D1BA;
+    margin: 0;
+    padding: 8px;
+    width: 205px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 15px;
+    border: none;
 }

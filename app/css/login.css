@@ -1,10 +1,10 @@
 html, body {
-    background-image: url(/app/imagens/fundo.png);
+    background-image: url("/app/imagens/fundo.png");
     width: 100%;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    font-family: Angleton;
+    font-family: Angleton, sans-serif;
 }
 
 @font-face {
@@ -12,8 +12,7 @@ html, body {
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* estilização do nav */
-
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -55,13 +54,6 @@ html, body {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-right: 60px;
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
     gap: 20px;
 }
 
@@ -79,56 +71,139 @@ html, body {
     display: block;
 }
 
-.cart-icon {
-    border: 2px solid #4f5838;
-    color: #4f5838;
+.fundo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 60px;
+    min-height: calc(100vh - 130px);
+    box-sizing: border-box;
 }
 
-.user-icon {
-    background-color: #4f5838;
-    color: #bbb59e;
-}
-
-/*fundo*/
-
-.fundo{
-    background-image: url(
-        /app/imagens/painel\ do\ login.png
-    );
-    margin-top: 60px;
-    margin-left: 60px;
-    margin-right: 60px;
-    height: 650px;
+.container-login {
+    display: flex;
+    background-color: #d5c8ad;
+    width: 100%;
+    max-width: 1200px;
+    height: 750px;
     border-radius: 50px;
-    padding-top: 10px;
+    border: 2px solid #4f5838;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.campo input{
+.lado-imagem {
+    flex: 1;
+    background-color: #3b422a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-top-left-radius: 48px;
+    border-bottom-left-radius: 48px;
+}
+
+.lado-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lado-formulario {
+    flex: 1;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.texto h3 {
+    color: #4f5838;
+    font-size: 16px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.texto h1 {
+    color: #4f5838;
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    color: #4f5838;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.campo input {
     height: 50px;
     border-radius: 10px;
-    border: none;
+    border: 1px solid #bbb59e;
     outline: none;
-    width: 500px;
-    margin-left: auto;
-    display: block;
-    margin-right: 60px;
-    padding-left: 10px;
-    font-size: 13px;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 14px;
     background-color: #e0ddd1;
+    box-sizing: border-box;
 }
 
-.texto h1{
+.esqueci {
     text-align: right;
-    margin-right: 195px;
+}
+
+.esqueci a {
     color: #4f5838;
-    font-size: 35px;
+    text-decoration: none;
+    font-size: 14px;
 }
 
-.texto h3{
-    text-align: right;
-    margin-right: 360px;
+.esqueci a:hover {
+    text-decoration: underline;
+}
+
+.btn-entrar {
+    background-color: #4f5838;
+    color: #D5CEB8;
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.btn-entrar:hover {
+    background-color: #3b422a;
+    color: #ffffff;
+}
+
+.cadastro-link {
+    text-align: center;
     color: #4f5838;
     font-size: 15px;
-    margin-top: 100px;
-    margin-bottom: -20px;
-} 
+    margin-top: 25px;
+}
+
+.cadastro-link a {
+    color: #4f5838;
+    text-decoration: underline;
+    font-weight: bold;
+}

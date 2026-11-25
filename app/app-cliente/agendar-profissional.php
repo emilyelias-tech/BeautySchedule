@@ -3,9 +3,12 @@ session_start();
 require_once __DIR__ . "/../init.php";
 
 if (!isset($_SESSION['agendamento_atual'])) {
-    header('Location: agendar-procedimento.php');
+    header('Location: agendar.php');
     exit;
 }
+
+
+
 
 $profissionais = [];
 try {
@@ -75,10 +78,14 @@ if (isset($_POST['continuar'])) {
 </head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php" ?>
+    <?php require_once __DIR__ . '/../nav.php'; ?>
 
     <main>
         <div class="container">
+            
+
+    
+
 
             <div class="card-header">
                 <div class="progresso-wrapper">
@@ -101,9 +108,12 @@ if (isset($_POST['continuar'])) {
 
             <form method="POST" class="form-etapa2">
 
+              
                 <div class="bloco-agendamento2">
                    
+                
                 <div class="bloco-agendamento2">
+                    
                     
                     <div class="campo-grupo">
                         <label for="profissional" class="label-etapa">Profissional</label>
@@ -120,6 +130,8 @@ if (isset($_POST['continuar'])) {
                         </div>
                     </div>
 
+    
+
                     <div class="campo-grupo">
                         <label for="data" class="label-etapa">Data</label>
                         <div class="select-wrapper">
@@ -134,6 +146,7 @@ if (isset($_POST['continuar'])) {
                             >
                         </div>
                     </div>
+
 
                     <div class="campo-grupo campo-horarios">
                         <span class="label-etapa">Horário</span>
@@ -158,10 +171,11 @@ if (isset($_POST['continuar'])) {
 
                 </div>
 
+
                  <div class="acoes-rodape">
 
                 <div class="acoes-rodape">
-                    <a href="agendar-procedimento.php" class="btn-voltar">Voltar</a>
+                    <a href="/app//app-cliente/agendar-procedimento.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">
                         Continuar
                     </button>

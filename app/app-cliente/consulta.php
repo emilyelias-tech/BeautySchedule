@@ -83,11 +83,11 @@ if ($agendamento) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/consulta.css">
+    <link rel="stylesheet" href="css/consulta.css">
 </head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php" ?>
+    <?php require_once __DIR__ . '/nav.php'; ?>
 
     <main>
         <div class="container">
@@ -101,7 +101,7 @@ if ($agendamento) {
                     <a href="index.php" class="btn-fechar" title="Fechar">x</a>
                 </div>
                 <p class="texto-vazio-consulta">Você ainda não possui agendamentos registrados.</p>
-                <a href="agendar1.php" class="btn-salvar btn-link-agendar">Fazer agendamento</a>
+                <a href="/app/app-cliente/agendar-procedimento.php" class="btn-salvar btn-link-agendar">Fazer agendamento</a>
             <?php else: ?>
 
                 <div class="card-header">

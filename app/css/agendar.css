@@ -37,63 +37,27 @@ header {
     color: #5C6347;
 }
 
-/* Navbar */
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #bbb59e;
-    padding: 5px 35px;
-    width: 100%;
-    min-height: 130px;
-    box-sizing: border-box;
-}
-
-.img {
-    width: auto;
-    height: 120px;
-    position: static;
-    margin: 0;
-    border-radius: 0;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    font-size: 30px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #4f5838;
-    font-size: 20px;
-}
-
-.nav-links a:hover {
-    color: #858354;
-    border-bottom: 2px solid #4f5838;
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.nav-icon {
+nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+    gap: 35px;
+    grid-column: 2;
 }
 
-.nav-mage {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-    display: block;
+nav a {
+    text-decoration: none;
+    color: #5C6347;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    padding-bottom: 4px;
+    transition: 0.25s;
+}
+
+nav a:hover {
+    color: #485136;
+    border-bottom: 2px solid #485136;
 }
 
 
@@ -105,7 +69,6 @@ main {
     align-items: center;
     padding: 30px 20px;
     background-color: #D8D1BA;
-    background-image: url("/app/imagens/fundo.png");
 }
 
 .container {

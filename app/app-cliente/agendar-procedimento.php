@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 require_once __DIR__ . "/../init.php";
@@ -12,6 +13,7 @@ if (isset($_POST['cadastrar'])) {
     $procedimento_id = $_POST['procedimento'] ?? '';
 
     if (empty($procedimento_id)) {
+
         $erro = "Por favor, selecione um cuidado antes de continuar.";
 
     } else {
@@ -21,15 +23,22 @@ if (isset($_POST['cadastrar'])) {
             'id_procedimento = ?',
             [$procedimento_id]
         );
+
         if (!$dados) {
+
             $erro = "Procedimento não encontrado.";
+
         } else {
+
 
             $_SESSION['agendamento_atual'] = [
 
                 'id_procedimento' => $dados['id_procedimento'],
+
                 'nome_procedimento' => $dados['nome'],
+
                 'duracao_minutos' => $dados['duracao_minutos'],
+
                 'valor' => $dados['valor'] ?? $dados['preco'] ?? 0
 
             ];
@@ -44,20 +53,32 @@ if (isset($_POST['cadastrar'])) {
 ?>
 
 <!DOCTYPE html>
+
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Agendamentos - BeautySchedule</title>
+
     <link rel="stylesheet" href="/app/css/agendar-procedimento.css">
+
+</head>
 
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php" ?>
+    <?php require_once __DIR__ . '/../nav.php'; ?>
+
+
 
     <main>
 
         <div class="container">
+
+         
 
             <div class="card-header">
 

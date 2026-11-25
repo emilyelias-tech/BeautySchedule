@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../init.php";
 
 $concluido = $_SESSION['agendamento_concluido'] ?? [
     'data'    => '2026-06-20',
@@ -27,10 +27,11 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento Concluído - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/agendar-reservado.css"
+    <link rel="stylesheet" href="/app/css/agendar-reservado.css">
+</head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php" ?>
+    <?php require_once __DIR__ . '/../nav.php'; ?>
 
     <main>
         <div class="container container-confirmacao">
@@ -48,7 +49,9 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
                 </div>
 
                 <span class="subtitulo-sucesso">Tudo certo</span>
+
                 <h2 class="titulo-sucesso">Seu cuidado está<br>reservado</h2>
+
                 <p class="texto-sucesso">
                     Enviamos os detalhes para o seu E-mail. Esperamos por você<br>
                     no dia <?= htmlspecialchars($dia) ?> de <?= htmlspecialchars($mesNome) ?>, às <?= htmlspecialchars($horario) ?>
@@ -68,6 +71,6 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
 
         </div>
     </main>
-    
+
 </body>
 </html>
