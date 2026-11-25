@@ -1,4 +1,3 @@
-
 /* GERAL */
 * {
     margin: 0;
@@ -9,6 +8,106 @@
 body {
     background-color: #D8D0B4;
     font-family: Arial, sans-serif;
+}
+
+/* ==========================================
+   Modal de Alerta (Centralizado na tela)
+   ========================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(43, 48, 31, 0.55);
+    z-index: 9999;
+    padding: 20px;
+}
+
+.modal-overlay.ativo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background-color: #EDE8D7;
+    border: 1px solid #B7B19D;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 460px;
+    padding: 32px;
+    margin: auto;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    text-align: left;
+}
+
+.modal-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-titulo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 24px;
+    font-weight: normal;
+    color: #2B301F;
+    margin-bottom: 12px;
+}
+
+.modal-descricao {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #3E452E;
+    margin-bottom: 24px;
+}
+
+.modal-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-modal-manter {
+    padding: 10px 18px;
+    border: 1px solid #485136;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #485136;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-modal-manter:hover {
+    background-color: #D8D1BA;
+}
+
+.btn-modal-confirmar-delete {
+    padding: 10px 20px;
+    border: 1px solid #8B322C;
+    border-radius: 4px;
+    background-color: #8B322C;
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-modal-confirmar-delete:hover {
+    background-color: #6E2520;
 }
 
 /* CABEÇALHO */
@@ -121,11 +220,9 @@ main {
 }
 
 .fechar:hover {
-  background-color: #4F5838; /* Cor do fundo ao passar o mouse */
-  color: #f7f7f7;           /* Cor do texto ao passar o mouse */
-
+    background-color: #4F5838;
+    color: #f7f7f7;
 }
-
 
 /* ETAPAS */
 .etapas {

@@ -12,6 +12,10 @@ if (!isset($_SESSION['dados_pessoais'])) {
     ];
 }
 
+if (!isset($_SESSION['pontos'])) {
+    $_SESSION['pontos'] = 680;
+}
+
 // Puxa nome, e-mail e calcula as iniciais do avatar a partir da sessão
 $nome_cartao = $_SESSION['dados_pessoais']['nome'];
 $email_cartao = $_SESSION['dados_pessoais']['email'];
@@ -40,7 +44,7 @@ if (!isset($_SESSION['cartoes'])) {
     ];
 }
 
-// Apaga o cartão somente após clicar em "Excluir" no alerta
+// Apaga o cartão somente após clicar em "Excluir" no modal
 if (isset($_GET['confirmar_apagar'])) {
     $indice = (int)$_GET['confirmar_apagar'];
     if (isset($_SESSION['cartoes'][$indice])) {
@@ -51,7 +55,7 @@ if (isset($_GET['confirmar_apagar'])) {
     exit;
 }
 
-// Verifica se clicou na lixeira (?apagar=indice) para abrir o alerta na tela
+// Verifica se clicou na lixeira (?apagar=indice) para abrir o modal centralizado
 $indice_confirmar_exclusao = isset($_GET['apagar']) ? (int)$_GET['apagar'] : null;
 
 // Verifica se clicou em "+ Adicionar Cartão" (?adicionar=1)
@@ -66,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cvv = preg_replace('/[^0-9]/', '', $_POST['cvv'] ?? '');
     $bandeira = trim($_POST['bandeira'] ?? 'Visa');
 
-    if (strlen($numero_cartao) < 13 || strlen($numero_cartao) > 19) {
+    if (strlen($numero_cartao) < 13 or strlen($numero_cartao) > 19) {
         $erro_cartao = 'Digite um número de cartão válido (13 a 19 dígitos).';
         $mostrar_formulario = true;
     } elseif (strlen($titular) < 3) {
@@ -76,12 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro_cartao = 'Digite a validade no formato MM/AA (ex: 09/29).';
         $mostrar_formulario = true;
     } elseif (
-        (int)('20' . $partes_val[2]) < (int)date('Y') ||
-        ((int)('20' . $partes_val[2]) === (int)date('Y') && (int)$partes_val[1] < (int)date('m'))
+        (int)('20' . $partes_val[2]) < (int)date('Y') or
+        ((int)('20' . $partes_val[2]) === (int)date('Y') and (int)$partes_val[1] < (int)date('m'))
     ) {
         $erro_cartao = 'Este cartão está vencido.';
         $mostrar_formulario = true;
-    } elseif (strlen($cvv) < 3 || strlen($cvv) > 4) {
+    } elseif (strlen($cvv) < 3 or strlen($cvv) > 4) {
         $erro_cartao = 'Digite um CVV válido (3 ou 4 dígitos).';
         $mostrar_formulario = true;
     } else {
@@ -112,16 +116,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<!-- Alerta de Confirmação no centro da tela -->
-<?php if ($indice_confirmar_exclusao !== null && isset($_SESSION['cartoes'][$indice_confirmar_exclusao])): ?>
-    <div class="modal-fundo">
-        <div class="modal-alerta">
-            <div class="modal-texto">
-                Tem certeza que deseja excluir?
+<!-- Modal de Confirmação centralizado na tela -->
+<?php if ($indice_confirmar_exclusao !== null and isset($_SESSION['cartoes'][$indice_confirmar_exclusao])): ?>
+    <div class="modal-overlay ativo">
+        <div class="modal-box">
+            <div class="modal-topo">
+                <h3 class="modal-titulo">Excluir cartão</h3>
             </div>
+            <p class="modal-descricao">
+                Tem certeza que deseja excluir o cartão <strong><?= htmlspecialchars($_SESSION['cartoes'][$indice_confirmar_exclusao]['bandeira']) ?> &bull;&bull;&bull;&bull; <?= htmlspecialchars($_SESSION['cartoes'][$indice_confirmar_exclusao]['ultimos_digitos']) ?></strong>? Esta ação não poderá ser desfeita.
+            </p>
             <div class="modal-acoes">
-                <a href="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" class="btn-cancelar">Cancelar</a>
-                <a href="?confirmar_apagar=<?= $indice_confirmar_exclusao ?>" class="btn-excluir">Excluir</a>
+                <a href="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" class="btn-modal-manter">Cancelar</a>
+                <a href="?confirmar_apagar=<?= $indice_confirmar_exclusao ?>" class="btn-modal-confirmar-delete">Excluir</a>
             </div>
         </div>
     </div>
@@ -195,13 +202,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h4 class="club-title">Beauty club</h4>
 
             <div class="club-points-box">
-                <span class="club-num">680</span>
+                <span class="club-num"><?= (int)$_SESSION['pontos'] ?></span>
                 <span class="club-label">Pontos</span>
             </div>
 
             <p class="club-desc">Voce pode trocar seus pontos por até R$40 de desconto</p>
 
-            <a href="resgatar.php" class="club-link">Resgatar beneficio &rarr;</a>
+            <a href="historico.php" class="club-link">Resgatar beneficio &rarr;</a>
         </section>
     </div>
 

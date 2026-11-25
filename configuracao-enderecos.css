@@ -10,21 +10,26 @@ body {
 }
 
 /* ==========================================
-   Modal de Alerta (Idêntico à foto enviada)
+   Modal de Alerta (Centralizado na tela)
    ========================================== */
 .modal-overlay {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(43, 48, 31, 0.55);
     z-index: 9999;
-    justify-content: center;
-    align-items: center;
     padding: 20px;
 }
 
 .modal-overlay.ativo {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-box {
@@ -34,6 +39,7 @@ body {
     width: 100%;
     max-width: 460px;
     padding: 32px;
+    margin: auto;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
     text-align: left;
 }
@@ -496,6 +502,7 @@ main {
 .btn-salvar:hover {
     background-color: #3b422a;
 }
+
 /* Campo CEP + Botão Buscar */
 .cep-input-box {
     display: flex;
