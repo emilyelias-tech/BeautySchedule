@@ -27,7 +27,7 @@ declare(strict_types=1);
             <img class="nav-mage" src="/app/imagens/carrinho.png" alt="Carrinho">
         </a>
 
-        <a href="/app/perfil.php" class="nav-icon">
+        <a href="/app/app-cliente/configuracao-dados-pessoais.php" class="nav-icon">
             <img class="nav-mage" src="/app/imagens/perfil.png" alt="Perfil">
         </a>
 
