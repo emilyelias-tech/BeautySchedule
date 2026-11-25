@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Conta | BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/login.css">
+    <link rel="stylesheet" href="/app/css/criar-conta.css">
 </head>
 <body>
 

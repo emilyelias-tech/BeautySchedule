@@ -1,11 +1,10 @@
-
 html, body {
     background-image: url("/app/imagens/fundo.png");
     width: 100%;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    font-family: Angleton;
+    font-family: Angleton, sans-serif;
 }
 
 @font-face {
@@ -14,7 +13,6 @@ html, body {
 }
 
 /* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -72,108 +70,204 @@ html, body {
     display: block;
 }
 
-
+/* Container Principal do Carrinho */
 .fundo {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 130px);
-    padding: 40px 20px;
+    padding: 50px 20px;
     box-sizing: border-box;
 }
 
 .container-carrinho {
     background-color: #D5CEB8;
     border: 2px solid #4f5838;
-    border-radius: 12px;
+    border-radius: 20px;
     width: 100%;
-    max-width: 600px;
-    padding: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 850px;
+    padding: 40px 45px;
+    box-shadow: 0 12px 35px rgba(79, 88, 56, 0.18);
     box-sizing: border-box;
 }
 
-.container-carrinho h1 {
-    color: #4f5838;
-    font-size: 28px;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 25px;
+/* Cabeçalho */
+.carrinho-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     border-bottom: 2px solid #bbb59e;
-    padding-bottom: 10px;
+    padding-bottom: 18px;
+    margin-bottom: 28px;
 }
 
+.carrinho-cabecalho h1 {
+    color: #4f5838;
+    font-size: 32px;
+    margin: 0;
+}
+
+.contador-itens {
+    color: #585e44;
+    font-size: 15px;
+    background-color: #e6e1d0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #bbb59e;
+}
+
+/* Lista de Produtos */
 .lista-itens {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    max-height: 350px;
+    gap: 16px;
+    max-height: 420px;
     overflow-y: auto;
-    margin-bottom: 20px;
-    padding-right: 5px;
+    margin-bottom: 30px;
+    padding-right: 6px;
 }
 
 .item-carrinho {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     background-color: #f4f1ea;
-    padding: 15px 20px;
-    border-radius: 8px;
+    padding: 16px 22px;
+    border-radius: 14px;
     border: 1px solid #bbb59e;
+    gap: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.info-item {
+.item-carrinho:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 88, 56, 0.1);
+}
+
+.item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #bbb59e;
+    flex-shrink: 0;
+}
+
+.item-detalhes {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
 .nome-produto {
-    font-size: 18px;
+    font-size: 19px;
     color: #4f5838;
     font-weight: bold;
 }
 
-.qtd-produto {
+.preco-unitario {
+    font-size: 13px;
+    color: #727a5d;
+}
+
+.item-qtd-badge {
+    background-color: #e6e1d0;
+    color: #4f5838;
+    padding: 6px 14px;
+    border-radius: 8px;
     font-size: 14px;
-    color: #585e44;
+    border: 1px solid #bbb59e;
 }
 
 .preco-item {
-    font-size: 18px;
+    font-size: 19px;
     color: #4f5838;
     font-weight: bold;
+    min-width: 100px;
+    text-align: right;
 }
 
+.btn-remover {
+    color: #8c4a4a;
+    background-color: #f0dede;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-remover:hover {
+    background-color: #a94442;
+    color: #ffffff;
+}
+
+/* Resumo e Rodapé */
 .resumo-carrinho {
     border-top: 2px solid #bbb59e;
-    padding-top: 20px;
+    padding-top: 24px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 14px;
 }
 
-.total {
+.linha-resumo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    font-size: 16px;
+    color: #585e44;
+}
+
+.linha-resumo.total {
+    font-size: 24px;
     color: #4f5838;
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px dashed #bbb59e;
+}
+
+.acoes-carrinho {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+}
+
+.btn-continuar {
+    flex: 1;
+    background-color: #bbb59e;
+    color: #4f5838;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    box-sizing: border-box;
+}
+
+.btn-continuar:hover {
+    background-color: #a8a28c;
 }
 
 .btn-finalizar {
-    display: block;
-    width: 100%;
+    flex: 1.5;
     background-color: #4f5838;
     color: #D5CEB8;
     text-align: center;
-    padding: 14px;
-    border-radius: 8px;
+    padding: 15px;
+    border-radius: 10px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
     box-sizing: border-box;
 }
 
@@ -182,28 +276,38 @@ html, body {
     color: #ffffff;
 }
 
-.carrinho-vazio {
+/* Carrinho Vazio */
+.carrinho-vazio-box {
     text-align: center;
+    padding: 45px 20px;
+}
+
+.carrinho-vazio {
     color: #4f5838;
-    font-size: 18px;
-    margin: 30px 0;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+}
+
+.carrinho-subtexto {
+    color: #585e44;
+    font-size: 15px;
+    margin: 0 0 25px 0;
 }
 
 .btn-voltar {
-    display: block;
-    width: 200px;
-    margin: 0 auto;
-    background-color: #bbb59e;
-    color: #4f5838;
-    text-align: center;
-    padding: 10px;
-    border-radius: 6px;
+    display: inline-block;
+    background-color: #4f5838;
+    color: #D5CEB8;
+    padding: 14px 35px;
+    border-radius: 10px;
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .btn-voltar:hover {
-    background-color: #a8a28c;
+    background-color: #3b422a;
+    color: #ffffff;
 }

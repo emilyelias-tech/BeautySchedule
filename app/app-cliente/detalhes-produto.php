@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 require_once __DIR__ . "/../init.php";
 
 $pdo = database();
@@ -47,6 +48,7 @@ $imagemProduto = !empty($produto['imagem']) ? $produto['imagem'] : 'https://plac
                     <p><?php echo nl2br(htmlspecialchars($produto['descricao'] ?? 'Nenhuma descrição informada para este produto.')); ?></p>
                 </div>
 
+                <!-- Formulário corrigido com botão submit -->
                 <form action="adicionar-carrinho.php" method="POST" class="form-carrinho">
                     <input type="hidden" name="produto_id" value="<?php echo $produto['id']; ?>">
                     
@@ -55,7 +57,9 @@ $imagemProduto = !empty($produto['imagem']) ? $produto['imagem'] : 'https://plac
                         <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="10" class="input-qtd">
                     </div>
 
-                    <button type="submit" class="btn-adicionar-carrinho">Adicionar ao carrinho</button>
+                    <button type="submit" class="btn-finalizar">
+                        Adicionar ao Carrinho ➔
+                    </button>
                 </form>
 
                 <div class="voltar-box">
