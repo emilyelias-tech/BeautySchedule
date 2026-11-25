@@ -1,9 +1,8 @@
 <?php
 ob_start();
-session_start();
 require_once __DIR__ . "/../init.php";
 
-$id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
+$id_cliente = $_SESSION['usuario_id'] ?? $_SESSION['id_cliente'] ?? $_SESSION['cliente_id'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
 
 $id_agendamento = $_GET['id'] ?? $_SESSION['ultimo_agendamento_id'] ?? $_SESSION['agendamento_concluido']['id_agendamento'] ?? null;
 
@@ -47,7 +46,7 @@ if (isset($_POST['salvar_observacao']) && $agendamento) {
         ':id'  => $agendamento['id_agendamento']
     ]);
 
-    header('Location: meus-agendamentos.php?id=' . (int)$agendamento['id_agendamento']);
+    header('Location: meus-agendamento.php?id=' . (int)$agendamento['id_agendamento']);
     exit;
 }
 
@@ -83,11 +82,11 @@ if ($agendamento) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="css/consulta.css">
+    <link rel="stylesheet" href="../css/consulta.css">
 </head>
 <body>
 
-    <?php require_once __DIR__ . '/nav.php'; ?>
+    <?php require_once __DIR__ . '/../nav.php'; ?>
 
     <main>
         <div class="container">
@@ -101,7 +100,7 @@ if ($agendamento) {
                     <a href="index.php" class="btn-fechar" title="Fechar">x</a>
                 </div>
                 <p class="texto-vazio-consulta">Você ainda não possui agendamentos registrados.</p>
-                <a href="/app/app-cliente/agendar-procedimento.php" class="btn-salvar btn-link-agendar">Fazer agendamento</a>
+                <a href="agendar-procedimento.php" class="btn-salvar btn-link-agendar">Fazer agendamento</a>
             <?php else: ?>
 
                 <div class="card-header">

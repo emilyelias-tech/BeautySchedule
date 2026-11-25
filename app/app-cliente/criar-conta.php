@@ -20,16 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmtCheck->fetch()) {
                 $erro = 'Este e-mail já está registado no sistema.';
             } else {
-                $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+                $senha = password_hash($senha, PASSWORD_DEFAULT);
                 $stmtInsert = $pdo->prepare("INSERT INTO clientes (nome, email, senha) VALUES (:nome, :email, :senha)");
                 $stmtInsert->execute([
                     'nome' => $nome,
                     'email' => $email,
-                    'senha' => $senhaHash
+                    'senha' => $senha
                 ]);
 
                 $sucesso = 'Conta criada com sucesso! Redirecionando para o login...';
-                header("refresh:2;url=/app/app-cliente/index.php");
+                header("refresh:2;url=login.php");
             }
         } catch (Throwable $exception) {
             $erro = 'Erro ao criar a conta. Tente novamente mais tarde.';
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Conta | BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/criar-conta.css">
+    <link rel="stylesheet" href="../css/criar-conta.css">
 </head>
 <body>
 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="fundo">
         <div class="container-login">
             <div class="lado-imagem">
-                <img src="/app/imagens/Logo Beauty Schedule Verde e Bege.png" alt="Logot">
+                <img src="../imagens/Logo Beauty Schedule Verde e Bege.png" alt="Logot">
             </div>
             <div class="lado-formulario">
                 <div class="texto">

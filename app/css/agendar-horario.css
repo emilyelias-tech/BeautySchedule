@@ -1,4 +1,4 @@
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'Angleton';
-    src: url("/app/fontes/TAN-Angleton-Regular.ttf");
+    src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
 html, body {
@@ -114,7 +114,7 @@ main {
     align-items: center;
     padding: 30px 20px;
     background-color: #D8D1BA;
-    background-image: url("/app/imagens/fundo.png");
+    background-image: url("../imagens/fundo.png");
 }
 
 .container {

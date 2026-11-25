@@ -1,8 +1,7 @@
 <?php
-session_start();
 require_once __DIR__ . "/../init.php";
 
-$id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? 1;
+$id_cliente = $_SESSION['usuario_id'] ?? $_SESSION['id_cliente'] ?? $_SESSION['cliente_id'] ?? $_SESSION['usuario']['id'] ?? 1;
 $id_agendamento = $_GET['id'] ?? null;
 
 $mensagem = '';
@@ -107,11 +106,11 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliar Atendimento - BeautySchedule</title>
-    <link rel="stylesheet" href="css/consulta.css">
+    <link rel="stylesheet" href="../css/consulta.css">
 </head>
 <body>
 
-    <?php require_once __DIR__ . '/nav.php'; ?>
+    <?php require_once __DIR__ . '/../nav.php'; ?>
 
     <main>
         <div class="container container-avaliacao">
@@ -125,7 +124,7 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
                     </p>
                 </div>
 
-                <a href="meus-agendamentos.php" class="btn-fechar" title="Fechar">x</a>
+                <a href="meus-agendamento.php" class="btn-fechar" title="Fechar">x</a>
             </div>
 
             <?php if (!empty($mensagem)): ?>

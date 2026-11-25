@@ -1,5 +1,5 @@
-html, body {
-    background-image: url(/app/imagens/fundo.png);
+﻿html, body {
+    background-image: url(../imagens/fundo.png);
     width: 100%;
     overflow-x: hidden;
     margin: 0;
@@ -91,7 +91,7 @@ html, body {
 
 .fundo{
     background-image: url(
-        /app/imagens/Logotipo\ de\ beleza\ botânica\ em\ verde\ e\ creme.png
+        ../imagens/Logotipo\ de\ beleza\ botânica\ em\ verde\ e\ creme.png
     );
     width: 1565px;
     height: 980px;

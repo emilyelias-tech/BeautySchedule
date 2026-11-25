@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../init.php";
 
 $pontosGanhos = 20;
 ?>
@@ -10,11 +9,11 @@ $pontosGanhos = 20;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação Enviada - BeautySchedule</title>
-    <link rel="stylesheet" href="css/consulta.css">
+    <link rel="stylesheet" href="../css/consulta.css">
 </head>
 <body>
 
-    <?php require_once __DIR__ . '/nav.php'; ?>
+    <?php require_once __DIR__ . '/../nav.php'; ?>
 
     <main>
         <div class="container container-confirmacao-feedback">

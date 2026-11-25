@@ -30,7 +30,7 @@ foreach ($itensCarrinho as $item) {$totalGeral += (float)$item['preco'] * (int)$
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho | BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/carrinho.css">
+    <link rel="stylesheet" href="../css/carrinho.css">
 </head>
 <body>
 

@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$clienteId =$_SESSION['cliente_id'] ?? 1;
+$clienteId = $_SESSION['usuario_id'] ?? $_SESSION['cliente_id'] ?? 1;
 $pdo = database();
 $mensagemSucesso = '';$mensagemErro = '';
 
@@ -41,7 +41,7 @@ if (isset($_GET['principal'])) {
     $idPrincipal = (int)$_GET['principal'];
     try {
         $pdo->prepare("UPDATE enderecos_clientes SET principal = 0 WHERE cliente_id = :cid")->execute(['cid' => $clienteId]);$pdo->prepare("UPDATE enderecos_clientes SET principal = 1 WHERE id = :id AND cliente_id = :cid")->execute(['id' => $idPrincipal, 'cid' =>$clienteId]);
-        header("Location: enderecos.php");
+        header("Location: configuracao-endereco.php");
         exit;
     } catch (Throwable $e) {$mensagemErro = "Erro ao definir endereço principal.";
     }
@@ -52,7 +52,7 @@ if (isset($_GET['excluir'])) {
     $idExcluir = (int)$_GET['excluir'];
     try {
         $pdo->prepare("DELETE FROM enderecos_clientes WHERE id = :id AND cliente_id = :cid")->execute(['id' => $idExcluir, 'cid' =>$clienteId]);
-        header("Location: enderecos.php");
+        header("Location: configuracao-endereco.php");
         exit;
     } catch (Throwable $e) {$mensagemErro = "Erro ao excluir endereço.";
     }
@@ -187,7 +187,7 @@ if (count($partesNome) > 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app/css/configuracao-endereco.css">
+    <link rel="stylesheet" href="../css/configuracao-endereco.css">
     <title>Beauty Schedule - Meus Endereços</title>
 </head>
 <body>
@@ -237,4 +237,9 @@ if (count($partesNome) > 1) {
                     <span class="pontos-texto">Pontos</span>
                 </div>
                 <p class="club-desc">Você pode trocar seus pontos por até R$40 de desconto</p>
-                <a href="resgatar.php" class="resgatar-
+                <a href="resgatar.php" class="resgatar-link">Resgatar benefício &rarr;</a>
+            </section>
+        </aside>
+    </main>
+</body>
+</html>

@@ -1,6 +1,5 @@
 <?php
 ob_start();
-session_start();
 require_once __DIR__ . "/../init.php";
 
 if (!isset($_SESSION['agendamento_atual']) || empty($_SESSION['agendamento_atual']['data'])) {
@@ -27,7 +26,7 @@ $valorFormatado = number_format((float)$agendamento['valor'], 0, ',', '.');
 $erro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
-    $id_cliente = (int)($_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1);
+    $id_cliente = (int)($_SESSION['usuario_id'] ?? $_SESSION['id_cliente'] ?? $_SESSION['cliente_id'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1);
     
   
     $id_funcionario = (int)($agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 0);
@@ -40,19 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         $id_funcionario = 1;
     }
 
-   if (isset($_POST['confirmar'])) {
-    $id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
-    $id_funcionario = $agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 1;
-
     try {
         $resultado = create($pdo, 'agendamentos', [
             'id_cliente'      => $id_cliente,
             'id_funcionario'  => $id_funcionario,
-
             'id_procedimento' => (int)$agendamento['id_procedimento'],
             'duracao_minutos' => (int)$agendamento['duracao_minutos'],
-        
-
             'data'            => $agendamento['data'],
             'horario'         => $agendamento['horario'],
             'status'          => 'Confirmado'
@@ -71,21 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
             'id_agendamento' => $novoId,
             'data'           => $agendamento['data'],
             'horario'        => $agendamento['horario']
-];
-
-        $_SESSION['agendamento_concluido'] = [
-            'data'    => $agendamento['data'],
-            'horario' => $agendamento['horario']
-
         ];
 
         unset($_SESSION['agendamento_atual']);
 
         if (!headers_sent()) {
-            header('Location: agendar4.php');
+            header('Location: agendar-reservado.php');
             exit;
         } else {
-            echo "<script>window.location.href = 'agendar4.php';</script>";
+            echo "<script>window.location.href = 'agendar-reservado.php';</script>";
             exit;
         }
     } catch (PDOException $e) {
@@ -94,12 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         } else {
             $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
         }
-        header('Location: agendar4.php');
-        exit;
     } catch (Exception $e) {
         $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
     }
-}
 }
 ?>
 <!DOCTYPE html>
@@ -108,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisar Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/agendar-horario.css">
+    <link rel="stylesheet" href="css/agendar-horario.css">
 </head>
 <body>
 
@@ -138,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
                 </div>
             <?php endif; ?>
 
-            <form method="POST" action="/app/app-cliente/agendar-reservado.php">
+            <form method="POST" action="agendar-horario.php">
                 
                 <div class="resumo-box">
                     
@@ -197,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
                 </div>
 
                 <div class="acoes-rodape">
-                    <a href="/app/app-cliente/agendar-profissional.php" class="btn-voltar">Voltar</a>
+                    <a href="agendar-profissional.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="confirmar" class="btn-continuar">
                         Continuar 
                     </button>

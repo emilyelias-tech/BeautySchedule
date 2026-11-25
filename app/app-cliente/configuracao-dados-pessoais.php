@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$clienteId = $_SESSION['cliente_id'] ?? 1; 
+$clienteId = $_SESSION['usuario_id'] ?? $_SESSION['cliente_id'] ?? 1; 
 $pdo = database();
 $mensagemSucesso = '';
 $mensagemErro = '';
@@ -118,7 +118,7 @@ if (count($partesNome) > 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app/css/configuracao-dados-pessoais.css">
+    <link rel="stylesheet" href="../css/configuracao-dados-pessoais.css">
     <title>Beauty Schedule - Dados Pessoais</title>
 </head>
 <body>
@@ -153,10 +153,10 @@ if (count($partesNome) > 1) {
 
         <section class="nav-perfil">
             <a href="#" class="ativo"><span>Dados pessoais</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao-endereco.php"><span>Endereços</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/cartoes.php"><span>Meus cartões</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao.php"><span>Configurações</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/historico.php"><span>Histórico de pontos</span> <span>&gt;</span></a>
+            <a href="configuracao-endereco.php"><span>Endereços</span> <span>&gt;</span></a>
+            <a href="cartoes.php"><span>Meus cartões</span> <span>&gt;</span></a>
+            <a href="configuracao.php"><span>Configurações</span> <span>&gt;</span></a>
+            <a href="historico.php"><span>Histórico de pontos</span> <span>&gt;</span></a>
         </section>
 
         <section class="club-card">

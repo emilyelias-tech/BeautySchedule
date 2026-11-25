@@ -6,12 +6,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Verifica se o ID foi passado na URL
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    die("Erro: Nenhum ID de produto foi fornecido. Verifique o link do botão (ex: adicionar-carrinho.php?id=1).");
-}
+// Verifica se o ID foi passado via POST (detalhes-produto.php) ou GET (produtos.php)
+$produtoId = (int)($_POST['produto_id'] ?? $_GET['id'] ?? 0);
+$quantidadeAdd = max(1, (int)($_POST['quantidade'] ?? 1));
 
-$produtoId = (int)$_GET['id'];
+if ($produtoId <= 0) {
+    header("Location: produtos.php");
+    exit;
+}
 
 try {
     $pdo = database();
@@ -30,13 +32,13 @@ try {
 
     // Adiciona ou incrementa o produto
     if (isset($_SESSION['carrinho'][$produtoId])) {
-        $_SESSION['carrinho'][$produtoId]['quantidade']++;
+        $_SESSION['carrinho'][$produtoId]['quantidade'] += $quantidadeAdd;
     } else {
         $_SESSION['carrinho'][$produtoId] = [
             'id' => (int)$produto['id'],
             'nome' => $produto['nome'],
             'preco' => (float)$produto['preco'],
-            'quantidade' => 1,
+            'quantidade' => $quantidadeAdd,
             'imagem' => $produto['imagem'] ?? ''
         ];
     }

@@ -1,9 +1,8 @@
 <?php
-session_start();
 require_once __DIR__ . "/../init.php";
 
 if (!isset($_SESSION['agendamento_atual'])) {
-    header('Location: agendar.php');
+    header('Location: agendar-procedimento.php');
     exit;
 }
 
@@ -74,7 +73,7 @@ if (isset($_POST['continuar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamentos - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/agendar-profissional.css">
+    <link rel="stylesheet" href="../css/agendar-profissional.css">
 </head>
 <body>
 
@@ -175,7 +174,7 @@ if (isset($_POST['continuar'])) {
                  <div class="acoes-rodape">
 
                 <div class="acoes-rodape">
-                    <a href="/app//app-cliente/agendar-procedimento.php" class="btn-voltar">Voltar</a>
+                    <a href="agendar-procedimento.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">
                         Continuar
                     </button>

@@ -24,8 +24,8 @@ $imagemProduto = !empty($produto['imagem']) ? $produto['imagem'] : 'https://plac
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($produto['nome']); ?> - Beauty Schedule</title>
-    <link rel="stylesheet" href="/app/css/produtos.css">
-    <link rel="stylesheet" href="/app/css/detalhes-produtos.css">
+    <link rel="stylesheet" href="../css/produtos.css">
+    <link rel="stylesheet" href="../css/detalhes-produtos.css">
 </head>
 <body>
 

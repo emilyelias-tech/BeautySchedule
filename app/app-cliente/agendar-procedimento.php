@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once __DIR__ . "/../init.php";
 
 $procedimentos = readAll($pdo, 'procedimentos');
@@ -64,7 +62,7 @@ if (isset($_POST['cadastrar'])) {
 
     <title>Agendamentos - BeautySchedule</title>
 
-    <link rel="stylesheet" href="/app/css/agendar-procedimento.css">
+    <link rel="stylesheet" href="../css/agendar-procedimento.css">
 
 </head>
 

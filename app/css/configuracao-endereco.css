@@ -1,5 +1,5 @@
-html, body {
-    background-image: url("/app/imagens/fundo.png");
+﻿html, body {
+    background-image: url("../imagens/fundo.png");
     background-color: #DCD5BE;
     width: 100%;
     overflow-x: hidden;
@@ -10,7 +10,7 @@ html, body {
 
 @font-face {
     font-family: Angleton;
-    src: url("/app/fontes/TAN-Angleton-Regular.ttf");
+    src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
 /* Navbar */

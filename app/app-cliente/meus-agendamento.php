@@ -1,9 +1,8 @@
 <?php
 ob_start();
-session_start();
 require_once __DIR__ . "/../init.php";
 
-$id_cliente = $_SESSION['id_cliente'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? null;
+$id_cliente = $_SESSION['usuario_id'] ?? $_SESSION['id_cliente'] ?? $_SESSION['cliente_id'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? null;
 $mensagem = '';
 $erro = '';
 
@@ -146,7 +145,7 @@ function formatarDataCompleta(string $dataIso, array $meses) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($titulosPorFiltro[$filtro]) ?> - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/consulta.css">
+    <link rel="stylesheet" href="../css/consulta.css">
        
     
 </head>
@@ -163,20 +162,20 @@ function formatarDataCompleta(string $dataIso, array $meses) {
                     <h2><?= htmlspecialchars($titulosPorFiltro[$filtro]) ?></h2>
                 </div>
 
-                <a href="/app/app-cliente/agendar-procedimento.php" class="btn-salvar btn-novo-agendamento">+ Novo agendamento</a>
+                <a href="agendar-procedimento.php" class="btn-salvar btn-novo-agendamento">+ Novo agendamento</a>
             </div>
 
             <div class="filtros-lista">
-                <a href="meus-agendamentos.php?filtro=todos" class="filtro-tab <?= $filtro === 'todos' ? 'ativo' : '' ?>">
+                <a href="meus-agendamento.php?filtro=todos" class="filtro-tab <?= $filtro === 'todos' ? 'ativo' : '' ?>">
                     Todos (<?= $contadores['todos'] ?>)
                 </a>
-                <a href="meus-agendamentos.php?filtro=ativos" class="filtro-tab <?= $filtro === 'ativos' ? 'ativo' : '' ?>">
+                <a href="meus-agendamento.php?filtro=ativos" class="filtro-tab <?= $filtro === 'ativos' ? 'ativo' : '' ?>">
                     Ativos (<?= $contadores['ativos'] ?>)
                 </a>
-                <a href="meus-agendamentos.php?filtro=concluidos" class="filtro-tab <?= $filtro === 'concluidos' ? 'ativo' : '' ?>">
+                <a href="meus-agendamento.php?filtro=concluidos" class="filtro-tab <?= $filtro === 'concluidos' ? 'ativo' : '' ?>">
                     Concluídos (<?= $contadores['concluidos'] ?>)
                 </a>
-                <a href="meus-agendamentos.php?filtro=cancelados" class="filtro-tab <?= $filtro === 'cancelados' ? 'ativo' : '' ?>">
+                <a href="meus-agendamento.php?filtro=cancelados" class="filtro-tab <?= $filtro === 'cancelados' ? 'ativo' : '' ?>">
                     Cancelados (<?= $contadores['cancelados'] ?>)
                 </a>
             </div>
@@ -201,9 +200,9 @@ function formatarDataCompleta(string $dataIso, array $meses) {
                 <div class="lista-vazia">
                     <p><?= htmlspecialchars($mensagensVazioPorFiltro[$filtro]) ?></p>
                     <?php if ($filtro !== 'todos'): ?>
-                        <a href="meus-agendamentos.php?filtro=todos" class="btn-cancelar" style="margin-right: 10px;">Ver todos os agendamentos</a>
+                        <a href="meus-agendamento.php?filtro=todos" class="btn-cancelar" style="margin-right: 10px;">Ver todos os agendamentos</a>
                     <?php endif; ?>
-                    <a href="/app/app-cliente/agendar-procedimento.php" class="btn-salvar">+ Novo agendamento</a>
+                    <a href="agendar-procedimento.php" class="btn-salvar">+ Novo agendamento</a>
                 </div>
             <?php else: ?>
                 <div class="lista-agendamentos">
@@ -270,7 +269,7 @@ function formatarDataCompleta(string $dataIso, array $meses) {
                                 </div>
 
                                 <div class="acoes-direita">
-                                    <a href="editar-agendamentos.php?id=<?= (int)$item['id_agendamento'] ?>" class="btn-acao-editar">
+                                    <a href="editar-agendamento.php?id=<?= (int)$item['id_agendamento'] ?>" class="btn-acao-editar">
                                         Editar
                                     </a>
 
@@ -309,7 +308,7 @@ function formatarDataCompleta(string $dataIso, array $meses) {
                 Essa ação não poderá ser desfeita.
             </p>
 
-            <form method="POST" action="meus-agendamentos.php" class="modal-acoes">
+            <form method="POST" action="meus-agendamento.php" class="modal-acoes">
                 <input type="hidden" name="id_agendamento" id="modal-id-agendamento" value="">
                 <input type="hidden" name="filtro_atual" value="<?= htmlspecialchars($filtro) ?>">
                 

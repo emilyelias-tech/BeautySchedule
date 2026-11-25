@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início | BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
 
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="fundo">
         <div class="container-login">
             <div class="lado-imagem">
-                <img src="/app/imagens/Logo Beauty Schedule Verde e Bege.png" alt="Logot">
+                <img src="../imagens/Logo Beauty Schedule Verde e Bege.png" alt="Logot">
             </div>
 
             <div class="lado-formulario">
