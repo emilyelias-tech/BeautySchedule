@@ -1,266 +1,160 @@
 <?php
-ob_start();
 require_once __DIR__ . "/../init.php";
 
-$id_cliente = $_SESSION['usuario_id'] ?? $_SESSION['id_cliente'] ?? $_SESSION['cliente_id'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1;
+$cliente_id = (int)($_SESSION['cliente_id'] ?? $_SESSION['id_cliente'] ?? $_SESSION['usuario_id'] ?? 1);
 
-$id_agendamento = $_GET['id'] ?? $_SESSION['ultimo_agendamento_id'] ?? $_SESSION['agendamento_concluido']['id_agendamento'] ?? null;
+$proximoLembrete = null;
+$agendamentos = [];
 
-$mensagem = '';
-$erro = '';
-$agendamento = null;
-$dataFormatada = '';
-$horarioFormatado = '';
-
-if ($id_agendamento) {
-    $stmt = $pdo->prepare("
-        SELECT a.*, p.nome AS nome_procedimento, p.valor, f.nome AS nome_profissional
-        FROM agendamentos a
-        INNER JOIN procedimentos p ON a.id_procedimento = p.id_procedimento
-        INNER JOIN funcionarios f ON a.id_funcionario = f.id
-        WHERE a.id_agendamento = :id
-    ");
-    $stmt->execute([':id' => $id_agendamento]);
-    $agendamento = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-if (!$agendamento) {
-    $stmt = $pdo->prepare("
-        SELECT a.*, p.nome AS nome_procedimento, p.valor, f.nome AS nome_profissional
-        FROM agendamentos a
-        INNER JOIN procedimentos p ON a.id_procedimento = p.id_procedimento
-        INNER JOIN funcionarios f ON a.id_funcionario = f.id
-        WHERE a.id_cliente = :id_cliente
-        ORDER BY a.id_agendamento DESC
-        LIMIT 1
-    ");
-    $stmt->execute([':id_cliente' => $id_cliente]);
-    $agendamento = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-if (isset($_POST['salvar_observacao']) && $agendamento) {
-    $observacao = trim($_POST['observacao'] ?? '');
-    $stmt = $pdo->prepare("UPDATE agendamentos SET observacao = :obs WHERE id_agendamento = :id");
-    $stmt->execute([
-        ':obs' => $observacao,
-        ':id'  => $agendamento['id_agendamento']
-    ]);
-
-    header('Location: meus-agendamentos.php?id=' . (int)$agendamento['id_agendamento']);
-    exit;
-}
-
-if (isset($_POST['cancelar_agendamento']) && $agendamento) {
-    $stmt = $pdo->prepare("UPDATE agendamentos SET status = 'Cancelado' WHERE id_agendamento = :id");
-    $stmt->execute([':id' => $agendamento['id_agendamento']]);
-
-    unset($_SESSION['ultimo_agendamento_id'], $_SESSION['agendamento_concluido']);
-
-    header('Location: index.php?cancelado=1');
-    exit;
-}
-
-$meses = [
-    '01' => 'Janeiro', '02' => 'Fevereiro', '03' => 'Março',
-    '04' => 'Abril',   '05' => 'Maio',      '06' => 'Junho',
-    '07' => 'Julho',   '08' => 'Agosto',    '09' => 'Setembro',
-    '10' => 'Outubro', '11' => 'Novembro',  '12' => 'Dezembro'
+$mesesCurto = [
+    '01' => 'Jan', '02' => 'Fev', '03' => 'Mar', '04' => 'Abr',
+    '05' => 'Mai', '06' => 'Jun', '07' => 'Jul', '08' => 'Ago',
+    '09' => 'Set', '10' => 'Out', '11' => 'Nov', '12' => 'Dez'
 ];
 
-if ($agendamento) {
-    $partesData = explode('-', $agendamento['data']);
-    $dia = (int)$partesData[2];
-    $mesNome = $meses[$partesData[1]];
-    $ano = $partesData[0];
-    $dataFormatada = "{$dia} de {$mesNome} de {$ano}";
-    $horarioFormatado = substr($agendamento['horario'], 0, 5);
-};
+if (isset($pdo)) {
+    try {
+        $stmtLembrete = $pdo->prepare("
+            SELECT a.*, p.nome AS procedimento, f.nome AS profissional
+            FROM agendamentos a
+            INNER JOIN procedimentos p ON a.id_procedimento = p.id_procedimento
+            INNER JOIN funcionarios f ON a.id_funcionario = f.id
+            WHERE a.id_cliente = ? AND a.status != 'Cancelado' AND CONCAT(a.data, ' ', a.horario) >= NOW()
+            ORDER BY a.data ASC, a.horario ASC
+            LIMIT 1
+        ");
+        $stmtLembrete->execute([$cliente_id]);
+        $proximoLembrete = $stmtLembrete->fetch(PDO::FETCH_ASSOC);
+
+        $stmtList = $pdo->prepare("
+            SELECT a.*, p.nome AS procedimento, f.nome AS profissional
+            FROM agendamentos a
+            INNER JOIN procedimentos p ON a.id_procedimento = p.id_procedimento
+            INNER JOIN funcionarios f ON a.id_funcionario = f.id
+            WHERE a.id_cliente = ?
+            ORDER BY a.data DESC, a.horario DESC
+        ");
+        $stmtList->execute([$cliente_id]);
+        $agendamentosDB = $stmtList->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($agendamentosDB as $row) {
+            $partes = explode('-', $row['data']);
+            $agendamentos[] = [
+                'id_agendamento' => $row['id_agendamento'],
+                'dia'          => $partes[2] ?? '01',
+                'mes'          => $mesesCurto[$partes[1] ?? '01'] ?? 'Jan',
+                'status'       => $row['status'] ?? 'Confirmado',
+                'procedimento' => $row['procedimento'] ?? 'Procedimento',
+                'hora'         => substr($row['horario'], 0, 5) . ' hrs',
+                'profissional' => $row['profissional'] ?? 'Especialista'
+            ];
+        }
+    } catch (PDOException $e) {
+    }
+}
+
+$posProcedimento = [
+    'titulo' => ($proximoLembrete && isset($proximoLembrete['procedimento'])) ? $proximoLembrete['procedimento'] . ' • Cuidados' : 'Procedimento • Cuidados',
+    'dicas' => [
+        ['numero' => '01', 'texto' => 'Use protetor solar diariamente e evite exposição.'],
+        ['numero' => '02', 'texto' => 'Evite usar maquiagem e ácidos nas próximas 24 horas.'],
+        ['numero' => '03', 'texto' => 'Não esprema a pele e mantenha o rosto bem hidratado.']
+    ]
+];
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="../css/consulta.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seus Agendamentos - Beauty Schedule</title>
+  <link rel="stylesheet" href="/app/css/consulta.css">
 </head>
 <body>
 
-    <?php require_once __DIR__ . '/../nav.php'; ?>
+  <?php require_once __DIR__ . "/../nav.php"; ?>
 
-    <main>
-        <div class="container">
+  <main class="container">
+    
+    <section class="page-header">
+      <h1>Seus Agendamentos</h1>
+      <p>Acompanhe seus próximos cuidados, lembretes e orientações pós-atendimento</p>
+    </section>
 
-            <?php if (!$agendamento): ?>
-                <div class="card-header">
-                    <div class="titulo-grupo">
-                        <span class="subtitulo">Consulta</span>
-                        <h2>Nenhum agendamento encontrado</h2>
-                    </div>
-                    <a href="index.php" class="btn-fechar" title="Fechar">x</a>
-                </div>
-                <p class="texto-vazio-consulta">Você ainda não possui agendamentos registrados.</p>
-                <a href="agendar-procedimento.php" class="btn-salvar btn-link-agendar">Fazer agendamento</a>
-            <?php else: ?>
-
-                <div class="card-header">
-                    <div class="titulo-grupo">
-                        <span class="subtitulo">Detalhes do agendamento</span>
-                        <h2><?= htmlspecialchars($agendamento['nome_procedimento']) ?></h2>
-                    </div>
-
-                    <a href="index.php" class="btn-fechar" title="Fechar">x</a>
-                </div>
-
-                <div class="status-wrapper status-wrapper-acoes">
-                    <span class="badge-status"><?= htmlspecialchars($agendamento['status']) ?></span>
-                    <a href="feedback.php?id=<?= (int)$agendamento['id_agendamento'] ?>" class="link-avaliar-topo">
-                        Avaliar atendimento
-                    </a>
-                </div>
-
-                <?php if (!empty($mensagem)): ?>
-                    <p class="mensagem-sucesso"><?= htmlspecialchars($mensagem) ?></p>
-                <?php endif; ?>
-
-                <div class="grid-detalhes">
-                    
-                    <div class="detalhe-celula">
-                        <div class="detalhe-icone">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3E452E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="4" width="18" height="17" rx="2"/>
-                                <line x1="8" y1="2" x2="8" y2="6"/>
-                                <line x1="16" y1="2" x2="16" y2="6"/>
-                                <line x1="3" y1="9" x2="21" y2="9"/>
-                            </svg>
-                        </div>
-                        <div class="detalhe-info">
-                            <span class="detalhe-label">Data</span>
-                            <span class="detalhe-valor"><?= htmlspecialchars($dataFormatada) ?></span>
-                        </div>
-                    </div>
-
-                    <div class="detalhe-celula">
-                        <div class="detalhe-icone">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="9"/>
-                                <polyline points="12 7 12 12 15 14"/>
-                            </svg>
-                        </div>
-                        <div class="detalhe-info">
-                            <span class="detalhe-label">Horário</span>
-                            <span class="detalhe-valor"><?= htmlspecialchars($horarioFormatado) ?></span>
-                        </div>
-                    </div>
-
-                    <div class="detalhe-celula">
-                        <div class="detalhe-icone">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4"/>
-                                <path d="M5 20c0-3.8 3.1-7 7-7s7 3.2 7 7"/>
-                            </svg>
-                        </div>
-                        <div class="detalhe-info">
-                            <span class="detalhe-label">Profissional</span>
-                            <span class="detalhe-valor"><?= htmlspecialchars($agendamento['nome_profissional']) ?></span>
-                        </div>
-                    </div>
-
-                    <div class="detalhe-celula">
-                        <div class="detalhe-icone">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 3l1.9 5.8L20 10.7l-5.8 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9L12 3z"/>
-                                <path d="M19 16v4M17 18h4"/>
-                            </svg>
-                        </div>
-                        <div class="detalhe-info">
-                            <span class="detalhe-label">Duração</span>
-                            <span class="detalhe-valor"><?= htmlspecialchars($agendamento['duracao_minutos']) ?> Minutos</span>
-                        </div>
-                    </div>
-
-                </div>
-
-                <form method="POST" class="form-consulta">
-                    <div class="campo-observacao">
-                        <label for="observacao" class="label-observacao">Observação para a profissional</label>
-                        <textarea 
-                            name="observacao" 
-                            id="observacao" 
-                            class="textarea-observacao" 
-                            placeholder="Ex: Tenho sensibilidade na pele, alergias ou alguma preferência para o atendimento"
-                        ><?= htmlspecialchars($agendamento['observacao'] ?? '') ?></textarea>
-                    </div>
-
-                    <div class="acoes-rodape">
-                        <button 
-                            type="button" 
-                            class="btn-cancelar"
-                            onclick="abrirModalCancelar()"
-                        >
-                            Cancelar agendamento
-                        </button>
-
-                        <button type="submit" name="salvar_observacao" class="btn-salvar">
-                            Salvar observação
-                        </button>
-                    </div>
-                </form>
-
-                <div id="modal-cancelar" class="modal-overlay" onclick="fecharModalFora(event)">
-                    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-cancelar-titulo">
-                        <div class="modal-topo">
-                            <span class="subtitulo">Confirmação</span>
-                            <button type="button" class="btn-fechar" onclick="fecharModalCancelar()" title="Fechar">x</button>
-                        </div>
-
-                        <h3 id="modal-cancelar-titulo" class="modal-titulo">Cancelar agendamento?</h3>
-                        <p class="modal-descricao">
-                            Tem certeza que deseja cancelar a reserva de 
-                            <strong><?= htmlspecialchars($agendamento['nome_procedimento']) ?></strong> 
-                            no dia <strong><?= htmlspecialchars($dataFormatada) ?></strong> às <strong><?= htmlspecialchars($horarioFormatado) ?></strong>?
-                        </p>
-
-                        <form method="POST" class="modal-acoes">
-                            <button type="button" class="btn-modal-manter" onclick="fecharModalCancelar()">
-                                Manter reserva
-                            </button>
-
-                            <button type="submit" name="cancelar_agendamento" class="btn-modal-confirmar-delete">
-                                Sim, cancelar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-            <?php endif; ?>
-
+    <?php if ($proximoLembrete): ?>
+    <section class="reminder-card">
+      <div class="reminder-left">
+        <div class="bell-circle">
+          <svg width="62" height="35" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+          </svg>
         </div>
-    </main>
+        <div class="reminder-info">
+          <span class="small-label">Lembrete do seu próximo cuidado</span>
+          <h2>Sua <?= strtolower($proximoLembrete['procedimento']) ?> - <?= !is_numeric($proximoLembrete['data_hora']) ? date('d/m/Y H:i', strtotime($proximoLembrete['data_hora'])) : $proximoLembrete['data_hora'] ?></h2>
+          <p>Chegue com 10 minutos de antecedência. Nós avisaremos você novamente 24 horas antes.</p>
+        </div>
+      </div>
+      <button class="btn-pill">Adicionar a sua agenda</button>
+    </section>
+    <?php endif; ?>
 
-    <script>
-        function abrirModalCancelar() {
-            const modal = document.getElementById('modal-cancelar');
-            if (modal) modal.classList.add('ativo');
-        }
+    <section class="schedule-section">
+      <span class="eyebrow">Próximos horários</span>
+      <h2 class="section-title">Sua agenda</h2>
 
-        function fecharModalCancelar() {
-            const modal = document.getElementById('modal-cancelar');
-            if (modal) modal.classList.remove('ativo');
-        }
+      <div class="appointments-list">
+        <?php foreach ($agendamentos as $item): ?>
+          <article class="appointment-card">
+            <div class="card-left">
+              <div class="date-badge">
+                <span class="day"><?= $item['dia'] ?></span>
+                <span class="month"><?= $item['mes'] ?></span>
+              </div>
+              <div class="appointment-details">
+                <span class="status-pill"><?= $item['status'] ?></span>
+                <h3><?= $item['procedimento'] ?></h3>
+                <p><?= $item['hora'] ?> com <?= $item['profissional'] ?></p>
+              </div>
+            </div>
+            <a href="informacao.php?id=<?= (int)$item['id_agendamento'] ?>" class="btn-pill">Detalhes</a>
+          </article>
+        <?php endforeach; ?>
+      </div>
+    </section>
 
-        function fecharModalFora(event) {
-            if (event.target.id === 'modal-cancelar') {
-                fecharModalCancelar();
-            }
-        }
+    <section class="aftercare-section">
+      <span class="eyebrow">Depois do seu procedimento</span>
+      <h2 class="section-title">Cuide dos seus resultados</h2>
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                fecharModalCancelar();
-            }
-        });
-    </script>
+      <div class="aftercare-card">
+        <div class="aftercare-header">
+          <div class="sparkle-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/>
+              <path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="small-label"><?= $posProcedimento['titulo'] ?></span>
+            <h3 class="h3">Seu cuidado continua em casa</h3>
+          </div>
+        </div>
+
+        <div class="tips-grid">
+          <?php foreach ($posProcedimento['dicas'] as $dica): ?>
+            <div class="tip-item">
+              <span class="tip-number"><?= $dica['numero'] ?></span>
+              <p><?= $dica['texto'] ?></p>
+            </div>
+          <?php endforeach; ?>
+        </div>
+
+        <a href="feedback.php" class="btn-pill">Avaliar atendimento</a>
+      </div>
+    </section>
+
+  </main>
 
 </body>
 </html>

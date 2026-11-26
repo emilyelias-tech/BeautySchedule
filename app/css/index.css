@@ -74,11 +74,11 @@
 
 /* estilização das escritas do começo */
 
-img{
+.img-principal {
     width: 800px;
     position: absolute;
     right: 0;
-    top:150px;
+    top: 150px;
     border-radius: 100px 0 0 100px;
     height: auto;
 }

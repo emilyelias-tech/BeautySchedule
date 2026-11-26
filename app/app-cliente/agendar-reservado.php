@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . "/../init.php";
 
 $concluido = $_SESSION['agendamento_concluido'] ?? [
@@ -26,7 +27,7 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento Concluído - BeautySchedule</title>
-    <link rel="stylesheet" href="../css/agendar-reservado.css">
+    <link rel="stylesheet" href="/app/css/agendar-reservado.css">
 </head>
 <body>
 
@@ -57,11 +58,11 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
                 </p>
 
                 <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
-                    <a href="consulta.php<?= $idAgendamento ? '?id=' . (int)$idAgendamento : '' ?>" class="btn-voltar-inicio">
+                    <a href="informacao.php<?= $idAgendamento ? '?id=' . (int)$idAgendamento : '' ?>" class="btn-voltar-inicio">
                         Ver detalhes do agendamento
                     </a>
 
-                    <a href="app/app-cliente/meus-agendamentos.php" style="color: #485136; font-size: 14px; text-decoration: underline;">
+                    <a href="meus-agendamento.php" style="color: #485136; font-size: 14px; text-decoration: underline;">
                         Ir para meus agendamentos
                     </a>
                 </div>

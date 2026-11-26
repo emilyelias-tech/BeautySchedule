@@ -19,25 +19,13 @@ $meses = [
 $partesData = explode('-', $agendamento['data']);
 $dia = isset($partesData[2]) ? (int)$partesData[2] : '';
 $mesNome = isset($partesData[1], $meses[$partesData[1]]) ? $meses[$partesData[1]] : '';
-$dataFormatada = "{$dia} de {$mesNome}, as {$agendamento['horario']}";
-
-$valorFormatado = number_format((float)$agendamento['valor'], 0, ',', '.');
-
+$dataFormatada = "{$dia} de {$mesNome}, às {$agendamento['horario']}";
+$valorFormatado = number_format((float)$agendamento['valor'], 2, ',', '.');
 $erro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
-    $id_cliente = (int)($_SESSION['usuario_id'] ?? $_SESSION['id_cliente'] ?? $_SESSION['cliente_id'] ?? $_SESSION['usuario']['id'] ?? $_SESSION['usuario']['id_cliente'] ?? 1);
-    
-  
-    $id_funcionario = (int)($agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 0);
-    if ($id_funcionario <= 0 && !empty($agendamento['nome_profissional'])) {
-        $stmtFunc = $pdo->prepare("SELECT id FROM funcionarios WHERE nome = :nome LIMIT 1");
-        $stmtFunc->execute([':nome' => $agendamento['nome_profissional']]);
-        $id_funcionario = (int)($stmtFunc->fetchColumn() ?: 1);
-    }
-    if ($id_funcionario <= 0) {
-        $id_funcionario = 1;
-    }
+    $id_cliente = (int)($_SESSION['id_cliente'] ?? $_SESSION['cliente_id'] ?? $_SESSION['usuario_id'] ?? 1);
+    $id_funcionario = (int)($agendamento['id_funcionario'] ?? $agendamento['id_profissional'] ?? 1);
 
     try {
         $resultado = create($pdo, 'agendamentos', [
@@ -50,10 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
             'status'          => 'Confirmado'
         ]);
 
-
-        $novoId = (is_numeric($resultado) && (int)$resultado > 0)
-            ? (int)$resultado
-            : (int)$pdo->lastInsertId();
+        $novoId = (is_numeric($resultado) && (int)$resultado > 0) ? (int)$resultado : (int)$pdo->lastInsertId();
 
         if ($novoId > 0) {
             $_SESSION['ultimo_agendamento_id'] = $novoId;
@@ -67,21 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
 
         unset($_SESSION['agendamento_atual']);
 
-        if (!headers_sent()) {
-            header('Location: agendar-reservado.php');
-            exit;
-        } else {
-            echo "<script>window.location.href = 'agendar-reservado.php';</script>";
-            exit;
-        }
+        header('Location: agendar-reservado.php');
+        exit;
     } catch (PDOException $e) {
         if ($e->getCode() == 23000) {
             $erro = "Este horário já está reservado para esta profissional. Volte e escolha outro horário ou data.";
         } else {
             $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
         }
-    } catch (Exception $e) {
-        $erro = "Erro ao confirmar agendamento: " . $e->getMessage();
     }
 }
 ?>
@@ -91,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisar Agendamento - BeautySchedule</title>
-    <link rel="stylesheet" href="../css/agendar-horario.css">
+    <link rel="stylesheet" href="/app/css/agendar-horario.css">
 </head>
 <body>
 
@@ -121,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
                 </div>
             <?php endif; ?>
 
-            <form method="POST" action="agendar-horario.php">
+            <form method="POST" action="">
                 
                 <div class="resumo-box">
                     
@@ -180,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
                 </div>
 
                 <div class="acoes-rodape">
-                    <a href="agendar-profissional.php" class="btn-voltar">Voltar</a>
+                    <a href="/app/app-cliente/agendar-profissional.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="confirmar" class="btn-continuar">
                         Continuar 
                     </button>

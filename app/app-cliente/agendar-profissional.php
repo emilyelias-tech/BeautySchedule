@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . "/../init.php";
 
 if (!isset($_SESSION['agendamento_atual'])) {
@@ -73,7 +74,7 @@ if (isset($_POST['continuar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamentos - BeautySchedule</title>
-    <link rel="stylesheet" href="../css/agendar-profissional.css">
+    <link rel="stylesheet" href="/app/css/agendar-profissional.css">
 </head>
 <body>
 
@@ -151,7 +152,7 @@ if (isset($_POST['continuar'])) {
                         <span class="label-etapa">Horário</span>
                         <div class="grid-opcoes">
                             <?php 
-                            $horarioSelecionado = $_POST['horario'] ?? '09:00';
+                            $horarioSelecionado = $_POST['horario'] ?? '10:30';
                             foreach ($horariosDisponiveis as $hora): 
                             ?>
                                 <label class="opcao-pill">
@@ -170,11 +171,8 @@ if (isset($_POST['continuar'])) {
 
                 </div>
 
-
-                 <div class="acoes-rodape">
-
                 <div class="acoes-rodape">
-                    <a href="agendar-procedimento.php" class="btn-voltar">Voltar</a>
+                    <a href="/app/app-cliente/agendar-procedimento.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="continuar" class="btn-continuar">
                         Continuar
                     </button>

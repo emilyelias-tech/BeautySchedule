@@ -1,4 +1,3 @@
 <?php
-
-header("Location: app-cliente/index.php");
+header('Location: /app-cliente/index.php');
 exit;

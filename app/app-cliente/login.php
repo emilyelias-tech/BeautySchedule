@@ -19,9 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (session_status() === PHP_SESSION_NONE) {
                     session_start();
                 }
-                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['usuario_id']   = $usuario['id'];
+                $_SESSION['cliente_id']   = $usuario['id'];
+                $_SESSION['id_cliente']   = $usuario['id'];
                 $_SESSION['usuario_nome'] = $usuario['nome'] ?? 'Cliente';
-
+                $_SESSION['usuario']      = $usuario;
+                
                 header("Location: index.php");
                 exit;
             } else {
