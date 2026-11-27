@@ -6,10 +6,6 @@ if (!isset($_SESSION['agendamento_atual'])) {
     header('Location: agendar-procedimento.php');
     exit;
 }
-
-
-
-
 $profissionais = [];
 try {
     $profissionais = readAll($pdo, 'funcionarios');
@@ -35,7 +31,6 @@ $horariosDisponiveis = [
     '16:30',
     '17:00',
     
-
 ];
 
 $erro = '';
@@ -82,11 +77,6 @@ if (isset($_POST['continuar'])) {
 
     <main>
         <div class="container">
-            
-
-    
-
-
             <div class="card-header">
                 <div class="progresso-wrapper">
                     <div class="progresso-barras">
@@ -106,15 +96,9 @@ if (isset($_POST['continuar'])) {
                 <p class="mensagem-erro"><?= htmlspecialchars($erro) ?></p>
             <?php endif; ?>
 
-            <form method="POST" class="form-etapa2">
-
-              
-                <div class="bloco-agendamento2">
-                   
-                
-                <div class="bloco-agendamento2">
-                    
-                    
+            <form method="POST" class="form-etapa2">     
+                <div class="bloco-agendamento2">             
+                <div class="bloco-agendamento2">   
                     <div class="campo-grupo">
                         <label for="profissional" class="label-etapa">Profissional</label>
                         <div class="select-wrapper">
@@ -129,9 +113,6 @@ if (isset($_POST['continuar'])) {
                             </select>
                         </div>
                     </div>
-
-    
-
                     <div class="campo-grupo">
                         <label for="data" class="label-etapa">Data</label>
                         <div class="select-wrapper">
@@ -146,8 +127,6 @@ if (isset($_POST['continuar'])) {
                             >
                         </div>
                     </div>
-
-
                     <div class="campo-grupo campo-horarios">
                         <span class="label-etapa">Horário</span>
                         <div class="grid-opcoes">

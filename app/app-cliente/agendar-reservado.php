@@ -49,7 +49,6 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
                 </div>
 
                 <span class="subtitulo-sucesso">Tudo certo</span>
-
                 <h2 class="titulo-sucesso">Seu cuidado está<br>reservado</h2>
 
                 <p class="texto-sucesso">

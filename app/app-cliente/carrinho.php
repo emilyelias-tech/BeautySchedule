@@ -5,8 +5,6 @@ require_once __DIR__ . '/../init.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-// Lógica para remover um item específico do carrinho
 if (isset($_GET['remover'])) {
     $idRemover = (int)$_GET['remover'];
     if (isset($_SESSION['carrinho'][$idRemover])) {

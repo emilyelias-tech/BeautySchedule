@@ -4,25 +4,21 @@ require_once __DIR__ . "/../init.php";
 
 $procedimentos = readAll($pdo, 'procedimentos');
 
-// Agrupa os procedimentos por categoria
 $procedimentosPorCategoria = [];
 foreach ($procedimentos as $proc) {
     $categoria = $proc['categoria'] ?? 'Outros';
     $procedimentosPorCategoria[$categoria][] = $proc;
 }
 
-// Categoria selecionada via URL (GET) ou a primeira disponível por padrão
 $categoriasDisponiveis = array_keys($procedimentosPorCategoria);
 $categoriaAtiva = $_GET['cat'] ?? ($categoriasDisponiveis[0] ?? '');
 
 $erro = '';
 
 if (isset($_POST['cadastrar'])) {
-
     $procedimento_id = $_POST['procedimento'] ?? '';
 
     if (empty($procedimento_id)) {
-
         $erro = "Por favor, selecione um cuidado antes de continuar.";
 
     } else {
@@ -34,19 +30,14 @@ if (isset($_POST['cadastrar'])) {
         );
 
         if (!$dados) {
-
             $erro = "Procedimento não encontrado.";
-
         } else {
 
             $_SESSION['agendamento_atual'] = [
 
                 'id_procedimento' => $dados['id_procedimento'],
-
                 'nome_procedimento' => $dados['nome'],
-
                 'duracao_minutos' => $dados['duracao_minutos'],
-
                 'valor' => $dados['valor'] ?? $dados['preco'] ?? 0
 
             ];
@@ -95,7 +86,6 @@ if (isset($_POST['cadastrar'])) {
                 <p class="mensagem-erro"><?= htmlspecialchars($erro) ?></p>
             <?php endif; ?>
 
-            <!-- Abas de Categorias -->
             <div class="categorias-tabs">
                 <?php foreach ($categoriasDisponiveis as $cat): ?>
                     <a href="?cat=<?= urlencode($cat) ?>" class="tab-categoria <?= $cat === $categoriaAtiva ? 'ativa' : '' ?>">

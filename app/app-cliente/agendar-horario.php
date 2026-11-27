@@ -102,7 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
             <form method="POST" action="">
                 
                 <div class="resumo-box">
-                    
                     <div class="resumo-item">
                         <div class="resumo-icone">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -149,7 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
                     </div>
 
                     <hr class="resumo-divisor">
-
                     <div class="resumo-total">
                         <span class="total-label">Total:</span>
                         <span class="total-valor">R$<?= htmlspecialchars($valorFormatado) ?></span>
@@ -167,6 +165,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
             </form>
         </div>
     </main>
-
 </body>
 </html>

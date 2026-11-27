@@ -50,7 +50,6 @@ try {
                         $imagemProduto = !empty($item['imagem']) ? $item['imagem'] : 'https://placehold.co/300x180/d5ceb8/485136?text=Beauty+Schedule';
                     ?>
                     <div class="card">
-                        <!-- Link para ver os detalhes do produto -->
                         <a href="detalhes-produto.php?id=<?php echo (int)$item['id']; ?>" class="card-link">
                             <img src="<?php echo htmlspecialchars($imagemProduto, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($item['nome'] ?? 'Produto', ENT_QUOTES, 'UTF-8'); ?>" class="card-imagem">
                             <div class="faixa-verde"></div>
@@ -64,7 +63,6 @@ try {
                             </div>
                         </a>
 
-                        <!-- Botão direto para adicionar ao carrinho passando o ID correto -->
                         <div style="padding: 0 15px 15px 15px;">
                             <a href="adicionar-carrinho.php?id=<?php echo (int)$item['id']; ?>" style="display: block; text-align: center; background-color: #4f5838; color: #D5CEB8; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold;">
                                 + Adicionar

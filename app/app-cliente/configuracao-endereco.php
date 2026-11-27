@@ -15,7 +15,6 @@ $clienteId = $_SESSION['usuario_id'] ?? $_SESSION['cliente_id'] ?? 1;
 $pdo = database();
 $mensagemSucesso = '';$mensagemErro = '';
 
-// Garante que a tabela de endereços exista no banco de dados (evita erro 500 se ainda não foi criada)
 try {
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS enderecos_clientes (
@@ -33,10 +32,8 @@ try {
         )
     ");
 } catch (Throwable $e) {
-    // Segue caso o usuário não tenha permissão DDL
 }
 
-// 1. Ação: Definir um endereço como Principal
 if (isset($_GET['principal'])) {
     $idPrincipal = (int)$_GET['principal'];
     try {
@@ -47,7 +44,6 @@ if (isset($_GET['principal'])) {
     }
 }
 
-// 2. Ação: Excluir endereço
 if (isset($_GET['excluir'])) {
     $idExcluir = (int)$_GET['excluir'];
     try {
@@ -58,7 +54,6 @@ if (isset($_GET['excluir'])) {
     }
 }
 
-// 3. Processar Formulário (Salvar Novo ou Editar Existente)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {$enderecoId  = isset($_POST['endereco_id']) ? (int)$_POST['endereco_id'] : 0;
     $titulo      = trim($_POST['titulo'] ?? 'Casa');
     $cep         = trim($_POST['cep'] ?? '');
@@ -72,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {$enderecoId  = isset($_POST['enderec
     if (!empty($cep) && !empty($rua) && !empty($numero) && !empty($cidade) && !empty($estado)) {
         try {
             if ($enderecoId > 0) {
-                // Atualizar endereço existente
                 $stmt =$pdo->prepare("
                     UPDATE enderecos_clientes 
                     SET titulo = :titulo, cep = :cep, estado = :estado, rua = :rua, numero = :numero, complemento = :comp, bairro = :bairro, cidade = :cidade
@@ -92,12 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {$enderecoId  = isset($_POST['enderec
                 ]);
                 $mensagemSucesso = "Endereço atualizado com sucesso!";
             } else {
-                // Verifica se o cliente já tem algum endereço; se não tiver, este será o Principal
                 $stmtCount =$pdo->prepare("SELECT COUNT(*) FROM enderecos_clientes WHERE cliente_id = :cid");
                 $stmtCount->execute(['cid' =>$clienteId]);
                 $ehPrincipal = ((int)$stmtCount->fetchColumn() === 0) ? 1 : 0;
 
-                // Inserir novo endereço
                 $stmt =$pdo->prepare("
                     INSERT INTO enderecos_clientes (cliente_id, titulo, cep, estado, rua, numero, complemento, bairro, cidade, principal)
                     VALUES (:cid, :titulo, :cep, :estado, :rua, :numero, :comp, :bairro, :cidade, :principal)
@@ -123,7 +115,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {$enderecoId  = isset($_POST['enderec
     }
 }
 
-// 4. Buscar endereço para edição (caso o usuário tenha clicado em "Editar endereço")
 $enderecoEditando = null;
 if (isset($_GET['editar'])) {
     $idEditar = (int)$_GET['editar'];
@@ -135,7 +126,6 @@ if (isset($_GET['editar'])) {
     }
 }
 
-// 5. Listar todos os endereços do cliente (colocando o Principal no topo)
 $listaEnderecos = [];
 try {
     $stmtList =$pdo->prepare("SELECT * FROM enderecos_clientes WHERE cliente_id = :cid ORDER BY principal DESC, id DESC");
@@ -144,7 +134,6 @@ try {
 } catch (Throwable $e) {$listaEnderecos = [];
 }
 
-// 6. Buscar dados dinâmicos do Perfil (Lateral Esquerda)
 try {
     $stmt =$pdo->prepare("SELECT * FROM clientes WHERE id = :id LIMIT 1");
     $stmt->execute(['id' =>$clienteId]);
@@ -160,7 +149,6 @@ if (!$cliente) {$cliente = [
     ];
 }
 
-// Estatísticas dinâmicas
 $totalCuidados = 12;
 $avaliacaoMedia = 4.9;
 try {
@@ -174,7 +162,6 @@ try {
     $a =$stmtAv->fetchColumn();
     if ($a !== false && $a !== null)$avaliacaoMedia = round((float)$a, 1); } catch (Throwable$e) {}
 
-// Iniciais do Avatar
 $nomeCompleto =$cliente['nome'] ?? 'Cliente';
 $partesNome = explode(' ', trim($nomeCompleto));
 $iniciais = strtoupper(substr($partesNome[0], 0, 1));
@@ -229,7 +216,6 @@ if (count($partesNome) > 1) {
                 <a href="historico.php">Histórico de pontos <span>&gt;</span></a>
             </nav>
 
-            <!-- Card Beauty Club -->
             <section class="beauty-club-card">
                 <p class="club-titulo">Beauty club</p>
                 <div class="pontos-info">

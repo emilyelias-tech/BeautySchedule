@@ -16,7 +16,6 @@ $pdo = database();
 $mensagemSucesso = '';
 $mensagemErro = '';
 
-// 1. Processar formulário de salvamento com segurança de colunas
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome  = trim($_POST['nome'] ?? '');
     $email = trim($_POST['email'] ?? '');
@@ -26,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($nome) && !empty($email)) {
         try {
-            // Tenta atualizar com todos os campos (caso as colunas já existam)
             $stmtUpdate = $pdo->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :tel, cpf = :cpf, data_nascimento = :nasc WHERE id = :id");
             $stmtUpdate->execute([
                 'nome'  => $nome,
@@ -39,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mensagemSucesso = "Dados atualizados com sucesso!";
         } catch (Throwable $e) {
             try {
-                // Fallback caso a tabela de clientes tenha apenas nome e email por enquanto
                 $stmtUpdate = $pdo->prepare("UPDATE clientes SET nome = :nome, email = :email WHERE id = :id");
                 $stmtUpdate->execute([
                     'nome'  => $nome,
@@ -56,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// 2. Buscar dados do cliente
 try {
     $stmt = $pdo->prepare("SELECT * FROM clientes WHERE id = :id LIMIT 1");
     $stmt->execute(['id' => $clienteId]);
@@ -77,12 +73,10 @@ if (!$cliente) {
     ];
 }
 
-// 3. Buscar dinamicamente "Cuidados realizados" e "Avaliação média"
-$totalCuidados = 12; // Valor padrão inicial
-$avaliacaoMedia = 4.9; // Valor padrão inicial
+$totalCuidados = 12;
+$avaliacaoMedia = 4.9;
 
 try {
-    // Tenta contar agendamentos concluídos do cliente
     $stmtAg = $pdo->prepare("SELECT COUNT(*) FROM agendamentos WHERE cliente_id = :id");
     $stmtAg->execute(['id' => $clienteId]);
     $count = $stmtAg->fetchColumn();
@@ -90,11 +84,9 @@ try {
         $totalCuidados = (int)$count;
     }
 } catch (Throwable $e) {
-    // Se a tabela agendamentos não existir, mantém o padrão
 }
 
 try {
-    // Tenta calcular a avaliação média do cliente
     $stmtAv = $pdo->prepare("SELECT AVG(nota) FROM avaliacoes WHERE cliente_id = :id");
     $stmtAv->execute(['id' => $clienteId]);
     $avg = $stmtAv->fetchColumn();
@@ -102,10 +94,8 @@ try {
         $avaliacaoMedia = round((float)$avg, 1);
     }
 } catch (Throwable $e) {
-    // Se a tabela avaliacoes não existir, mantém o padrão
 }
 
-// 4. Gerar iniciais dinâmicas para o avatar
 $nomeCompleto = $cliente['nome'] ?? 'Cliente';
 $partesNome = explode(' ', trim($nomeCompleto));
 $iniciais = strtoupper(substr($partesNome[0], 0, 1));
