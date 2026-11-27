@@ -32,7 +32,7 @@ foreach ($itensCarrinho as $item) {$totalGeral += (float)$item['preco'] * (int)$
 </head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php"; ?>
+    <?php require_once __DIR__ . "/../nav-cli.php"; ?>
 
     <main class="fundo">
         <div class="container-carrinho">

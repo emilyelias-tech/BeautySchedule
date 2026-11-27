@@ -31,7 +31,7 @@ $horario = substr($concluido['horario'] ?? '09:00', 0, 5);
 </head>
 <body>
 
-    <?php require_once __DIR__ . '/../nav.php'; ?>
+    <?php require_once __DIR__ . '/../nav-cli.php'; ?>
 
     <main>
         <div class="container container-confirmacao">

@@ -110,14 +110,14 @@ main {
     font-family: Georgia, serif;
     font-size: 28px;
     font-weight: normal;
-    color: #828966;
+    color: #FFFFFF;
     margin-bottom: 4px;
 }
 
-.perfil-section h6 {
+.perfil-section h5 {
     font-size: 11px;
     font-weight: normal;
-    color: #828966;
+    color: #FFFFFF;
     margin-bottom: 25px;
 }
 

@@ -109,11 +109,12 @@ html, body {
   border-radius: 999px;
   padding: 12px 28px;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.85rem;
+  font-size: 4;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
   transition: background-color 0.2s, transform 0.15s;
+  text-decoration: none;
 }
 
 .botao:hover {
@@ -166,8 +167,8 @@ html, body {
   margin-bottom: 4px;
 }
 
-.reminder-info p {
-  font-size: 0.95rem;
+.informacao p {
+  font-size: 14px;
   color: #1E2118;
 }
 

@@ -29,7 +29,7 @@ $imagemProduto = !empty($produto['imagem']) ? $produto['imagem'] : 'https://plac
 </head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php"; ?>
+    <?php require_once __DIR__ . "/../nav-cli.php"; ?>
 
     <section class="secao-produtos">
         <div class="detalhes-container">

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php"; ?>
+    <?php require_once __DIR__ . "/../nav-cli.php"; ?>
     
     <div class="fundo">
         <div class="container-login">

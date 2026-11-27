@@ -30,7 +30,7 @@ try {
 </head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php"; ?>
+    <?php require_once __DIR__ . "/../nav-cli.php"; ?>
 
     <main class="secao-procedimentos">
         <h1 class="titulo">Nossos <span class="verde-claro">produtos</span><br>para a sua beleza.</h1>
@@ -62,7 +62,7 @@ try {
                                 </div>
                             </div>
                         </a>
-                        
+
                         <div style="padding: 0 15px 15px 15px;">
                             <a href="adicionar-carrinho.php?id=<?php echo (int)$item['id']; ?>" style="display: block; text-align: center; background-color: #4f5838; color: #D5CEB8; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold;">
                                 + Adicionar

@@ -112,7 +112,7 @@ if (count($partesNome) > 1) {
     <title>Beauty Schedule - Dados Pessoais</title>
 </head>
 <body>
-    <?php require_once __DIR__ . "/../nav.php"; ?>
+    <?php require_once __DIR__ . "/../nav-cli.php"; ?>
     
 <main>
     <div class="coluna-esquerda">
@@ -126,7 +126,7 @@ if (count($partesNome) > 1) {
                 <?php endif; ?>
             </div>
             <h4><?php echo htmlspecialchars($cliente['nome'], ENT_QUOTES, 'UTF-8'); ?></h4>
-            <h6><?php echo htmlspecialchars($cliente['email'], ENT_QUOTES, 'UTF-8'); ?></h6>
+            <h5><?php echo htmlspecialchars($cliente['email'], ENT_QUOTES, 'UTF-8'); ?></h5>
 
             <div class="stats-box">
                 <div class="stat-item">
@@ -145,10 +145,10 @@ if (count($partesNome) > 1) {
 
         <section class="nav-perfil">
             <a href="#" class="ativo"><span>Dados pessoais</span> <span>&gt;</span></a>
-            <a href="configuracao-endereco.php"><span>Endereços</span> <span>&gt;</span></a>
-            <a href="cartoes.php"><span>Meus cartões</span> <span>&gt;</span></a>
-            <a href="configuracao.php"><span>Configurações</span> <span>&gt;</span></a>
-            <a href="historico.php"><span>Histórico de pontos</span> <span>&gt;</span></a>
+            <a href="/app/app-cliente/configuracao-enderecos.php"><span>Endereços</span> <span>&gt;</span></a>
+            <a href="/app/app-cliente/configuracao-meus-cartoes.php"><span>Meus cartões</span> <span>&gt;</span></a>
+            <a href="/app/app-cliente/configuracao-preferencias.php"><span>Configurações</span> <span>&gt;</span></a>
+            <a href="/app/app-cliente/configuracao-historico.php"><span>Histórico de pontos</span> <span>&gt;</span></a>
         </section>
 
         <section class="club-card">

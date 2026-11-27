@@ -23,7 +23,7 @@ $usuarioLogado = isset($_SESSION['usuario_id']);
 </head>
 <body>
 
-     <?php require_once __DIR__ . "/../nav.php" ?>
+     <?php require_once __DIR__ . "/../nav-cli.php" ?>
 
     <div class="nomes">
 

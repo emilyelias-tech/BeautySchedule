@@ -30,7 +30,7 @@ try {
 </head>
 <body>
 
-    <?php require_once __DIR__ . "/../nav.php"; ?>
+    <?php require_once __DIR__ . "/../nav-cli.php"; ?>
 
     <main class="secao-produtos">
         <h1 class="titulo">Nossos <span class="verde-claro">produtos</span><br>para a sua beleza.</h1>

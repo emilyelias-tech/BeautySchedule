@@ -150,7 +150,7 @@ function formatarDataCompleta(string $dataIso, array $meses) {
 </head>
 <body>
 
-    <?php require_once __DIR__ . '/../nav.php'; ?>
+    <?php require_once __DIR__ . '/../nav-cli.php'; ?>
 
     <main>
         <div class="container container-todos">
