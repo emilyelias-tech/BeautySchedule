@@ -1,0 +1,235 @@
+
+@font-face {
+    font-family: Angleton;
+    src: url("../fontes/TAN-Angleton-Regular.ttf");
+}
+
+html, body {
+    background-image: url("../imagens/fundo.png");
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Angleton, sans-serif;
+}
+
+.navbar {
+    width: 235px;
+    height: 100vh;
+    min-height: 550px;
+    background-color: #2e321e;
+    display: flex;
+    flex-direction: column;
+    padding: 35px 25px 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 1px solid #454832;
+}
+
+.brand {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.brand a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.brand .img {
+    width: 230px;
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.nav-links a {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 49px;
+    padding: 0 17px;
+    border-radius: 11px;
+    text-decoration: none;
+    color: #c2c2b7;
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+    transition: 0.2s;
+}
+
+.nav-links a i {
+    font-size: 19px;
+    width: 20px;
+    text-align: center;
+}
+
+.nav-links a.ativo5 {
+    background-color: #e9e2c4;
+    color: #303321;
+}
+
+.conteudo {
+    width: 100%;
+    max-width: 1450px;
+    margin: auto;
+    padding: 38px 4%;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.subtitulo {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #566044;
+}
+
+.cabecalho h1 {
+    font-family: Georgia, serif;
+    font-size: 46px;
+    font-weight: normal;
+    margin-top: 24px;
+    color: #30351f;
+}
+
+.cabecalho p {
+    font-size: 13px;
+    color: #88816e;
+    margin-top: 12px;
+}
+
+.botao-salvar {
+    background-color: #41472b;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 19px 26px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao-salvar:hover {
+    background-color: #30351f;
+}
+
+.perfil {
+    background-color: #41472b;
+    border-radius: 20px;
+    padding: 30px 27px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 22px;
+    min-height: 183px;
+}
+
+.foto-container {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+}
+
+.foto-perfil {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #e5e1d5;
+}
+
+.informacoes-perfil h2 {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: normal;
+    color: #f5f3e9;
+    margin-bottom: 10px;
+}
+
+.informacoes-perfil span {
+    color: #c0bea9;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.botao-foto {
+    display: block;
+    width: fit-content;
+    margin-top: 17px;
+    padding: 13px 20px;
+    border: 1px solid #8b8e75;
+    border-radius: 30px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.formulario {
+    background-color: #fffdf8;
+    border: 1px solid #ded5bd;
+    border-radius: 20px;
+    padding: 30px 27px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.campo label {
+    font-size: 11px;
+    color: #827966;
+}
+
+.campo input,
+.campo textarea {
+    width: 100%;
+    border: 1px solid #ded5bd;
+    border-radius: 14px;
+    background-color: #fffdf9;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #34391f;
+    outline: none;
+}
+
+.campo input {
+    height: 50px;
+}
+
+.campo textarea {
+    min-height: 99px;
+    resize: vertical;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    border-color: #41472b;
+}
+
+.mensagem {
+    background-color: #e6eadb;
+    color: #41472b;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}

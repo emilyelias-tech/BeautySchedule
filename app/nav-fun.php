@@ -36,7 +36,7 @@ $baseFuncionario = $isInFuncionario ? '.' : 'app-funcionario';
                 Serviços
             </a>
 
-            <a href="<?= $baseFuncionario ?>/perfil.php" class="ativo5">>
+            <a href="<?= $baseFuncionario ?>/perfil-profissional.php" class="ativo5">>
                 <i class="fa-regular fa-user"></i>
                 Perfil
             </a>

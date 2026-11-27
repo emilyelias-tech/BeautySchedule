@@ -76,16 +76,6 @@ html, body {
     color: #303321;
 }
 
-.nav-links a:hover {
-    background-color: #41452e;
-    color: #ffffff;
-}
-
-.nav-links a.ativo:hover {
-    background-color: #e9e2c4;
-    color: #303321;
-}
-
 .conteudo {
     margin-left: 262px;
     padding: 0 49px 40px;

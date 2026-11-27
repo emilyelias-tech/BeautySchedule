@@ -1,0 +1,282 @@
+@font-face {
+    font-family: Angleton;
+    src: url("../fontes/TAN-Angleton-Regular.ttf");
+}
+
+html, body {
+    background-image: url("../imagens/fundo.png");
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Angleton, sans-serif;
+}
+
+.navbar {
+    width: 235px;
+    height: 100vh;
+    min-height: 550px;
+    background-color: #2e321e;
+    display: flex;
+    flex-direction: column;
+    padding: 35px 25px 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 1px solid #454832;
+}
+
+.brand {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.brand a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.brand .img {
+    width: 230px;
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.nav-links a {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 49px;
+    padding: 0 17px;
+    border-radius: 11px;
+    text-decoration: none;
+    color: #c2c2b7;
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+    transition: 0.2s;
+}
+
+.nav-links a i {
+    font-size: 19px;
+    width: 20px;
+    text-align: center;
+}
+
+.nav-links a.ativo3 {
+    background-color: #e9e2c4;
+    color: #303321;
+}
+
+.conteudo {
+    margin-left: 262px;
+    padding: 35px 49px;
+    min-height: 100vh;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.identificacao {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #77704f;
+    margin-bottom: 24px;
+}
+
+.cabecalho h1 {
+    font-family: Georgia, serif;
+    font-size: 46px;
+    font-weight: normal;
+    color: #172b27;
+    margin-bottom: 12px;
+}
+
+.subtitulo {
+    font-size: 13px;
+    color: #77746a;
+}
+
+.botao-novo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background-color: #41472b;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 18px 27px;
+    border-radius: 35px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.botao-novo:hover {
+    background-color: #555b3b;
+}
+
+.form-pesquisa {
+    width: 55%;
+    height: 49px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #fffefa;
+    border: 1px solid #ded7c2;
+    border-radius: 13px;
+    padding: 0 18px;
+    margin-bottom: 21px;
+}
+
+.form-pesquisa i {
+    font-size: 17px;
+    color: #777b60;
+}
+
+.form-pesquisa input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 12px;
+    color: #303321;
+}
+
+.form-pesquisa input::placeholder {
+    color: #aaa596;
+}
+
+.tabela-clientes {
+    width: 100%;
+    background-color: #fffefa;
+    border: 1px solid #ded7c2;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.tabela-topo {
+    min-height: 43px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.7fr;
+    align-items: center;
+    background-color: #f2eedc;
+    border-bottom: 1px solid #ded7c2;
+    padding: 0 24px;
+}
+
+.tabela-topo span {
+    font-size: 9px;
+    color: #77704f;
+}
+
+.linha-cliente {
+    min-height: 71px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.7fr;
+    align-items: center;
+    padding: 0 24px;
+    border-bottom: 1px solid #ded7c2;
+}
+
+.linha-cliente:last-child {
+    border-bottom: none;
+}
+
+.dados-cliente {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.iniciais {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    background-color: #dce0cc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #41472b;
+}
+
+.nome-telefone {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nome-telefone strong {
+    font-size: 12px;
+    font-weight: 600;
+    color: #20251e;
+}
+
+.nome-telefone span {
+    font-size: 9px;
+    color: #77746a;
+}
+
+.total-atendimentos {
+    font-size: 12px;
+    color: #20251e;
+}
+
+.ultima-visita {
+    font-size: 12px;
+    color: #20251e;
+}
+
+.status-cliente {
+    display: flex;
+    align-items: center;
+}
+
+.status-cliente span {
+    width: 100%;
+    max-width: 135px;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 9px;
+    color: #303321;
+}
+
+.ativa {
+    background-color: #dce0cc;
+}
+
+.sem-atendimentos {
+    background-color: #f1e2b9;
+}
+
+.nenhum-cliente {
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #898675;
+}
+
+.nenhum-cliente i {
+    font-size: 25px;
+}
+
+.nenhum-cliente p {
+    font-size: 13px;
+}
