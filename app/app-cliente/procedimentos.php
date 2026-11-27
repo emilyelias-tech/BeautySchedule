@@ -1,19 +1,23 @@
 <?php
+declare(strict_types=1);
 require_once __DIR__ . "/../init.php";
 
-$pdo = database();
-$busca = isset($_GET['busca']) ? trim($_GET['busca']) : '';
-
-if ($busca !== '') {
-    $sql = "SELECT * FROM procedimentos WHERE ativo = 1 AND nome LIKE :busca ORDER BY id_procedimento DESC";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':busca', '%' . $busca . '%');
-    $stmt->execute();
-    $procedimentosFiltrados = $stmt->fetchAll();
-} else {
-    $sql = "SELECT * FROM procedimentos WHERE ativo = 1 ORDER BY id_procedimento DESC";
-    $stmt = $pdo->query($sql);
-    $procedimentosFiltrados = $stmt->fetchAll();
+try {
+    $pdo = database();
+    
+    $busca = isset($_GET['busca']) ? trim($_GET['busca']) : '';
+    
+    if (!empty($busca)) {
+        $stmt = $pdo->prepare("SELECT DISTINCT * FROM procedimentos WHERE nome LIKE :busca OR materiais LIKE :busca ORDER BY id DESC");
+        $stmt->execute(['busca' => '%' . $busca . '%']);
+    } else {
+        $stmt = $pdo->query("SELECT DISTINCT * FROM procedimentos ORDER BY id DESC");
+    }
+    
+    $procedimentosFiltrados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    $procedimentosFiltrados = [];
+    $busca = '';
 }
 ?>
 <!DOCTYPE html>
@@ -21,23 +25,20 @@ if ($busca !== '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beauty Schedule - Procedimentos</title>
-    <link rel="stylesheet" href="/app/css/produtos.css">
+    <title>Beauty Schedule - Produtos</title>
+    <link rel="stylesheet" href="../css/procedimentos.css">
 </head>
 <body>
 
     <?php require_once __DIR__ . "/../nav.php"; ?>
 
-    <section class="secao-produtos">
-        <h1 class="titulo">
-            <span class="verde-claro">Nossos</span> procedimentos<br>
-            <span class="verde-claro">para a</span> sua beleza.
-        </h1>
+    <main class="secao-procedimentos">
+        <h1 class="titulo">Nossos <span class="verde-claro">produtos</span><br>para a sua beleza.</h1>
 
-        <form method="GET" action="" class="barra-pesquisa-container">
-            <input type="text" name="busca" id="inputBusca" placeholder="Pesquisar procedimento..." value="<?php echo htmlspecialchars($busca); ?>">
+        <form method="GET" action="produtos.php" class="barra-pesquisa-container">
+            <input type="text" name="busca" id="inputBusca" placeholder="Pesquisar procedimentos..." value="<?php echo htmlspecialchars($busca ?? '', ENT_QUOTES, 'UTF-8'); ?>">
             <button type="submit" class="btn-buscar">Buscar</button>
-            <?php if ($busca !== ''): ?>
+            <?php if (!empty($busca)): ?>
                 <a href="procedimentos.php" class="btn-limpar">Limpar</a>
             <?php endif; ?>
         </form>
@@ -46,27 +47,36 @@ if ($busca !== '') {
             <?php if (count($procedimentosFiltrados) > 0): ?>
                 <?php foreach ($procedimentosFiltrados as $item): ?>
                     <?php 
-                        $imagemProc = !empty($item['imagem']) ? $item['imagem'] : 'https://placehold.co/300x300/e8dfd5/495437?text=Procedimento';
+                        $imagemProduto = !empty($item['imagem']) ? $item['imagem'] : 'https://placehold.co/300x180/d5ceb8/485136?text=Beauty+Schedule';
                     ?>
-                    <a href="agendar-procedimento.php" class="card-link">
-                        <div class="card">
-                            <img src="<?php echo htmlspecialchars($imagemProc); ?>" alt="<?php echo htmlspecialchars($item['nome'] ?? 'Procedimento'); ?>" class="card-imagem">
+                    <div class="card">
+                        <!-- Link para ver os detalhes do produto -->
+                        <a href="detalhes-procedimentos.php?id=<?php echo (int)$item['id']; ?>" class="card-link">
+                            <img src="<?php echo htmlspecialchars($imagemProduto, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($item['nome'] ?? 'Produto', ENT_QUOTES, 'UTF-8'); ?>" class="card-imagem">
                             <div class="faixa-verde"></div>
                             <div class="card-info">
-                                <p class="nome-produto"><?php echo htmlspecialchars($item['nome'] ?? 'Sem nome'); ?></p>
+                                <p class="nome-procedimentos"><?php echo htmlspecialchars($item['nome'] ?? 'Sem nome', ENT_QUOTES, 'UTF-8'); ?></p>
+                                
                                 <div class="card-rodape">
-                                    <span class="preco">R$ <?php echo number_format((float)($item['valor'] ?? 0), 2, ',', '.'); ?></span>
+                                    <span class="preco">R$ <?php echo number_format((float)($item['preco'] ?? 0), 2, ',', '.'); ?></span>
                                     <span class="botao-seta">➔</span>
                                 </div>
                             </div>
+                        </a>
+
+                        <!-- Botão direto para adicionar ao carrinho passando o ID correto -->
+                        <div style="padding: 0 15px 15px 15px;">
+                            <a href="adicionar-carrinho.php?id=<?php echo (int)$item['id']; ?>" style="display: block; text-align: center; background-color: #4f5838; color: #D5CEB8; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold;">
+                                + Adicionar
+                            </a>
                         </div>
-                    </a>
+                    </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p class="sem-resultados">Nenhum procedimento encontrado para "<?php echo htmlspecialchars($busca); ?>".</p>
+                <p class="sem-resultados">Nenhum produto encontrado para "<?php echo htmlspecialchars($busca, ENT_QUOTES, 'UTF-8'); ?>".</p>
             <?php endif; ?>
         </div>
-    </section>
+    </main>
 
 </body>
 </html>

@@ -131,7 +131,7 @@ main {
     padding: 40px 48px 44px 48px;
     position: relative;
     box-shadow: 0 12px 32px rgba(43, 43, 43, 0.08);
-    border-radius: 35px;
+    border-radius: 20px;
 }
 
 .container select{
@@ -176,7 +176,7 @@ main {
     justify-content: center;
     font-size: 16px;
     transition: all 0.2s ease;
-    border-radius: 35px;
+    border-radius: 30px;
 }
 
 /* Agendar procedimento*/
@@ -341,4 +341,28 @@ form {
     color: #000000;
     font-size: 15px;
     border: none;
+}
+
+.categorias-tabs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+.tab-categoria {
+    background-color: #D5CEB8;
+    color: #4f5838;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.tab-categoria.ativa, .tab-categoria:hover {
+    background-color: #667248;
+    color: #D5CEB8;
 }

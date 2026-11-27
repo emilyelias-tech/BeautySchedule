@@ -88,8 +88,8 @@ foreach ($itensCarrinho as $item) {$totalGeral += (float)$item['preco'] * (int)$
             <?php else: ?>
                 <div class="carrinho-vazio-box">
                     <p class="carrinho-vazio">O seu carrinho está vazio no momento.</p>
-                    <p class="carrinho-subtexto">Explore a nossa linha de produtos botânicos para a sua beleza.</p>
-                    <a href="produtos.php" class="btn-voltar">Explorar Produtos</a>
+                    <br>
+                    <a href="produtos.php" class="btn-voltar">Olhar Produtos</a>
                 </div>
             <?php endif; ?>
         </div>

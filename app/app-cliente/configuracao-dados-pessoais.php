@@ -149,6 +149,7 @@ if (count($partesNome) > 1) {
                     <span class="stat-desc">Sua avaliação média</span>
                 </div>
             </div>
+            <a href="login.php">Sair da conta</a>
         </section>
 
         <section class="nav-perfil">

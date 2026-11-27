@@ -89,13 +89,13 @@ $posProcedimento = [
             <path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
           </svg>
         </div>
-        <div class="reminder-info">
+        <div class="informacao">
           <span class="small-label">Lembrete do seu próximo cuidado</span>
-          <h2>Sua <?= strtolower($proximoLembrete['procedimento']) ?> - <?= !is_numeric($proximoLembrete['data_hora']) ? date('d/m/Y H:i', strtotime($proximoLembrete['data_hora'])) : $proximoLembrete['data_hora'] ?></h2>
+          <h2>Procedimento: <?= strtolower($proximoLembrete['procedimento']) ?> - <?= !is_numeric($proximoLembrete['data_hora']) ? date('d/m/Y H:i', strtotime($proximoLembrete['data_hora'])) : $proximoLembrete['data_hora'] ?></h2>
           <p>Chegue com 10 minutos de antecedência. Nós avisaremos você novamente 24 horas antes.</p>
         </div>
       </div>
-      <button class="btn-pill">Adicionar a sua agenda</button>
+      <button class="botao">Adicionar a sua agenda</button>
     </section>
     <?php endif; ?>
 
@@ -117,7 +117,7 @@ $posProcedimento = [
                 <p><?= $item['hora'] ?> com <?= $item['profissional'] ?></p>
               </div>
             </div>
-            <a href="informacao.php?id=<?= (int)$item['id_agendamento'] ?>" class="btn-pill">Detalhes</a>
+            <a href="informacao.php?id=<?= (int)$item['id_agendamento'] ?>" class="botao">Detalhes</a>
           </article>
         <?php endforeach; ?>
       </div>
@@ -150,7 +150,7 @@ $posProcedimento = [
           <?php endforeach; ?>
         </div>
 
-        <a href="feedback.php" class="btn-pill">Avaliar atendimento</a>
+        <a href="feedback.php" class="botao">Avaliar atendimento</a>
       </div>
     </section>
 

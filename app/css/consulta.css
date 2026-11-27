@@ -104,8 +104,7 @@ html, body {
   color: #4A5638;
 }
 
-/* Botões */
-.btn-pill {
+.botao {
   background-color: #D9D1BA;
   color: #1E2118;
   border: none;
@@ -119,7 +118,7 @@ html, body {
   transition: background-color 0.2s, transform 0.15s;
 }
 
-.btn-pill:hover {
+.botao:hover {
   background-color: #e4decb;
   transform: translateY(-1px);
 }
@@ -127,8 +126,8 @@ html, body {
 /* Card de Lembrete Totalmente Esticado */
 .reminder-card {
   background-color: #BDB6A2;
-  border-radius: 24px;
-  padding: 26px 40px;
+  border-radius: 20px;
+  padding: 26px 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -162,7 +161,7 @@ html, body {
   margin-bottom: 4px;
 }
 
-.reminder-info h2 {
+.informacao h2 {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.45rem;
   font-weight: 500;

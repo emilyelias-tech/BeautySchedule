@@ -282,3 +282,9 @@ main {
     font-size: 17px;
     margin-bottom: 24px;
 }
+
+.perfil-section a{
+    color: rgb(175, 40, 40);
+    text-decoration: none;
+    font-size: 15PX;
+}
