@@ -1,0 +1,406 @@
+﻿html, body {
+    background-image: url("../imagens/fundo.png");
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Angleton;
+}
+
+@font-face {
+    font-family: Angleton;
+    src: url("../fontes/TAN-Angleton-Regular.ttf");
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #bbb59e;
+    padding: 5px 35px;
+    width: 100%;
+    min-height: 130px;
+    box-sizing: border-box;
+}
+
+.img {
+    width: auto;
+    height: 120px;
+    position: static;
+    margin: 0;
+    border-radius: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    font-size: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4f5838;
+    font-size: 20px;
+}
+
+.nav-links a:hover {
+    color: #858354;
+    border-bottom: 2px solid #4f5838;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    text-decoration: none;
+}
+
+.nav-mage {
+    width: 60px;
+    height: 65px;
+    object-fit: contain;
+    display: block;
+}
+
+.img-principal {
+    width: 800px;
+    position: absolute;
+    right: 0;
+    top: 150px;
+    border-radius: 100px 0 0 100px;
+    height: auto;
+}
+
+.nome{
+    color: #4f5838;
+    font-size: 70px;
+    margin-top: 160px;
+    margin-left: 100px;
+}
+
+.nome2{
+    color: #4f5838;
+    font-size: 70px;
+    margin-top: -99px;
+    margin-left: 100px;
+}
+
+.nomes h4 {
+    color: #858354;
+    font-size: 30px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    margin-top: -30px;
+    font-family: josefinsans;
+    letter-spacing: 2px;
+}
+
+.nomes button {
+    background-color: hsl(77, 22%, 28%);
+    padding: 20px 40px;
+    border-radius: 25px;
+    border: none;
+    margin-left: 100px;
+    font-size: 23px;
+    color: #f8f8f7;
+    cursor: pointer;
+    margin-top: 20px;
+    
+}
+
+.fotoloh {
+    width: 550px;
+    height: 450px;
+    position: absolute;
+    right: 0;
+    top: 113px;
+    border-radius: 100px 0 0 100px;
+    object-fit: cover;
+}
+
+.club {
+    background-color: #4f5838;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 350px 80px;
+    padding: 15px;
+    border-radius: 30px;
+    gap: 30px;
+}
+
+.indica {
+    flex: 1;
+}
+
+.indica h5 {
+    margin-left: 202px;
+    color: #858354;
+}
+
+.indica h1 {
+    margin-left: 202px;
+    color: #858354;
+    margin-top: -17px;
+}
+
+.indica h4 {
+    margin-left: 202px;
+    color: #858354;
+    margin-top: -14px;
+}
+
+.indica img {
+    width: 150px;
+    height: auto;
+    position: static;
+    border-radius: 0;
+}
+
+.pontos {
+    flex: 1;
+}
+
+.pontos h4 {
+    color: #858354;
+    margin-left: 98px;
+}
+
+.pontos progress {
+    width: 75%;
+    margin-left: 98px;
+    margin-top: 20px;
+}
+
+.pontos button {
+    background-color: #858354;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    font-size: 17px;
+    color: white;
+    margin-left: 98px;
+    cursor: pointer;
+}
+
+.rodape {
+    width: 100%;
+    background-color: #4F5838;
+    color: #F5F0E5;
+    padding: 70px 6% 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', Georgia, serif;
+    margin-top: 440px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding-bottom: 60px;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 45px;
+}
+
+.titulo > i {
+    font-size: 55px;
+    color: #D8D1BA;
+    border-right: 2px solid #D8D1BA;
+    padding-right: 25px;
+}
+
+.rodape h2 {
+    font-size: 35px;
+    font-weight: 500;
+    color: #F5F0E5;
+    margin: 0 0 8px;
+    font-family: Angleton;
+}
+
+.titulo p {
+    font-size: 17px;
+    color: #D8D1BA;
+    margin: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-left: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    text-decoration: none;
+    cursor: pointer; 
+}
+
+.item:hover h3 {
+    color: #868439;
+}
+
+.icone {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 50%;
+    background-color: #D8D1BA;
+    color: #4F5838;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.item h3 {
+    font-size: 19px;
+    color: #F5F0E5;
+    margin: 0 0 5px;
+}
+
+.item p {
+    font-size: 15px;
+    color: #D8D1BA;
+    margin: 0;
+}
+
+.local .titulo {
+    margin-bottom: 25px;
+}
+
+.icone-local {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    border-radius: 50%;
+    background-color: #868439;
+    color: #F5F0E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.local iframe {
+    width: 100%;
+    max-width: 650px;
+    height: 260px;
+    border: 3px solid #D8D1BA;
+    border-radius: 20px;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.endereco {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.endereco p {
+    color: #F5F0E5;
+    font-size: 16px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.endereco i {
+    color: #868439;
+    margin-right: 10px;
+}
+
+.endereco a {
+    color: #F5F0E5;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.endereco a:hover {
+    color: gainsboro;
+}
+
+.final {
+    border-top: 1px solid #D8D1BA;
+    padding: 22px 0;
+    text-align: center;
+}
+
+.final p {
+    color: #D8D1BA;
+    font-size: 13px;
+    margin: 0;
+}
+
+.modal-agendamento {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.58);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-agendamento:target {
+    display: flex;
+}
+
+.modal-agendamento-conteudo {
+    position: relative;
+    width: min(760px, 100%);
+    height: min(850px, 92vh);
+    background: #D8D1BA;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
+}
+
+.iframe-agendamento {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #D8D1BA;
+}
+
+.modal-agendamento-fechar {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: #CFC8B2;
+    border: 1px solid rgba(72, 81, 54, 0.35);
+    color: #2B2B2B;
+    text-decoration: none;
+    font: 24px Arial, sans-serif;
+}
+
+.modal-agendamento-fechar:hover {
+    background: #485136;
+    color: #FFFFFF;
+}

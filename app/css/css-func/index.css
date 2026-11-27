@@ -1,0 +1,359 @@
+@font-face {
+    font-family: Angleton;
+    src: url("../fontes/TAN-Angleton-Regular.ttf");
+}
+
+html, body {
+    background-image: url("../imagens/fundo.png");
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Angleton, sans-serif;
+}
+
+.navbar {
+    width: 235px;
+    height: 100vh;
+    min-height: 550px;
+    background-color: #2e321e;
+    display: flex;
+    flex-direction: column;
+    padding: 35px 25px 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 1px solid #454832;
+}
+
+.brand {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.brand a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.brand .img {
+    width: 230px;
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.nav-links a {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 49px;
+    padding: 0 17px;
+    border-radius: 11px;
+    text-decoration: none;
+    color: #c2c2b7;
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+    transition: 0.2s;
+}
+
+.nav-links a i {
+    font-size: 19px;
+    width: 20px;
+    text-align: center;
+}
+
+.nav-links a.ativo1 {
+    background-color: #e9e2c4;
+    color: #303321;
+}
+
+.nav-links a:hover {
+    background-color: #41452e;
+    color: #ffffff;
+}
+
+.nav-links a.ativo:hover {
+    background-color: #e9e2c4;
+    color: #303321;
+}
+
+.conteudo {
+    margin-left: 262px;
+    padding: 0 49px 40px;
+    min-height: 100vh;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    margin-bottom: 40px;
+}
+
+.data-atual {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #77704f;
+    margin-bottom: 25px;
+}
+
+.cabecalho h1 {
+    font-family: Georgia, serif;
+    font-size: 46px;
+    font-weight: normal;
+    color: #172b27;
+    margin-bottom: 12px;
+}
+
+.subtitulo {
+    font-size: 13px;
+    color: #77746a;
+}
+
+.botao-agendamento {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background-color: #41472b;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 18px 26px;
+    border-radius: 35px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.botao-agendamento:hover {
+    background-color: #555b3b;
+}
+
+.cartoes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.cartao {
+    background-color: #fffefa;
+    border: 1px solid #ded7c2;
+    border-radius: 20px;
+    padding: 21px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 117px;
+}
+
+.icone {
+    width: 43px;
+    height: 43px;
+    min-width: 43px;
+    background-color: #f2eedc;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #41472b;
+    font-size: 19px;
+}
+
+.informacoes p {
+    font-size: 10px;
+    color: #77746a;
+    margin-bottom: 13px;
+}
+
+.informacoes h2 {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    font-weight: normal;
+    color: #172b27;
+    margin-bottom: 5px;
+}
+
+.informacoes span {
+    font-size: 9px;
+    color: #77746a;
+}
+
+.area-inferior {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 20px;
+}
+
+.painel {
+    background-color: #fffefa;
+    border: 1px solid #ded7c2;
+    border-radius: 20px;
+    padding: 28px 26px;
+}
+
+.identificacao {
+    color: #766e4d;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.painel h2 {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    font-weight: normal;
+    color: #172b27;
+}
+
+.titulo-painel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ded7c2;
+    padding-bottom: 22px;
+}
+
+.titulo-painel a {
+    color: #172b27;
+    text-decoration: none;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.titulo-painel a i {
+    font-size: 16px;
+}
+
+.agendamento {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-height: 71px;
+    border-bottom: 1px solid #ded7c2;
+}
+
+.horario {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    min-width: 44px;
+    color: #172b27;
+}
+
+.ponto {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    background-color: #41472b;
+    border-radius: 50%;
+}
+
+.detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 0;
+}
+
+.detalhes strong {
+    font-size: 12px;
+    color: #20251e;
+    font-weight: 600;
+}
+
+.detalhes span {
+    font-size: 10px;
+    color: #77746a;
+}
+
+.detalhes small {
+    font-size: 9px;
+    color: #918b7b;
+}
+
+.status {
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.confirmado {
+    background-color: #dce0cc;
+    color: #41472b;
+}
+
+.pendente {
+    background-color: #f1e2b9;
+    color: #806126;
+}
+
+.concluido {
+    background-color: #dce0cc;
+    color: #41472b;
+}
+
+.seta {
+    font-size: 13px;
+    color: #303321;
+}
+
+.sem-agendamentos {
+    font-size: 13px;
+    color: #77746a;
+    padding: 30px 0;
+}
+
+.semana-painel h2 {
+    margin-bottom: 30px;
+}
+
+.grafico {
+    height: 220px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 8px;
+    border-bottom: 1px solid #ded7c2;
+}
+
+.barra-container {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+}
+
+.barra {
+    width: 100%;
+    max-width: 34px;
+    min-height: 3px;
+    background-color: #d9ddc9;
+    border-radius: 7px 7px 0 0;
+}
+
+.barra-destaque {
+    background-color: #41472b;
+}
+
+.barra-container span {
+    font-size: 9px;
+    color: #77746a;
+    margin-bottom: -20px;
+}
