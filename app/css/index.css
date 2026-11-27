@@ -12,6 +12,8 @@
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
+/* Navbar */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -63,8 +65,8 @@
 }
 
 .nav-mage {
-    width: 60px;
-    height: 65px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     display: block;
 }
@@ -251,6 +253,8 @@
     text-decoration: none;
     cursor: pointer; 
 }
+
+
 
 .item:hover h3 {
     color: #868439;

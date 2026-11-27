@@ -35,6 +35,10 @@ $usuarioLogado = isset($_SESSION['usuario_id']);
         <a href="/app/app-cliente/agendar-procedimento.php" class="btn-agendar-home">
             <button type="button">Agende seu horario →</button>
         </a>
+        <br><br>
+        <a href="/app/app-funcionario/index.php" class="btn-agendar-home">
+            <button type="button">Funcionario</button>
+        </a>
 
     </div>
 
