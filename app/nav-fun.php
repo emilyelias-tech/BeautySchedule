@@ -16,27 +16,27 @@ $baseFuncionario = $isInFuncionario ? '.' : 'app-funcionario';
     </div>
 
         <nav class="nav-links">
-            <a href="<?= $baseFuncionario ?>/index.php" class="ativo">
+            <a href="<?= $baseFuncionario ?>/index.php" class="ativo1">
                 <i class="fa-solid fa-house"></i>
                 Início
             </a>
 
-            <a href="<?= $baseFuncionario ?>/agenda.php">
+            <a href="<?= $baseFuncionario ?>/agenda.php" class="ativo2">
                 <i class="fa-regular fa-calendar"></i>
                 Agenda
             </a>
 
-            <a href="<?= $baseFuncionario ?>/clientes.php">
+            <a href="<?= $baseFuncionario ?>/clientes.php" class="ativo3">>
                 <i class="fa-solid fa-user-plus"></i>
                 Clientes
             </a>
 
-            <a href="<?= $baseFuncionario ?>/servicos.php">
+            <a href="<?= $baseFuncionario ?>/servicos.php" class="ativo4">>
                 <i class="fa-solid fa-scissors"></i>
                 Serviços
             </a>
 
-            <a href="<?= $baseFuncionario ?>/perfil.php">
+            <a href="<?= $baseFuncionario ?>/perfil.php" class="ativo5">>
                 <i class="fa-regular fa-user"></i>
                 Perfil
             </a>
