@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -6,11 +7,11 @@
 
 @font-face {
   font-family: Angleton;
-  src: url("/app/fontes/TAN-Angleton-Regular.ttf");
+  src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
 html, body {
-  background-image: url("/app/imagens/fundo.png");
+  background-image: url("../imagens/fundo.png");
   background-color: #DDD4B9;
   width: 100%;
   overflow-x: hidden;
@@ -43,7 +44,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 50px;
-  font-size: 30px;
+  font-size: 20px; /* Padronizado para o tamanho correto dos links */
 }
 
 .nav-links a {

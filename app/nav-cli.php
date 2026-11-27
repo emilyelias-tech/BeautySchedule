@@ -21,6 +21,7 @@ $baseCliente = $isInCliente ? '.' : 'app-cliente';
         <a href="<?= $baseCliente ?>/agendar-procedimento.php">Agendar</a>
         <a href="<?= $baseCliente ?>/consulta.php">Consulta</a>
         <a href="<?= $baseCliente ?>/procedimentos.php">Procedimentos</a>
+        <a href="<?= $baseCliente ?>/meus-agendamentos.php">Agendamentos</a>
     </nav>
 
     <div class="nav-actions">

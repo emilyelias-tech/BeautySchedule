@@ -19,6 +19,7 @@ $usuarioLogado = isset($_SESSION['usuario_id']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Inicio | BeautySchedule</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
@@ -53,7 +54,7 @@ $usuarioLogado = isset($_SESSION['usuario_id']);
                     <h1>Seu cuidado vale pontos</h1>
 
                     <h4>
-                        Voce tem 680 pontos e ja pode resgatar
+                        Você tem 680 pontos e já pode resgatar
                         R$ 40 de desconto no proximo serviço
                     </h4>
 
@@ -64,7 +65,7 @@ $usuarioLogado = isset($_SESSION['usuario_id']);
                     <progress value="680" max="1000"></progress>
 
                     <h4>
-                        680 de 1000 pontos para o proximo benefício
+                        680 de 1000 pontos para o próximo benefício
                     </h4>
 
                     <a href="configuracao-pontos.php">
