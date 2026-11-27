@@ -9,14 +9,8 @@ if (session_status() === PHP_SESSION_NONE) {
 $pdo = database();
 
 date_default_timezone_set('America/Sao_Paulo');
-
-// =====================================
-// NAVEGAÇÃO ENTRE OS DIAS
-// =====================================
-
 $semana = isset($_GET['semana']) ? (int) $_GET['semana'] : 0;
 
-// Cada navegação avança ou volta cinco dias
 $inicio = new DateTime('today');
 
 if ($semana !== 0) {
@@ -28,11 +22,6 @@ $fim->modify('+4 days');
 
 $dataInicio = $inicio->format('Y-m-d');
 $dataFim = $fim->format('Y-m-d');
-
-// =====================================
-// NOMES DOS DIAS E MESES
-// =====================================
-
 $dias = [
     'Monday' => 'SEG',
     'Tuesday' => 'TER',
@@ -58,7 +47,6 @@ $meses = [
     12 => 'dezembro'
 ];
 
-// Título do período
 if ($inicio->format('m') === $fim->format('m')) {
     $tituloPeriodo = $inicio->format('d') . ' — ' .
         $fim->format('d') . ' de ' .
@@ -69,10 +57,6 @@ if ($inicio->format('m') === $fim->format('m')) {
         $fim->format('d') . ' de ' .
         $meses[(int) $fim->format('m')];
 }
-
-// =====================================
-// BUSCAR AGENDAMENTOS
-// =====================================
 
 $stmt = $pdo->prepare("
     SELECT
@@ -103,10 +87,6 @@ $stmt->execute([
 ]);
 
 $agendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// =====================================
-// ORGANIZAR AGENDAMENTOS POR DIA
-// =====================================
 
 $agenda = [];
 
@@ -145,13 +125,8 @@ foreach ($agendamentos as $agendamento) {
 <?php require_once __DIR__ . "/../nav-fun.php" ?>
 
     <main class="conteudo">
-
-        <!-- CABEÇALHO -->
-
-        <section class="cabecalho">
-
+         <section class="cabecalho">
             <div>
-
                 <p class="identificacao">
                     ORGANIZE SEU DIA
                 </p>
@@ -161,22 +136,15 @@ foreach ($agendamentos as $agendamento) {
                 <p class="subtitulo">
                     Visualize todos os horários da sua equipe.
                 </p>
-
             </div>
 
             <a href="novo-horario.php" class="botao-novo">
                 <i class="fa-solid fa-plus"></i>
                 Novo horário
             </a>
-
         </section>
-
-        <!-- CALENDÁRIO -->
-
+        
         <section class="calendario">
-
-            <!-- CABEÇALHO DO CALENDÁRIO -->
-
             <div class="calendario-topo">
 
                 <a href="agenda.php" class="botao-hoje">
@@ -200,46 +168,27 @@ foreach ($agendamentos as $agendamento) {
                 </div>
 
             </div>
-
-            <!-- DIAS DA AGENDA -->
-
             <div class="dias-agenda">
 
                 <?php for ($i = 0; $i < 5; $i++): ?>
 
                     <?php
-
                     $dataDia = clone $inicio;
                     $dataDia->modify("+$i days");
-
                     $dataFormatada = $dataDia->format('Y-m-d');
-
                     $nomeDia = $dias[$dataDia->format('l')];
-
                     $numeroDia = $dataDia->format('d');
-
                     ?>
 
                     <div class="dia">
-
-                        <!-- NOME DO DIA -->
-
                         <div class="dia-titulo">
-
                             <?= $nomeDia ?> <?= $numeroDia ?>
-
                         </div>
-
-                        <!-- HORÁRIOS DO DIA -->
-
                         <div class="horarios">
-
                             <?php if (!empty($agenda[$dataFormatada])): ?>
-
                                 <?php foreach ($agenda[$dataFormatada] as $item): ?>
 
                                     <div class="horario-card">
-
                                         <span class="horario-hora">
                                             <?= date('H:i', strtotime($item['horario'])) ?>
                                         </span>
@@ -255,7 +204,6 @@ foreach ($agendamentos as $agendamento) {
                                     </div>
 
                                 <?php endforeach; ?>
-
                             <?php else: ?>
 
                                 <p class="dia-vazio">
@@ -263,19 +211,13 @@ foreach ($agendamentos as $agendamento) {
                                 </p>
 
                             <?php endif; ?>
-
                         </div>
-
                     </div>
 
                 <?php endfor; ?>
 
             </div>
-
         </section>
-
     </main>
-
 </body>
-
 </html>

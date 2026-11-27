@@ -9,11 +9,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $pdo = database();
 
-// ID do funcionário que está logado
 $funcionarioId = $_SESSION['funcionario_id'] ?? 0;
 $funcionarioId = (int) $funcionarioId;
 
-// Buscar funcionário
 $stmt = $pdo->prepare("
     SELECT nome
     FROM funcionarios
@@ -25,7 +23,6 @@ $funcionario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $nomeFuncionario = $funcionario['nome'] ?? 'Funcionário';
 
-// Data atual
 $dias = [
     'Sunday' => 'DOMINGO',
     'Monday' => 'SEGUNDA-FEIRA',
@@ -55,7 +52,6 @@ $dataHoje = $dias[date('l')] . ', ' . date('d') . ' DE ' . $meses[(int)date('m')
 
 $horaAtual = date('H');
 
-// Saudação
 if ($horaAtual < 12) {
     $saudacao = 'Bom dia';
 } elseif ($horaAtual < 18) {
@@ -63,10 +59,6 @@ if ($horaAtual < 12) {
 } else {
     $saudacao = 'Boa noite';
 }
-
-// =====================================
-// AGENDAMENTOS DE HOJE
-// =====================================
 
 $stmt = $pdo->prepare("
     SELECT COUNT(*)
@@ -79,11 +71,6 @@ $stmt = $pdo->prepare("
 $stmt->execute(['id' => $funcionarioId]);
 
 $agendamentosHoje = (int) $stmt->fetchColumn();
-
-// =====================================
-// PRÓXIMO ATENDIMENTO
-// =====================================
-
 $stmt = $pdo->prepare("
     SELECT
         a.horario,
@@ -106,11 +93,6 @@ $stmt = $pdo->prepare("
 $stmt->execute(['id' => $funcionarioId]);
 
 $proximoAtendimento = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// =====================================
-// CLIENTES CADASTRADOS NO MÊS
-// =====================================
-
 $stmt = $pdo->query("
     SELECT COUNT(*)
     FROM clientes
@@ -119,21 +101,12 @@ $stmt = $pdo->query("
 ");
 
 $clientesMes = (int) $stmt->fetchColumn();
-
-// =====================================
-// TOTAL DE PROCEDIMENTOS
-// =====================================
-
 $stmt = $pdo->query("
     SELECT COUNT(*)
     FROM procedimentos
 ");
 
 $totalProcedimentos = (int) $stmt->fetchColumn();
-
-// =====================================
-// PRÓXIMOS ATENDIMENTOS
-// =====================================
 
 $stmt = $pdo->prepare("
     SELECT
@@ -163,18 +136,8 @@ $stmt = $pdo->prepare("
 $stmt->execute(['id' => $funcionarioId]);
 
 $listaAgendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// =====================================
-// GRÁFICO DA SEMANA
-// =====================================
-
-// Primeiro dia da semana
 $inicioSemana = date('Y-m-d', strtotime('monday this week'));
-
-// Último dia da semana (sábado)
 $fimSemana = date('Y-m-d', strtotime('saturday this week'));
-
-// Buscar quantidade de atendimentos por dia
 $stmt = $pdo->prepare("
     SELECT
         data,
@@ -196,8 +159,6 @@ $stmt->execute([
 ]);
 
 $resultadoSemana = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Organizar os resultados
 $atendimentosSemana = [];
 
 foreach ($resultadoSemana as $resultado) {
@@ -222,8 +183,6 @@ for ($i = 0; $i < 6; $i++) {
 
     $totalSemana += $quantidade;
 }
-
-// Maior quantidade para calcular as barras
 $maiorQuantidade = 1;
 
 foreach ($dadosGrafico as $dado) {
@@ -231,11 +190,6 @@ foreach ($dadosGrafico as $dado) {
         $maiorQuantidade = $dado['quantidade'];
     }
 }
-
-// =====================================
-// PREVISÃO DE VALOR DA SEMANA
-// =====================================
-
 $stmt = $pdo->prepare("
     SELECT SUM(p.valor)
 
@@ -257,7 +211,6 @@ $stmt->execute([
 
 $valorSemana = (float) ($stmt->fetchColumn() ?? 0);
 
-// Formatar dinheiro
 $valorFormatado = number_format($valorSemana, 2, ',', '.');
 
 ?>
@@ -282,11 +235,7 @@ $valorFormatado = number_format($valorSemana, 2, ',', '.');
     <?php require_once __DIR__ . "/../nav-fun.php" ?>
 
     <main class="conteudo">
-
-        <!-- CABEÇALHO -->
-
         <section class="cabecalho">
-
             <div>
                 <p class="data-atual">
                     <?= $dataHoje ?>
@@ -307,13 +256,8 @@ $valorFormatado = number_format($valorSemana, 2, ',', '.');
             </a>
 
         </section>
-
-        <!-- CARTÕES DE INFORMAÇÕES -->
-
         <section class="cartoes">
-
             <div class="cartao">
-
                 <div class="icone">
                     <i class="fa-regular fa-calendar"></i>
                 </div>
@@ -325,9 +269,7 @@ $valorFormatado = number_format($valorSemana, 2, ',', '.');
 
                     <span>Atendimentos do dia</span>
                 </div>
-
             </div>
-
             <div class="cartao">
 
                 <div class="icone">
@@ -355,11 +297,9 @@ $valorFormatado = number_format($valorSemana, 2, ',', '.');
             </div>
 
             <div class="cartao">
-
                 <div class="icone">
                     <i class="fa-solid fa-user-plus"></i>
                 </div>
-
                 <div class="informacoes">
                     <p>Clientes no mês</p>
 
@@ -388,11 +328,7 @@ $valorFormatado = number_format($valorSemana, 2, ',', '.');
 
         </section>
 
-        <!-- ÁREA INFERIOR -->
-
         <section class="area-inferior">
-
-            <!-- PRÓXIMOS ATENDIMENTOS -->
 
             <div class="painel agenda-painel">
 
