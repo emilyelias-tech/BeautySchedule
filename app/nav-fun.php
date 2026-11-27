@@ -2,37 +2,44 @@
 declare(strict_types=1);
 
 $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? ''));
-$isInCliente = str_ends_with($scriptDir, '/app-cliente');
-$baseApp = $isInCliente ? '..' : '.';
-$baseCliente = $isInCliente ? '.' : 'app-cliente';
+$isInFuncionario = str_ends_with($scriptDir, '/app-funcionario');
+$baseApp = $isInFuncionario ? '..' : '.';
+$baseFuncionario = $isInFuncionario ? '.' : 'app-funcionario';
 ?>
 
 <div class="navbar">
 
     <div class="brand">
-        <a href="<?= $baseCliente ?>/index.php">
-            <img class="img" src="<?= $baseApp ?>/imagens/logo.png" alt="Beauty Schedule">
+        <a href="<?= $baseFuncionario ?>/index.php">
+            <img class="img" src="<?= $baseApp ?>/imagens/Logotipo Botânico BS Beauty Schedule.png" alt="Beauty Schedule">
         </a>
     </div>
 
-    <nav class="nav-links">
-        <a href="<?= $baseCliente ?>/index.php">Início</a>
-        <a href="<?= $baseCliente ?>/produtos.php">Produtos</a>
-        <a href="<?= $baseCliente ?>/agendar-procedimento.php">Agendar</a>
-        <a href="<?= $baseCliente ?>/consulta.php">Consulta</a>
-        <a href="<?= $baseCliente ?>/procedimentos.php">Procedimentos</a>
-    </nav>
+        <nav class="nav-links">
+            <a href="<?= $baseFuncionario ?>/index.php" class="ativo">
+                <i class="fa-solid fa-house"></i>
+                Início
+            </a>
 
-    <div class="nav-actions">
+            <a href="<?= $baseFuncionario ?>/agenda.php">
+                <i class="fa-regular fa-calendar"></i>
+                Agenda
+            </a>
 
-        <a href="<?= $baseCliente ?>/carrinho.php" class="nav-icon">
-            <img class="nav-mage" src="<?= $baseApp ?>/imagens/carrinho.png" alt="Carrinho">
-        </a>
+            <a href="<?= $baseFuncionario ?>/clientes.php">
+                <i class="fa-solid fa-user-plus"></i>
+                Clientes
+            </a>
 
-        <a href="<?= $baseCliente ?>/configuracao-dados-pessoais.php" class="nav-icon">
-            <img class="nav-mage" src="<?= $baseApp ?>/imagens/perfil.png" alt="Perfil">
-        </a>
+            <a href="<?= $baseFuncionario ?>/servicos.php">
+                <i class="fa-solid fa-scissors"></i>
+                Serviços
+            </a>
 
-    </div>
+            <a href="<?= $baseFuncionario ?>/perfil.php">
+                <i class="fa-regular fa-user"></i>
+                Perfil
+            </a>
+        </nav>
 
 </div>
