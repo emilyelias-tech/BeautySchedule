@@ -146,7 +146,7 @@ function formatarDataCompleta(string $dataIso, array $meses) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($titulosPorFiltro[$filtro]) ?> - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/consulta.css">
+    <link rel="stylesheet" href="../css/consulta.css">
 </head>
 <body>
 
@@ -161,7 +161,7 @@ function formatarDataCompleta(string $dataIso, array $meses) {
                     <h2><?= htmlspecialchars($titulosPorFiltro[$filtro]) ?></h2>
                 </div>
 
-                <a href="/app/app-cliente/agendar-procedimento.php" class="btn-salvar btn-novo-agendamento">+ Novo agendamento</a>
+                <a href="app-cliente/agendar-procedimento.php" class="btn-salvar btn-novo-agendamento">+ Novo agendamento</a>
             </div>
 
             <div class="filtros-lista">
@@ -201,7 +201,7 @@ function formatarDataCompleta(string $dataIso, array $meses) {
                     <?php if ($filtro !== 'todos'): ?>
                         <a href="meus-agendamento.php?filtro=todos" class="btn-cancelar" style="margin-right: 10px;">Ver todos os agendamentos</a>
                     <?php endif; ?>
-                    <a href="/app/app-cliente/agendar-procedimento.php" class="btn-salvar">+ Novo agendamento</a>
+                    <a href="app-cliente/agendar-procedimento.php" class="btn-salvar">+ Novo agendamento</a>
                 </div>
             <?php else: ?>
                 <div class="lista-agendamentos">

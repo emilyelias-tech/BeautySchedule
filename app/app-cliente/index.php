@@ -19,7 +19,7 @@ $usuarioLogado = isset($_SESSION['usuario_id']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Inicio | BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
 
@@ -32,7 +32,7 @@ $usuarioLogado = isset($_SESSION['usuario_id']);
 
         <h4>Tratamentos para realçar sua beleza natural.</h4>
 
-        <a href="/app/app-cliente/agendar-procedimento.php" class="btn-agendar-home">
+        <a href="/app-cliente/agendar-procedimento.php" class="btn-agendar-home">
             <button type="button">Agende seu horario →</button>
         </a>
 

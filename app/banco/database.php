@@ -25,11 +25,4 @@ function database(): PDO
     ]);
 
     return $connection;
-<<<<<<< HEAD
 }
-
-
-
-=======
-}
->>>>>>> 39ff5d6feb7e604086864d6fccb13d1387009c8c

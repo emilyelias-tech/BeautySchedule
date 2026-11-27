@@ -145,10 +145,10 @@ if (count($partesNome) > 1) {
 
         <section class="nav-perfil">
             <a href="#" class="ativo"><span>Dados pessoais</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao-enderecos.php"><span>Endereços</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao-meus-cartoes.php"><span>Meus cartões</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao-preferencias.php"><span>Configurações</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao-historico.php"><span>Histórico de pontos</span> <span>&gt;</span></a>
+            <a href="app-cliente/configuracao-enderecos.php"><span>Endereços</span> <span>&gt;</span></a>
+            <a href="app-cliente/configuracao-meus-cartoes.php"><span>Meus cartões</span> <span>&gt;</span></a>
+            <a href="app-cliente/configuracao-preferencias.php"><span>Configurações</span> <span>&gt;</span></a>
+            <a href="app-cliente/configuracao-historico.php"><span>Histórico de pontos</span> <span>&gt;</span></a>
         </section>
 
         <section class="club-card">

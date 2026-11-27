@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
                 </div>
 
                 <div class="acoes-rodape">
-                    <a href="/app/app-cliente/agendar-profissional.php" class="btn-voltar">Voltar</a>
+                    <a href="app-cliente/agendar-profissional.php" class="btn-voltar">Voltar</a>
                     <button type="submit" name="confirmar" class="btn-continuar">
                         Continuar 
                     </button>

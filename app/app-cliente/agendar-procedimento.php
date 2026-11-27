@@ -112,7 +112,7 @@ if (isset($_POST['cadastrar'])) {
                                 required
                             >         
                             <div class="cuidado-conteudo">
-                                <img src="<?= htmlspecialchars($imagem) ?>" alt="<?= htmlspecialchars($proc['nome']) ?>" class="cuidado-img">
+                                <img src="/<?= htmlspecialchars($imagem) ?>" alt="<?= htmlspecialchars($proc['nome']) ?>" class="cuidado-img">
                                 <div class="cuidado-info">
                                     <span class="cuidado-titulo"><?= htmlspecialchars($proc['nome']) ?></span>
                                     <span class="cuidado-detalhes"><?= htmlspecialchars($duracao) ?> min R$ <?= htmlspecialchars($preco) ?></span>

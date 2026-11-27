@@ -144,10 +144,10 @@ if (count($partesNome) > 1) {
         </section>
 
         <section class="nav-perfil">
-            <a href="/app/app-cliente/configuracao-dados-pessoais.php"><span>Dados pessoais</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao-enderecos.php"><span>Endereços</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao-meus-cartoes.php"><span>Meus cartões</span> <span>&gt;</span></a>
-            <a href="/app/app-cliente/configuracao-preferencias.php"><span>Configurações</span> <span>&gt;</span></a>
+            <a href="app-cliente/configuracao-dados-pessoais.php"><span>Dados pessoais</span> <span>&gt;</span></a>
+            <a href="app-cliente/configuracao-enderecos.php"><span>Endereços</span> <span>&gt;</span></a>
+            <a href="app-cliente/configuracao-meus-cartoes.php"><span>Meus cartões</span> <span>&gt;</span></a>
+            <a href="app-cliente/configuracao-preferencias.php"><span>Configurações</span> <span>&gt;</span></a>
             <a href="#" class="ativo"><span>Histórico de pontos</span> <span>&gt;</span></a>
         </section>
 

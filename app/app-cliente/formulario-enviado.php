@@ -8,7 +8,7 @@ require_once __DIR__ . "/../init.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento Concluído - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/formulario-enviado.css">
+    <link rel="stylesheet" href="../css/formulario-enviado.css">
 </head>
 <body>
 
@@ -18,7 +18,7 @@ require_once __DIR__ . "/../init.php";
         <div class="container container-confirmacao">
            
             <div class="card-header-fechar">
-                <a href="/app/app-cliente/index.php" class="btn-fechar" title="Fechar">x</a>
+                <a href="app-cliente/index.php" class="btn-fechar" title="Fechar">x</a>
             </div>
 
             <div class="confirmacao-conteudo">
