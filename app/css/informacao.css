@@ -63,8 +63,8 @@ html, body {
 }
 
 .nav-mage {
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 65px;
     object-fit: contain;
     display: block;
 }

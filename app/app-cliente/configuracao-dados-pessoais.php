@@ -139,6 +139,7 @@ if (count($partesNome) > 1) {
                     <span class="stat-desc">Sua avaliação média</span>
                 </div>
             </div>
+            <br>
             <a href="login.php">Sair da conta</a>
         </section>
 
@@ -194,11 +195,11 @@ if (count($partesNome) > 1) {
             <label for="CPF">CPF:</label>
             <input type="text" id="CPF" name="CPF" value="<?php echo htmlspecialchars($cliente['cpf'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
-            <button type="submit" style="margin-top: 25px; background-color: #4f5838; color: #D5CEB8; border: none; padding: 14px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; width: 100%;">
+            <button type="submit">
                 Salvar Alterações
             </button>
         </form>
-    </section>  
+    </section>
 </main>
     
 </body>

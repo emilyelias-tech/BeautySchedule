@@ -64,12 +64,11 @@ html, body {
 }
 
 .nav-mage {
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 65px;
     object-fit: contain;
     display: block;
 }
-
 .fundo {
     display: flex;
     justify-content: center;

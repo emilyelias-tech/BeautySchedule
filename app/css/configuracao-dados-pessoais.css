@@ -63,8 +63,8 @@
 }
 
 .nav-mage {
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 65px;
     object-fit: contain;
     display: block;
 }
@@ -250,6 +250,19 @@ main {
     font-weight: normal;
     color: #4D5637;
     margin-bottom: 30px;
+}
+
+.campo-formulario button{
+    margin-top: 25px;
+    background-color: #4f5838; 
+    color: #D5CEB8; 
+    border: none; 
+    padding: 14px 24px; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    font-size: 16px;
+    width: 106%;
 }
 
 .campo-formulario {

@@ -104,7 +104,7 @@ $descricaoAtual = $_POST['descricao'] ?? ($feedbackExistente['descricao'] ?? '')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliar Atendimento - BeautySchedule</title>
-    <link rel="stylesheet" href="/app/css/consulta.css
+    <link rel="stylesheet" href="../css/feedback.css">
 </head>
 <body>
 
