@@ -84,15 +84,11 @@ html, body {
     background-color: #e9e2c4;
 }
 
-/* CONTEÚDO */
-
 .conteudo {
     margin-left: 262px;
     padding: 35px 45px;
     min-height: 100vh;
 }
-
-/* CABEÇALHO */
 
 .cabecalho {
     display: flex;
@@ -121,8 +117,6 @@ html, body {
     color: #77746a;
 }
 
-/* BOTÃO NOVO HORÁRIO */
-
 .botao-novo {
     display: flex;
     align-items: center;
@@ -141,8 +135,6 @@ html, body {
     background-color: #555b3b;
 }
 
-/* CALENDÁRIO */
-
 .calendario {
     width: 100%;
     background-color: #fffefa;
@@ -150,8 +142,6 @@ html, body {
     border-radius: 17px;
     overflow: hidden;
 }
-
-/* PARTE SUPERIOR DO CALENDÁRIO */
 
 .calendario-topo {
     height: 75px;
@@ -212,8 +202,6 @@ html, body {
     border-right: none;
 }
 
-/* DIAS DA AGENDA */
-
 .dias-agenda {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -229,15 +217,11 @@ html, body {
     border-right: none;
 }
 
-/* TÍTULO DE CADA DIA */
-
 .dia-titulo {
     padding: 23px 16px 19px;
     font-size: 10px;
     color: #665f49;
 }
-
-/* HORÁRIOS */
 
 .horarios {
     padding: 0 11px 20px;
@@ -245,8 +229,6 @@ html, body {
     flex-direction: column;
     gap: 9px;
 }
-
-/* CARTÃO DO AGENDAMENTO */
 
 .horario-card {
     background-color: #f3eedb;
@@ -275,8 +257,6 @@ html, body {
     color: #77746a;
     line-height: 1.4;
 }
-
-/* DIA SEM AGENDAMENTOS */
 
 .dia-vazio {
     font-size: 10px;
