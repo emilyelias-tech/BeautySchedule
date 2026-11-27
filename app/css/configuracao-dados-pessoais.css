@@ -12,8 +12,6 @@
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -71,7 +69,6 @@
     display: block;
 }
 
-/* Container Principal (2 Colunas) */
 main {
     display: flex;
     max-width: 1300px;
@@ -80,7 +77,6 @@ main {
     gap: 110px;
 }
 
-/* Coluna da Esquerda */
 .coluna-esquerda {
     width: 380px;
     display: flex;
@@ -89,7 +85,6 @@ main {
     flex-shrink: 0;
 }
 
-/* Cartão 1: Perfil */
 .perfil-section {
     background-color: #4D5637;
     border-radius: 35px;
@@ -159,7 +154,6 @@ main {
     background-color: #FFFFFF;
 }
 
-/* Cartão 2: Menu de Navegação */
 .nav-perfil {
     background-color: #BCB69E;
     border-radius: 30px;
@@ -183,7 +177,6 @@ main {
     background-color: #D8D0B4;
 }
 
-/* Cartão 3: Beauty Club */
 .club-card {
     background-color: #BCB69E;
     border-radius: 30px;
@@ -239,7 +232,6 @@ main {
     text-decoration: underline;
 }
 
-/* Coluna da Direita: Formulário */
 .dados-section {
     flex: 1;
     margin-left: 100px;

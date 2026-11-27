@@ -12,8 +12,6 @@
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -71,9 +69,6 @@
     display: block;
 }
 
-
-/* estilização das escritas do começo */
-
 .img-principal {
     width: 800px;
     position: absolute;
@@ -120,8 +115,6 @@
     
 }
 
-/* imagem principal */
-
 .fotoloh {
     width: 550px;
     height: 450px;
@@ -131,8 +124,6 @@
     border-radius: 100px 0 0 100px;
     object-fit: cover;
 }
-
-/* estilização do club */
 
 .club {
     background-color: #4f5838;
@@ -260,8 +251,6 @@
     text-decoration: none;
     cursor: pointer; 
 }
-
-
 
 .item:hover h3 {
     color: #868439;

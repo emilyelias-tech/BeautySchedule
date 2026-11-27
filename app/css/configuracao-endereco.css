@@ -13,7 +13,6 @@
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -71,7 +70,6 @@
     display: block;
 }
 
-/* Container Principal */
 .container-principal {
     display: flex;
     gap: 40px;
@@ -237,7 +235,6 @@
     font-weight: bold;
 }
 
-/* Coluna Direita (Com fundo visível e espaçamento perfeito) */
 .coluna-direita {
     flex: 1;
     background-color: #BDB7A2;

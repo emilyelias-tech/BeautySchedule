@@ -51,8 +51,6 @@ html, body {
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -138,7 +136,6 @@ main {
     display: flex;
 }
 
-
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -162,7 +159,6 @@ main {
     background-color: #485136;
 }
 
-
 .btn-fechar {
     width: 38px;
     height: 38px;
@@ -179,7 +175,6 @@ main {
     border-radius: 30px;
 }
 
-/* Agendar procedimento*/
 form {
     display: flex;
     flex-direction: column;
@@ -255,7 +250,6 @@ form {
     color: #4A4A4A;
 }
 
-
 .cuidado-check {
     width: 34px;
     height: 34px;
@@ -286,7 +280,6 @@ form {
 .card-cuidado input[type="radio"]:checked + .cuidado-conteudo .cuidado-check .check-icon {
     opacity: 1;
 }
-
 
 .btn-continuar {
     align-self: flex-end;

@@ -324,7 +324,6 @@ input[type="date"].select-custom:focus {
     display: none;
 }
 
-/* HORÁRIOS CENTRALIZADOS ABAIXO DE PROFISSIONAL E DATA */
 .campo-horarios {
     align-items: center;
     padding-top: 8px;
@@ -381,7 +380,6 @@ input[type="date"].select-custom:focus {
     box-shadow: 0 4px 10px rgba(43, 43, 43, 0.08);
 }
 
-/* ESTADO SELECIONADO */
 .opcao-pill input[type="radio"]:checked + .pill-texto {
     background-color: #485136;
     border-color: #485136;
@@ -391,7 +389,6 @@ input[type="date"].select-custom:focus {
     transform: translateY(-1px);
 }
 
-/* RODAPÉ DE AÇÕES À DIREITA */
 .acoes-rodape {
     display: flex;
     justify-content: flex-end;

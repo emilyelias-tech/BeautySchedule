@@ -8,8 +8,6 @@ body{
     );
 }
 
-/* Configuração do nav*/
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -56,17 +54,15 @@ body{
 
 .nav-links a:hover {
     color: #4a523a;
-    border-bottom: 2px solid #4a523a; /* Efeito sublinhado (como o 'Agendar' da foto) */
+    border-bottom: 2px solid #4a523a;
 }
 
-/* Ações (Direita - Carrinho, Perfil ou Login/Cadastro) */
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-/* Ícones de Navegação */
 .nav-icon {
     display: flex;
     align-items: center;
@@ -78,17 +74,15 @@ body{
     transition: transform 0.2s ease;
 }
 
-/* Estilo específico do ícone de Carrinho (Borda fina igual a foto) */
 .cart-icon {
     border: 2px solid #4a523a;
     color: #4a523a;
     background-color: transparent;
 }
 
-/* Estilo específico do ícone de Perfil (Fundo preenchido igual a foto) */
 .user-icon {
     background-color: #4a523a;
-    color: #b8b39a; /* Ícone na cor do fundo da navbar */
+    color: #b8b39a;
 }
 
 .nav-icon:hover {
@@ -99,7 +93,6 @@ body{
     font-size: 18px;
 }
 
-/* Botões para quando NÃO estiver logado */
 .btn-login, 
 .btn-cadastro,
 .btn-logout {
@@ -141,7 +134,6 @@ body{
     height: 120px;
 }
 
-/**/
 .identificacao
 h1{
     color: #4f5838;

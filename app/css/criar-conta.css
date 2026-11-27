@@ -12,7 +12,6 @@
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;

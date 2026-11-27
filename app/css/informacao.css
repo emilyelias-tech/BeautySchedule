@@ -12,8 +12,6 @@ html, body {
     src: url("/app/fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -82,7 +80,6 @@ main {
     background-color: #D8D1BA;
 }
 
-/* CONSULTA */
 .container {
     width: 100%;
     max-width: 630px;
@@ -519,7 +516,6 @@ main {
     background-color: #3A422B;
 }
 
-/* MEUS AGENDAMENTOS */
 .container-todos {
     max-width: 780px;
 }
@@ -711,7 +707,6 @@ main {
     display: inline-block;
 }
 
-/* EDITAR E CANCELAR */
 .acoes-esquerda,
 .acoes-direita {
     display: flex;

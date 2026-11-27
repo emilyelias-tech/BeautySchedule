@@ -12,7 +12,6 @@
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -70,7 +69,6 @@
     display: block;
 }
 
-/* Container Principal do Carrinho */
 .fundo {
     display: flex;
     justify-content: center;
@@ -91,7 +89,6 @@
     box-sizing: border-box;
 }
 
-/* Cabeçalho */
 .carrinho-cabecalho {
     display: flex;
     justify-content: space-between;
@@ -116,7 +113,6 @@
     border: 1px solid #bbb59e;
 }
 
-/* Lista de Produtos */
 .lista-itens {
     display: flex;
     flex-direction: column;
@@ -208,7 +204,6 @@
     color: #ffffff;
 }
 
-/* Resumo e Rodapé */
 .resumo-carrinho {
     border-top: 2px solid #bbb59e;
     padding-top: 24px;
@@ -276,7 +271,6 @@
     color: #ffffff;
 }
 
-/* Carrinho Vazio */
 .carrinho-vazio-box {
     text-align: center;
     padding: 45px 20px;

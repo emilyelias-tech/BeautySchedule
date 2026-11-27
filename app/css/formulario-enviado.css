@@ -51,8 +51,6 @@ html, body {
     src: url("/app/fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -198,7 +196,7 @@ main {
     font-family: Arial, sans-serif;
     font-size: 18px;
 }
-/* AGENDAR 4 */
+
 .container-confirmacao {
     padding-bottom: 52px;
 }

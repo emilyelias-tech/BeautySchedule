@@ -47,8 +47,6 @@ header {
     color: #5C6347;
 }
 
-/* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -192,8 +190,6 @@ main {
     font-family: Arial, sans-serif;
     font-size: 18px;
 }
-
-/* AGENDAR 3 */
 
 .acoes-rodape {
     display: flex;

@@ -51,8 +51,6 @@ html, body {
     src: url("../fontes/TAN-Angleton-Regular.ttf");
 }
 
-/* Navbar */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -132,7 +130,6 @@ main {
     box-shadow: 0 12px 32px rgba(43, 43, 43, 0.08);
 }
 
-
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -155,7 +152,6 @@ main {
 .progresso-barras .barra.ativa {
     background-color: #485136;
 }
-
 
 .btn-fechar {
     width: 38px;
@@ -198,7 +194,7 @@ main {
     font-family: Arial, sans-serif;
     font-size: 18px;
 }
-/* AGENDAR 4 */
+
 .container-confirmacao {
     padding-bottom: 52px;
 }

@@ -20,7 +20,6 @@ html, body {
   color: #1E2118;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -78,7 +77,6 @@ html, body {
   display: block;
 }
 
-/* Container Principal Mais Largo */
 .container {
   max-width: 1250px;
   margin: 0 auto;
@@ -123,7 +121,6 @@ html, body {
   transform: translateY(-1px);
 }
 
-/* Card de Lembrete Totalmente Esticado */
 .reminder-card {
   background-color: #BDB6A2;
   border-radius: 20px;
@@ -174,7 +171,6 @@ html, body {
   color: #1E2118;
 }
 
-/* Títulos das Seções */
 .eyebrow {
   display: block;
   font-size: 0.95rem;
@@ -190,7 +186,6 @@ html, body {
   margin-bottom: 24px;
 }
 
-/* Lista de Agendamentos Esticada */
 .schedule-section {
   margin-bottom: 50px;
   width: 100%;
@@ -268,7 +263,6 @@ html, body {
   color: #1E2118;
 }
 
-/* Seção Pós-procedimento Totalmente Esticada */
 .aftercare-section {
   width: 100%;
 }
